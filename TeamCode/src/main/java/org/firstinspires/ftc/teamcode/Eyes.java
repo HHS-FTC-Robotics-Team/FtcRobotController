@@ -337,12 +337,12 @@ public class Eyes extends LinearOpMode {
     public float getPositionY() {
         // express position (translation) of robot in inches.
         VectorF position = this.lastLocation.getTranslation();
-        return position.get(1);
+        return position.get(1) / mmPerInch;
     }
     public float getPositionX() {
         // express position (translation) of robot in inches.
         VectorF position = this.lastLocation.getTranslation();
-        return position.get(0);
+        return position.get(0) / mmPerInch;
     }
 
     public float getHeading() {
