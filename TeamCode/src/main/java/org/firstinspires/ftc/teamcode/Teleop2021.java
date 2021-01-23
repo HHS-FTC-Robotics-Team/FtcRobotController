@@ -60,9 +60,9 @@ public class Teleop2021 extends LinearOpMode {
         cam1 = new Eyes(
                 hardwareMap.get(WebcamName.class, "Webcam 1")
         );
-        cam2 = new Eyes(
-                hardwareMap.get(WebcamName.class, "Webcam 2")
-        );
+//        cam2 = new Eyes(
+//                hardwareMap.get(WebcamName.class, "Webcam 2")
+//        );
 
         waitForStart();
         while (opModeIsActive()) {
@@ -83,23 +83,25 @@ public class Teleop2021 extends LinearOpMode {
                 lift.rest();
             }
 
+            float heading = 0f;
+            float x = 0f;
+            float y = 0f;
+            float theta = 0f;
+//            if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
+                heading = cam1.getHeading();
+                x = 72 - cam1.getPosition().get(0);
+                y = 36 - cam1.getPosition().get(1);
+                theta = (float) Math.tan(y/x);
+//            }
+
             if (state == "rotate") {
                 d.resetAllEncoders();
-                float heading = 0f;
-                float x = 0f;
-                float y = 0f;
-                float theta = 0f;
-                if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
-                    heading = cam1.getHeading();
-                    x = 72 - cam1.getPosition().get(0);
-                    y = 36 - cam1.getPosition().get(1);
-                    theta = (float) Math.tan(y/x);
-                } else if(cam2.isTargetVisible()) {
-                    heading = cam2.getHeading();
-                    x = 72 - cam2.getPosition().get(0);
-                    y = 36 - cam2.getPosition().get(1);
-                    theta = (float) Math.tan(y/x);
-                }
+                 //else if(cam2.isTargetVisible()) {
+//                    heading = cam2.getHeading();
+//                    x = 72 - cam2.getPosition().get(0);
+//                    y = 36 - cam2.getPosition().get(1);
+//                    theta = (float) Math.tan(y/x);
+//                }
                 if (d.rotateToAngle(-(heading+theta), 0.25) == false) {
                     state = "drive";
                 }
@@ -139,7 +141,7 @@ public class Teleop2021 extends LinearOpMode {
             }
 
             cam1.trackPosition(); // vuforia
-            cam2.trackPosition();
+//            cam2.trackPosition();
 
             telemetry.addData("Status", "Run Time: ");
             telemetry.addData("Motor Power", gamepad1.left_stick_y);
@@ -158,7 +160,9 @@ public class Teleop2021 extends LinearOpMode {
                 telemetry.addData("Vuf translation", cam1.getTranslation());
                 telemetry.addData("Vuf rotation", cam1.getRotation());
             }
-            telemetry.addData("Visible Target", cam1.isTargetVisible() && cam2.isTargetVisible());
+            telemetry.addData("Visible Target", cam1.isTargetVisible()/* && cam2.isTargetVisible()*/);
+            telemetry.addData("Drive state", state);
+            telemetry.addData("Drive theta", theta);
             telemetry.update();
 
         }
