@@ -83,16 +83,8 @@ public class Teleop2021 extends LinearOpMode {
                 lift.rest();
             }
 
-            float heading = 0f;
-            float x = 0f;
-            float y = 0f;
-            float theta = 0f;
-            if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
-                heading = cam1.getHeading();
-                x = 72 - cam1.getPositionX();
-                y = 36 - cam1.getPositionY();
-                theta = (float) Math.tan(y/x);
-            }
+
+
 
             if (state == "rotate") {
 
@@ -102,7 +94,7 @@ public class Teleop2021 extends LinearOpMode {
 //                    y = 36 - cam2.getPosition().get(1);
 //                    theta = (float) Math.tan(y/x);
 //                }
-                if (d.rotateToAngle(-(heading), 0.25) == false) {
+                if (d.isBusy() == false) {
                     d.resetAllEncoders();
                     state = "drive";
                 }
@@ -137,6 +129,17 @@ public class Teleop2021 extends LinearOpMode {
                 } else {
                     state = "rotate";
                     d.resetAllEncoders();
+                    float heading = 0f;
+                    float x = 0f;
+                    float y = 0f;
+                    float theta = 0f;
+                    if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
+                        heading = cam1.getHeading();
+                        x = 72 - cam1.getPositionX();
+                        y = 36 - cam1.getPositionY();
+                        theta = (float) Math.tan(y/x);
+                        d.rotateToAngle(-(heading), 0.25);
+                    }
                 }
             } else if (!gamepad1.x) {
                 turningButtonIsDown = false;
@@ -164,7 +167,7 @@ public class Teleop2021 extends LinearOpMode {
             }
             telemetry.addData("Visible Target", cam1.isTargetVisible()/* && cam2.isTargetVisible()*/);
             telemetry.addData("Drive state", state);
-            telemetry.addData("Drive theta", theta);
+//            telemetry.addData("Drive theta", theta);
             telemetry.update();
 
         }
