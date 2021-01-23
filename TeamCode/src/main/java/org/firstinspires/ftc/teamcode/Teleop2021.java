@@ -77,7 +77,7 @@ public class Teleop2021 extends LinearOpMode {
                 lift.rest();
             }
             
-            d.rotateToAngle(90f, 0.5, "clockwise");
+            d.rotateToAngle(90f, 0.25, "clockwise");
 
 //             d.setPower(
 //                  gamepad1.left_stick_y,
