@@ -104,6 +104,20 @@ public class Drive extends LinearOpMode {
     powerrb = rightback;
     motorrb.setPower(rightback);
   }
+  
+  public void rotateToAngle(float angle, double power, String direction) {
+    motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    float position = ((angle/260) * Math.PI * 19.2) * (134.4/3.85827); // convert inches to clicks based on circumference in inches
+    motorlf.setTargetPosition(position);
+    if(direction == 'clockwise') {
+      if(motorlf.isBusy()) {
+        motorlf.setPower(power);
+        //motorlb.setPower(power);
+        //motorrf.setPower(-power);
+        //motorrb.setPower(-power);
+      }
+    }
+  }
 
   //the following are get commands that return the values of the class' variables.
 

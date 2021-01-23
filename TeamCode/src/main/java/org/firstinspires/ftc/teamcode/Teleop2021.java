@@ -76,13 +76,15 @@ public class Teleop2021 extends LinearOpMode {
             } else {
                 lift.rest();
             }
+            
+            d.rotateToAngle(90f, 0.5, 'clockwise');
 
-            d.setPower(
-                 gamepad1.left_stick_y,
-                 gamepad1.left_stick_x,
-                 gamepad1.right_stick_x,
-                 gamepad1.right_trigger
-              );
+//             d.setPower(
+//                  gamepad1.left_stick_y,
+//                  gamepad1.left_stick_x,
+//                  gamepad1.right_stick_x,
+//                  gamepad1.right_trigger
+//               );
             eyes.trackPosition();
             if (gamepad1.y && !clawButtonIsDown) {
                 clawButtonIsDown = true;
