@@ -95,7 +95,7 @@ public class Teleop2021 extends LinearOpMode {
             }
 
             if (state == "rotate") {
-                d.resetAllEncoders();
+
                  //else if(cam2.isTargetVisible()) {
 //                    heading = cam2.getHeading();
 //                    x = 72 - cam2.getPosition().get(0);
@@ -136,6 +136,7 @@ public class Teleop2021 extends LinearOpMode {
                     state = "drive";
                 } else {
                     state = "rotate";
+                    d.resetAllEncoders();
                 }
             } else if (!gamepad1.x) {
                 turningButtonIsDown = false;
