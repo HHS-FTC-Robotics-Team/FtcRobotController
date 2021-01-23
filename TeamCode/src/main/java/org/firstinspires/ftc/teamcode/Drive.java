@@ -120,14 +120,12 @@ public class Drive extends LinearOpMode {
     motorrb.setTargetPosition(-(int)position);
     motorrb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     
-    if(direction == "clockwise") {
-      if(motorlf.isBusy()) {
-        motorlf.setPower(power);
-        motorlb.setPower(power);
-        motorrf.setPower(power);
-        motorrb.setPower(power);
-      }
-    }
+
+    motorlf.setPower(power);
+    motorlb.setPower(power);
+    motorrf.setPower(power);
+    motorrb.setPower(power);
+
   }
 
   //the following are get commands that return the values of the class' variables.
