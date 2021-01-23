@@ -23,6 +23,7 @@ public class Teleop2021 extends LinearOpMode {
     private boolean gearboxButtonIsDown = false; // controls the gearbox servo button press
     private boolean turningButtonIsDown = false; // controls the gearbox servo button press
     private String state = "drive";
+    private float theta = 0.0f;
 
     private Sensors sensors;
 
@@ -132,13 +133,12 @@ public class Teleop2021 extends LinearOpMode {
                     float heading = 0f;
                     float x = 0f;
                     float y = 0f;
-                    float theta = 0f;
                     if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
-                        heading = cam1.getHeading();
+                        heading = cam1.getHeading() - 90;
                         x = 72 - cam1.getPositionX();
                         y = 36 - cam1.getPositionY();
                         theta = (float) Math.tan(y/x);
-                        d.rotateToAngle(-(heading), 0.25);
+                        d.rotateToAngle((heading - theta), 0.25);
                     }
                 }
             } else if (!gamepad1.x) {
@@ -167,7 +167,7 @@ public class Teleop2021 extends LinearOpMode {
             }
             telemetry.addData("Visible Target", cam1.isTargetVisible()/* && cam2.isTargetVisible()*/);
             telemetry.addData("Drive state", state);
-//            telemetry.addData("Drive theta", theta);
+            telemetry.addData("Drive theta", theta);
             telemetry.update();
 
         }
