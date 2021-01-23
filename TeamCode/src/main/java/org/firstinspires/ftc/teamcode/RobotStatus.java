@@ -1,3 +1,5 @@
+package org.firstinspires.ftc.teamcode;
+
 public class RobotStatus {
   
   float x;

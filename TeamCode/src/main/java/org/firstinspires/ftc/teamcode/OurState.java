@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.RobotHardware;
+import org.firstinspires.ftc.teamcode.RobotStatus;
 
 public class OurState extends OpMode
 {
@@ -41,9 +42,13 @@ public class OurState extends OpMode
         
     }
 
+    public void loop(RobotStatus status) {
+        
+    }
+
     @Override
     public void loop() {
-        
+
     }
 
     @Override
