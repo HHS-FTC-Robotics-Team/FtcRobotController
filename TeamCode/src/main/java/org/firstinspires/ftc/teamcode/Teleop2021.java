@@ -83,11 +83,11 @@ public class Teleop2021 extends LinearOpMode {
                  gamepad1.right_stick_x,
                  gamepad1.right_trigger
               );
-
+            eyes.trackPosition();
             if (gamepad1.y && !clawButtonIsDown) {
                 clawButtonIsDown = true;
                 claw.nextPos();
-                eyes.trackPosition();
+
             } else if (!gamepad1.y) {
                 clawButtonIsDown = false;
             }
