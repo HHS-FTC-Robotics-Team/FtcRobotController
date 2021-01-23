@@ -107,7 +107,7 @@ public class Drive extends LinearOpMode {
   
   public void rotateToAngle(float angle, double power) {
 
-    double position = ((angle/360) * Math.PI * 19.2) * (134.4/(Math.PI * 3.85827)); // convert inches to clicks based on circumference in inches
+    double position = ((angle/360) * Math.PI * 19.2) * (537.6/(Math.PI * 3.85827)); // convert inches to clicks based on circumference in inches
     motorlf.setTargetPosition((int)position);
     motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     
