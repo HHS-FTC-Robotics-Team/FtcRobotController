@@ -110,12 +110,22 @@ public class Drive extends LinearOpMode {
     double position = ((angle/260) * Math.PI * 19.2) * (134.4/3.85827); // convert inches to clicks based on circumference in inches
     motorlf.setTargetPosition((int)position);
     motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    
+    motorlb.setTargetPosition((int)position);
+    motorlb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    
+    motorrf.setTargetPosition(-(int)position);
+    motorrf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    
+    motorrb.setTargetPosition(-(int)position);
+    motorrb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    
     if(direction == "clockwise") {
       if(motorlf.isBusy()) {
         motorlf.setPower(power);
         motorlb.setPower(power);
-        motorrf.setPower(-power);
-        motorrb.setPower(-power);
+        motorrf.setPower(power);
+        motorrb.setPower(power);
       }
     }
   }
