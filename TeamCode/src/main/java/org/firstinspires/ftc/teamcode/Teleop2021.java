@@ -21,10 +21,13 @@ public class Teleop2021 extends LinearOpMode {
     private TwoPosServo gear;
     private boolean clawButtonIsDown = false; // controls the claw servo button press
     private boolean gearboxButtonIsDown = false; // controls the gearbox servo button press
+    private boolean turningButtonIsDown = false; // controls the gearbox servo button press
+    private String state = "drive";
 
     private Sensors sensors;
 
-    private Eyes eyes;
+    private Eyes cam1;
+    private Eyes cam2;
 
 
     @Override
@@ -54,8 +57,11 @@ public class Teleop2021 extends LinearOpMode {
                 hardwareMap.get(Rev2mDistanceSensor.class, "dist")
         );
 
-        eyes = new Eyes(
+        cam1 = new Eyes(
                 hardwareMap.get(WebcamName.class, "Webcam 1")
+        );
+        cam2 = new Eyes(
+                hardwareMap.get(WebcamName.class, "Webcam 2")
         );
 
         waitForStart();
@@ -76,16 +82,37 @@ public class Teleop2021 extends LinearOpMode {
             } else {
                 lift.rest();
             }
-            
-            d.rotateToAngle(180f, 0.25);
 
-//             d.setPower(
-//                  gamepad1.left_stick_y,
-//                  gamepad1.left_stick_x,
-//                  gamepad1.right_stick_x,
-//                  gamepad1.right_trigger
-//               );
-            eyes.trackPosition();
+            if (state == "rotate") {
+                d.resetAllEncoders();
+                float heading = 0f;
+                float x = 0f;
+                float y = 0f;
+                float theta = 0f;
+                if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
+                    heading = cam1.getHeading();
+                    x = 72 - cam1.getPosition().get(0);
+                    y = 36 - cam1.getPosition().get(1);
+                    theta = (float) Math.tan(y/x);
+                } else if(cam2.isTargetVisible()) {
+                    heading = cam2.getHeading();
+                    x = 72 - cam2.getPosition().get(0);
+                    y = 36 - cam2.getPosition().get(1);
+                    theta = (float) Math.tan(y/x);
+                }
+                if (d.rotateToAngle(-(heading+theta), 0.25) == false) {
+                    state = "drive";
+                }
+            } else if (state == "drive") {
+                d.setPower(
+                    gamepad1.left_stick_y,
+                    gamepad1.left_stick_x,
+                    gamepad1.right_stick_x,
+                    gamepad1.right_trigger
+                );
+            }
+
+
             if (gamepad1.y && !clawButtonIsDown) {
                 clawButtonIsDown = true;
                 claw.nextPos();
@@ -100,7 +127,19 @@ public class Teleop2021 extends LinearOpMode {
                 gearboxButtonIsDown = false;
             }
 
-            eyes.trackPosition(); // vuforia
+            if (gamepad1.a && !turningButtonIsDown) {
+                turningButtonIsDown = true;
+                if (state == "rotate") {
+                    state = "drive";
+                } else {
+                    state = "rotate";
+                }
+            } else if (!gamepad1.x) {
+                turningButtonIsDown = false;
+            }
+
+            cam1.trackPosition(); // vuforia
+            cam2.trackPosition();
 
             telemetry.addData("Status", "Run Time: ");
             telemetry.addData("Motor Power", gamepad1.left_stick_y);
@@ -115,12 +154,11 @@ public class Teleop2021 extends LinearOpMode {
             telemetry.addData("rb", d.getPowerrb());
             telemetry.addData("Lift", lift.getClicks());
             telemetry.addData("Dist sensor!", sensors.getDistanceFront());
-            if (eyes.isTargetVisible()) {
-                telemetry.addData("Vuf translation", eyes.getTranslation());
-                telemetry.addData("Vuf rotation", eyes.getRotation());
-            } else {
-                telemetry.addData("Visible Target", "none");
+            if (cam1.isTargetVisible()) {
+                telemetry.addData("Vuf translation", cam1.getTranslation());
+                telemetry.addData("Vuf rotation", cam1.getRotation());
             }
+            telemetry.addData("Visible Target", cam1.isTargetVisible() && cam2.isTargetVisible());
             telemetry.update();
 
         }

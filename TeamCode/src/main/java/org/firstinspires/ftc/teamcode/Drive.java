@@ -56,6 +56,16 @@ public class Drive extends LinearOpMode {
     motorlf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     motorlf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
   }
+  public void resetAllEncoders() {
+    motorlf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    motorlf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    motorlb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    motorlb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    motorrf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    motorrf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    motorrb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    motorrb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+  }
 //  public void setthepos() {
 //    motorlf.setTargetPosition(1200);
 //    motorlb.setTargetPosition(300);
@@ -105,7 +115,7 @@ public class Drive extends LinearOpMode {
     motorrb.setPower(rightback);
   }
   
-  public void rotateToAngle(float angle, double power) {
+  public boolean rotateToAngle(float angle, double power) {
 
     double position = ((angle/360) * Math.PI * 114.8 ) * (134.4/(Math.PI * 3.85827)); // convert inches to clicks based on circumference in inches
     motorlf.setTargetPosition((int)position);
@@ -126,6 +136,7 @@ public class Drive extends LinearOpMode {
     motorrf.setPower(power);
     motorrb.setPower(power);
 
+    return motorlf.isBusy() && motorlb.isBusy() && motorrf.isBusy() && motorrb.isBusy();
   }
 
   //the following are get commands that return the values of the class' variables.

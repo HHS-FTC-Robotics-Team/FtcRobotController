@@ -331,6 +331,16 @@ public class Eyes extends LinearOpMode {
         Orientation rotation = Orientation.getOrientation(this.lastLocation, EXTRINSIC, XYZ, DEGREES);
         return String.format("{Roll, Pitch, Heading} = %.0f, %.0f, %.0f", rotation.firstAngle, rotation.secondAngle, rotation.thirdAngle);
     }
+    public VectorF getPosition() {
+        // express position (translation) of robot in inches.
+        VectorF position = this.lastLocation.getTranslation();
+        return position;
+    }
+    public float getHeading() {
+        // express the rotation of the robot in degrees.
+        Orientation rotation = Orientation.getOrientation(this.lastLocation, EXTRINSIC, XYZ, DEGREES);
+        return rotation.thirdAngle;
+    }
     public boolean isTargetVisible() {
         return this.targetVisible;
     }
