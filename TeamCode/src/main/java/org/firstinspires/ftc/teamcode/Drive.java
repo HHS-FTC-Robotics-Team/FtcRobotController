@@ -112,9 +112,9 @@ public class Drive extends LinearOpMode {
     if(direction == 'clockwise') {
       if(motorlf.isBusy()) {
         motorlf.setPower(power);
-        //motorlb.setPower(power);
-        //motorrf.setPower(-power);
-        //motorrb.setPower(-power);
+        motorlb.setPower(power);
+        motorrf.setPower(-power);
+        motorrb.setPower(-power);
       }
     }
   }
