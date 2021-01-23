@@ -87,12 +87,12 @@ public class Teleop2021 extends LinearOpMode {
             float x = 0f;
             float y = 0f;
             float theta = 0f;
-//            if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
+            if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
                 heading = cam1.getHeading();
                 x = 72 - cam1.getPositionX();
                 y = 36 - cam1.getPositionY();
                 theta = (float) Math.tan(y/x);
-//            }
+            }
 
             if (state == "rotate") {
                 d.resetAllEncoders();
