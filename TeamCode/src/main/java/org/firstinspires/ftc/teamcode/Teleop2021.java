@@ -37,10 +37,10 @@ public class Teleop2021 extends LinearOpMode {
         );
 
         d = new Drive(
-                hardwareMap.get(DcMotor.class, "lfmotor"),
-                hardwareMap.get(DcMotor.class, "lbmotor"),
+                hardwareMap.get(DcMotor.class, "rbmotor"),
                 hardwareMap.get(DcMotor.class, "rfmotor"),
-                hardwareMap.get(DcMotor.class, "rbmotor")
+                hardwareMap.get(DcMotor.class, "lfmotor"),
+                hardwareMap.get(DcMotor.class, "lbmotor")
         );
 
         claw = new TwoPosServo(
