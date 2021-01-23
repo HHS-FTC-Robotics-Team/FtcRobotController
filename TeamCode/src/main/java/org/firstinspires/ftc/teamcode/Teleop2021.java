@@ -102,7 +102,8 @@ public class Teleop2021 extends LinearOpMode {
 //                    y = 36 - cam2.getPosition().get(1);
 //                    theta = (float) Math.tan(y/x);
 //                }
-                if (d.rotateToAngle(-(heading+theta), 0.25) == false) {
+                if (d.rotateToAngle(-(heading), 0.25) == false) {
+                    d.resetAllEncoders();
                     state = "drive";
                 }
             } else if (state == "drive") {
