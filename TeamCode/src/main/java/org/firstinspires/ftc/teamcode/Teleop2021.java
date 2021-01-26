@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -25,7 +26,8 @@ public class Teleop2021 extends LinearOpMode {
     private String state = "drive";
     private float theta = 0.0f;
 
-    private Sensors sensors;
+    private Sensors touchin;
+    private Sensors touchout;
 
     private Eyes cam1;
     private Eyes cam2;
@@ -54,8 +56,12 @@ public class Teleop2021 extends LinearOpMode {
                 hardwareMap.get(Servo.class, "gearbox"),
                 0.5, 1);
 
-        sensors = new Sensors(
-                hardwareMap.get(Rev2mDistanceSensor.class, "dist")
+        touchin = new Sensors(
+                hardwareMap.get(DigitalChannel.class, "touchin")
+        );
+
+        touchout = new Sensors(
+                hardwareMap.get(DigitalChannel.class, "touchout")
         );
 
         cam1 = new Eyes(
@@ -160,7 +166,8 @@ public class Teleop2021 extends LinearOpMode {
             telemetry.addData("rf", d.getPowerrf());
             telemetry.addData("rb", d.getPowerrb());
             telemetry.addData("Lift", lift.getClicks());
-            telemetry.addData("Dist sensor!", sensors.getDistanceFront());
+            telemetry.addData("touch in", touchin.getTouch());
+            telemetry.addData("touch out", touchout.getTouch());
             if (cam1.isTargetVisible()) {
                 telemetry.addData("Vuf translation", cam1.getTranslation());
                 telemetry.addData("Vuf rotation", cam1.getRotation());

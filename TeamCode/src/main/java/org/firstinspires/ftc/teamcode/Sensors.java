@@ -8,6 +8,7 @@ import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import android.graphics.Color;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 public class Sensors extends LinearOpMode {
 
@@ -22,16 +23,20 @@ public class Sensors extends LinearOpMode {
     float hsvValuesLeft[] = {0F,0F,0F};
     float hsvValuesRight[] = {0F,0F,0F};
 
+   public DigitalChannel digitaltouch = null;
+
     public Sensors(Rev2mDistanceSensor f,
                    Rev2mDistanceSensor b,
                    Rev2mDistanceSensor l,
                    Rev2mDistanceSensor r,
+                   DigitalChannel t,
                    ColorSensor cl,
                    ColorSensor cr) {
         distancefront = f;
         distanceback = b;
         distanceleft = l;
         distanceright = r;
+        digitaltouch = t;
         colorleft = cl;
         colorright = cr;
     }
@@ -44,6 +49,11 @@ public class Sensors extends LinearOpMode {
         distanceback = b;
         distanceleft = l;
         distanceright = r;
+    }
+
+    public Sensors(DigitalChannel t) {
+
+        digitaltouch = t;
     }
 
     public Sensors(ColorSensor cl,
@@ -83,6 +93,11 @@ public class Sensors extends LinearOpMode {
     public double[] getRGBRight() {
         double[] a = {colorright.red(), colorright.green(), colorright.blue()};
         return a;
+    }
+
+    public boolean getTouch() {
+
+        return digitaltouch.getState();
     }
 
     public void runOpMode() {
