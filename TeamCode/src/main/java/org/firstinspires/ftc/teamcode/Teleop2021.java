@@ -76,10 +76,10 @@ public class Teleop2021 extends LinearOpMode {
 //                lift.rest();
 //            }
 
-            if (gamepad1.right_trigger > 0) {
-                lift.up(Math.abs(gamepad1.right_trigger));
-            } else if (gamepad1.left_trigger > 0){
-                lift.down(Math.abs(gamepad1.left_trigger));
+            if (gamepad1.right_bumper) {
+                lift.up(1);
+            } else if (gamepad1.left_bumper){
+                lift.down(1);
             } else {
                 lift.rest();
             }
