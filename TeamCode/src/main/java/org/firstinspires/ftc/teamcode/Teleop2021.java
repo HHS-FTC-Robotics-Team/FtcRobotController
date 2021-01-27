@@ -32,6 +32,9 @@ public class Teleop2021 extends LinearOpMode {
     private Eyes cam1;
     private Eyes cam2;
 
+    private RingProcessor r;
+    private Hopper h;
+
 
     @Override
     public void runOpMode() {
@@ -71,6 +74,24 @@ public class Teleop2021 extends LinearOpMode {
 //                hardwareMap.get(WebcamName.class, "Webcam 2")
 //        );
 
+
+//        h = new Hopper(
+//                hardwareMap.get(DcMotor.class, "lbmotor"),
+//                hardwareMap.get(Servo.class, "gearbox")
+//        );
+//
+//        r = new RingProcessor(
+//                h
+//        );
+
+
+
+        r = new RingProcessor(
+                hardwareMap.get(DcMotor.class, "lbmotor"),
+                hardwareMap.get(Servo.class, "gearbox")
+        );
+
+
         waitForStart();
         while (opModeIsActive()) {
 
@@ -90,7 +111,7 @@ public class Teleop2021 extends LinearOpMode {
                 lift.rest();
             }
 
-
+        r.hopper.getPower();
 
 
             if (state == "rotate") {
