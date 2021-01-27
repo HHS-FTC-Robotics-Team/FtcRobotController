@@ -16,9 +16,8 @@ public class Shooter extends LinearOpMode {
     private DcMotor Rmtr = null;
     private Servo leftservo = null;
     private Servo rightservo = null;
-    private DigitalChannel touch = null;
 
-    public Shooter (DcMotor l, DcMotor r, Servo sl, Servo sr, DigitalChannel t) {
+    public Shooter (DcMotor l, DcMotor r, Servo sl, Servo sr) {
         Lmtr = l;
         Rmtr = r;
         //direction for one is reversed so that
@@ -27,8 +26,6 @@ public class Shooter extends LinearOpMode {
         //servos move opposite
         leftservo = sl;
         rightservo = sr;
-        //touch sensor
-        touch = t;
     }
 
     public void out() { // TODO: find speeds and find which motor should be reverse
@@ -39,6 +36,11 @@ public class Shooter extends LinearOpMode {
     public void rest() {
         Lmtr.setPower(0);
         Rmtr.setPower(0);
+    }
+
+    public void setPower(double p) {
+        Lmtr.setPower(p);
+        Rmtr.setPower(p);
     }
 
     public String getPower() {
@@ -53,9 +55,6 @@ public class Shooter extends LinearOpMode {
         rightservo.setPosition(Math.abs(goal - 1)); // servo goes to .9
     }
 
-    public boolean getTouch() {
-        return touch.getState();
-    }
 
     public void runOpMode() {
 

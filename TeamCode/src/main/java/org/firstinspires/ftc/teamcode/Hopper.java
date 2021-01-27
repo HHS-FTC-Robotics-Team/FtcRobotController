@@ -21,28 +21,36 @@ public class Hopper extends LinearOpMode {
         platformservo = s;
     }
 
-    public void out() { // TODO: find speeds
+    public void in() { // TODO: find speeds
         wheelmotor.setPower(1);
+    }
+
+    public void out() { // TODO: find speeds
+        wheelmotor.setPower(-1);
     }
 
     public void rest() {
         wheelmotor.setPower(0);
     }
 
+    public void setPower(double p) {
+        wheelmotor.setPower(p);
+    }
+
     public double getPower() {
         return wheelmotor.getPower();
     }
 
-    public void moveplatform(double goal) { //move to given pos
+    public void movePlatform(double goal) { //move to given pos
         platformservo.setPosition(goal);
     }
 
-    public void incrementplatform() {
+    public void incrementPlatform() {
         double x = platformservo.getPosition();
         platformservo.setPosition(x + 0.1); //TODO: find what 0.1 should actually be
     }
 
-    public void decrementplatform() {
+    public void decrementPlatform() {
         double x = platformservo.getPosition();
         platformservo.setPosition(x - 0.1); //TODO: find what 0.1 should actually be
     }

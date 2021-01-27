@@ -32,6 +32,10 @@ public class Teleop2021 extends LinearOpMode {
     private Eyes cam1;
     private Eyes cam2;
 
+    private Collect col;
+    private Hopper hopper;
+    private Shooter shooter;
+
 
     @Override
     public void runOpMode() {
@@ -67,9 +71,26 @@ public class Teleop2021 extends LinearOpMode {
         cam1 = new Eyes(
                 hardwareMap.get(WebcamName.class, "Webcam 1")
         );
+
 //        cam2 = new Eyes(
 //                hardwareMap.get(WebcamName.class, "Webcam 2")
 //        );
+
+        col = new Collect(
+                hardwareMap.get(DcMotor.class, "collectmotor"),
+                hardwareMap.get(Servo.class, "release")
+        );
+        hopper = new Hopper(
+                hardwareMap.get(DcMotor.class, "hoppermotor"),
+                hardwareMap.get(Servo.class, "hopperservo")
+        );
+        shooter = new Shooter(
+                hardwareMap.get(DcMotor.class, "shooterleft"),
+                hardwareMap.get(DcMotor.class, "shooterright"),
+                hardwareMap.get(Servo.class, "pivotleft"),
+                hardwareMap.get(Servo.class, "pivotright")
+        );
+
 
         waitForStart();
         while (opModeIsActive()) {
