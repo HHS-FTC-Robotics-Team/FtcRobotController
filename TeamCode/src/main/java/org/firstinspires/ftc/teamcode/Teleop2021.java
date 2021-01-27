@@ -85,8 +85,8 @@ public class Teleop2021 extends LinearOpMode {
                 hardwareMap.get(Servo.class, "hopperservo")
         );
         shooter = new Shooter(
-                hardwareMap.get(DcMotor.class, "shooterleft"),
-                hardwareMap.get(DcMotor.class, "shooterright"),
+                hardwareMap.get(DcMotor.class, "shootertop"),
+                hardwareMap.get(DcMotor.class, "shooterbottom"),
                 hardwareMap.get(Servo.class, "pivotleft"),
                 hardwareMap.get(Servo.class, "pivotright")
         );
