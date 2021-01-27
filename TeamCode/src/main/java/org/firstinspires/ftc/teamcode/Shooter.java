@@ -12,40 +12,40 @@ import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 public class Shooter extends LinearOpMode {
 
     //init the two motors and distance sensor
-    private DcMotor Lmtr = null;
-    private DcMotor Rmtr = null;
+    private DcMotor Topmtr = null;
+    private DcMotor Bottommtr = null;
     private Servo leftservo = null;
     private Servo rightservo = null;
 
     public Shooter (DcMotor l, DcMotor r, Servo sl, Servo sr) {
-        Lmtr = l;
-        Rmtr = r;
+        Topmtr = l;
+        Bottommtr = r;
         //direction for one is reversed so that
-        Lmtr.setDirection(DcMotor.Direction.REVERSE); // TODO: try to find the built in PID stuff
-        Rmtr.setDirection(DcMotor.Direction.FORWARD); // TODO: runWithEncoders or something
+        Topmtr.setDirection(DcMotor.Direction.REVERSE); // TODO: try to find the built in PID stuff
+        Bottommtr.setDirection(DcMotor.Direction.FORWARD); // TODO: runWithEncoders or something
         //servos move opposite
         leftservo = sl;
         rightservo = sr;
     }
 
     public void out() { // TODO: find speeds and find which motor should be reverse
-        Lmtr.setPower(-1);
-        Rmtr.setPower(-1);
+        Topmtr.setPower(-1);
+        Bottommtr.setPower(-1);
     }
 
     public void rest() {
-        Lmtr.setPower(0);
-        Rmtr.setPower(0);
+        Topmtr.setPower(0);
+        Bottommtr.setPower(0);
     }
 
     public void setPower(double p) {
-        Lmtr.setPower(p);
-        Rmtr.setPower(p);
+        Topmtr.setPower(p);
+        Bottommtr.setPower(p);
     }
 
     public String getPower() {
-        double lp = Lmtr.getPower();
-        double rp = Rmtr.getPower();
+        double lp = Topmtr.getPower();
+        double rp = Bottommtr.getPower();
         String s = lp + " / " + rp;
         return s;
     }
