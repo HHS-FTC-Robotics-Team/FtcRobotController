@@ -282,24 +282,37 @@ public class ThursdayTeleop extends LinearOpMode {
                 gearboxButtonIsDown = false;
             }
 
-            if (gamepad1.a && !gearboxButtonIsDown) {
-                gearboxButtonIsDown = true;
-                gear.maxPos();
-            } else if (!gamepad1.a) {
-                gearboxButtonIsDown = false;
+//            if (gamepad1.a && !gearboxButtonIsDown) {
+//                gearboxButtonIsDown = true;
+//                gear.maxPos();
+//            } else if (!gamepad1.a) {
+//                gearboxButtonIsDown = false;
+//            }
+
+            // lift motor
+            if (gamepad1.a) {
+                if (gear.incrementToPos("max")) { //TODO test this (moves lift) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    if (col.isBusy() == false) {
+                        col.nextLiftPosition();
+                    }
+                }
             }
+
 
 // This contains instructions for the collector/lift motor. 
             if (gamepad1.left_bumper) {
-                col.in();
-
+                if (gear.incrementToPos("min")) { //TODO test this (collector only) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    col.in();
+                }
             } else if (gamepad1.right_bumper) {
-                col.out();
-
+                if (gear.incrementToPos("min")) {
+                    col.out();
+                }
             } else if (gamepad2.right_stick_y != 0) {
-                col.setPower(gamepad2.right_stick_y);
-
-            } else {
+                if (gear.incrementToPos("min")) { //incrementToPos will both move the gearbox servo AND return if it has reached the goal yet
+                    col.setPower(gamepad2.right_stick_y);
+                }
+            } else if (gear.isPos("min")) { //isPos will check if servo is at the specified goal, does not move servo like incrementToPos does
                 col.rest();
             }
 
