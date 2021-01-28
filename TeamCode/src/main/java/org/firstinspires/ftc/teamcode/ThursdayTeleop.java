@@ -289,6 +289,9 @@ public class ThursdayTeleop extends LinearOpMode {
 //                gearboxButtonIsDown = false;
 //            }
 
+            //TODO the new stuff below ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            //TODO see the TODO things in this file, the Collect file, and the TwoPosServo file
+
             // lift motor
             if (gamepad1.a) {
                 if (gear.incrementToPos("max")) { //TODO test this (moves lift) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -299,7 +302,7 @@ public class ThursdayTeleop extends LinearOpMode {
             }
 
 
-// This contains instructions for the collector/lift motor. 
+            // This contains instructions for the collector
             if (gamepad1.left_bumper) {
                 if (gear.incrementToPos("min")) { //TODO test this (collector only) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     col.in();

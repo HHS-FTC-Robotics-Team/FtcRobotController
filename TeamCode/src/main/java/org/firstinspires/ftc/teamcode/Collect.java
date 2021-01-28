@@ -19,13 +19,13 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
   public Collect (DcMotor m, Servo s) {
     mtr = m;
     release = s;
-    mtr.setDirection(DcMotor.Direction.REVERSE);
+    mtr.setDirection(DcMotor.Direction.REVERSE); //TODO maybe change this to FORWARD if it goes the wrong way
     mtr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     mtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
   }
 
   public void in() {
-    mtr.setPower(-1);
+    mtr.setPower(-1); //TODO if you change line 22 to FORWARD, you need to make this positive and make out() negative
    // Rmtr.setPower(1);
   }
 
@@ -50,7 +50,7 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
   public void nextLiftPosition() { //move lift to the next state
     if (liftposition == "vertical") {
       liftposition = "horizontal";
-      moveLift(100);
+      moveLift(100); //TODO find the right positions here
     } else if (liftposition == "horizontal") {
       liftposition = "above ground";
       moveLift(200);
@@ -72,7 +72,7 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
     mtr.setTargetPosition((int)goal); // move that relative amount to get to new position
     mtr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    mtr.setPower(1);
+    mtr.setPower(1); //TODO maybe change this power if you need?
 
     liftclicks = position;
   }
