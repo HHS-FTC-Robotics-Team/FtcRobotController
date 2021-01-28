@@ -53,10 +53,10 @@ public class ThursdayTeleop extends LinearOpMode {
 
         claw = new TwoPosServo(
                 hardwareMap.get(Servo.class, "claw"),
-                0.5, 0.6);
+                0.15, 0.54);
         gear = new TwoPosServo(
                 hardwareMap.get(Servo.class, "gearbox"),
-                0.5, 0.6);
+                0.74, 0.79);
 
 //        touchin = new Sensors(
 //                hardwareMap.get(DigitalChannel.class, "touchin")
@@ -255,7 +255,11 @@ public class ThursdayTeleop extends LinearOpMode {
                 shooter.rest();
             }
 
-            shooter.pivot(gamepad2.left_stick_y/0.005 + 0.22);
+            shooter.pivot(((-gamepad2.left_stick_y) * 0.2) + 0.22);
+
+            if (gamepad2.dpad_down) {
+                hopper.movePlatform(0);
+            }
 
 //            if (gamepad1.a && !turningButtonIsDown) {
 //                turningButtonIsDown = true;
