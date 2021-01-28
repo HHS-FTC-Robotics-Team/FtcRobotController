@@ -27,6 +27,11 @@ public class ThursdayTeleop extends LinearOpMode {
     private boolean xButtonIsDown = false; // controls the x button press
     private boolean yButtonIsDown = false; // controls the y button press
 
+    // controls all of the d buttons
+    private boolean dpadUpIsDown = false;
+    private boolean dpadRightIsDown = false;
+    private boolean dpadDownIsDown = false;
+    private boolean dpadLeftIsDown = false;
 
     //  private Sensors touchin;
     // private Sensors touchout;
@@ -67,10 +72,10 @@ public class ThursdayTeleop extends LinearOpMode {
 //        );
 
 
-//        col = new Collect(
-//                hardwareMap.get(DcMotor.class, "collectmotor"),
-//                hardwareMap.get(Servo.class, "release")
-//        );
+        col = new Collect(
+                hardwareMap.get(DcMotor.class, "liftmotor"),
+                hardwareMap.get(Servo.class, "release")
+        );
         hopper = new Hopper(
                 hardwareMap.get(DcMotor.class, "hoppermotor"),
                 hardwareMap.get(Servo.class, "hopperservo")
@@ -119,26 +124,6 @@ public class ThursdayTeleop extends LinearOpMode {
 //                }
 //            } else if (state == "drive") {
 
-            if (gamepad1.x && !clawButtonIsDown) {
-                clawButtonIsDown = true;
-                claw.nextPos();
-            } else if (!gamepad1.x) {
-                clawButtonIsDown = false;
-            }
-
-            if (gamepad1.y && !gearboxButtonIsDown) {
-                gearboxButtonIsDown = true;
-                gear.minPos();
-            } else if (!gamepad1.y) {
-                gearboxButtonIsDown = false;
-            }
-
-            if (gamepad1.a && !gearboxButtonIsDown) {
-                gearboxButtonIsDown = true;
-                gear.maxPos();
-            } else if (!gamepad1.a) {
-                gearboxButtonIsDown = false;
-            }
 
 
             d.setPower(
@@ -176,6 +161,36 @@ public class ThursdayTeleop extends LinearOpMode {
 
             } else if (!gamepad1.a) {
                 aButtonIsDown = false;
+            }
+
+
+
+            if (gamepad2.dpad_up && !dpadUpIsDown) {
+                dpadUpIsDown = true;
+
+            } else if (!gamepad2.dpad_up) {
+                dpadUpIsDown = false;
+            }
+
+            if (gamepad2.dpad_right && !dpadRightIsDown) {
+                dpadRightIsDown = true;
+
+            } else if (!gamepad2.dpad_right) {
+                dpadRightIsDown = false;
+            }
+
+            if (gamepad2.dpad_down && !dpadDownIsDown) {
+                dpadDownIsDown = true;
+
+            } else if (!gamepad2.dpad_down) {
+                dpadDownIsDown = false;
+            }
+
+            if (gamepad2.dpad_left && !dpadLeftIsDown) {
+                dpadLeftIsDown = true;
+
+            } else if (!gamepad2.dpad_left) {
+                dpadLeftIsDown = false;
             }
 
 //
@@ -257,21 +272,74 @@ public class ThursdayTeleop extends LinearOpMode {
 
             shooter.pivot(((-gamepad2.left_stick_y) * 0.2) + 0.22);
 
-            if (gamepad2.dpad_up) {
+            //*values had to be made negative in order to go in the correct direction
+            if (gamepad2.dpad_up && !dpadUpIsDown) {
+                dpadUpIsDown = true;
                 hopper.movePlatform(0);
+            } else if (!gamepad2.dpad_up) {
+                dpadUpIsDown = false;
             }
 
-            if (gamepad2.dpad_right) {
+            if (gamepad2.dpad_right && !dpadRightIsDown) {
+                dpadRightIsDown = true;
                 hopper.movePlatform(0);
+            } else if (!gamepad2.dpad_right) {
+                dpadRightIsDown = false;
             }
 
-            if (gamepad2.dpad_down) {
-                hopper.movePlatform(0);
+            if (gamepad2.dpad_down && !dpadDownIsDown) {
+                dpadDownIsDown = true;
+                hopper.movePlatform(0.05);
+            } else if (!gamepad2.dpad_down) {
+                dpadDownIsDown = false;
             }
 
-            if (gamepad2.dpad_left) {
+            if (gamepad2.dpad_left && !dpadLeftIsDown) {
+                dpadLeftIsDown = true;
                 hopper.movePlatform(0);
+            } else if (!gamepad2.dpad_left) {
+                dpadLeftIsDown = false;
             }
+
+
+
+
+            if (gamepad1.x && !clawButtonIsDown) {
+                clawButtonIsDown = true;
+                claw.nextPos();
+            } else if (!gamepad1.x) {
+                clawButtonIsDown = false;
+            }
+
+            if (gamepad1.y && !gearboxButtonIsDown) {
+                gearboxButtonIsDown = true;
+                gear.minPos();
+            } else if (!gamepad1.y) {
+                gearboxButtonIsDown = false;
+            }
+
+            if (gamepad1.a && !gearboxButtonIsDown) {
+                gearboxButtonIsDown = true;
+                gear.maxPos();
+            } else if (!gamepad1.a) {
+                gearboxButtonIsDown = false;
+            }
+
+
+            if (gamepad1.left_bumper) {
+                col.out();
+
+            } else if (!gamepad1.left_bumper) {
+                col.rest();
+            }
+
+            if (gamepad1.right_bumper) {
+                col.in();
+
+            } else if (!gamepad1.left_bumper) {
+                col.rest();
+            }
+
 
 //            if (gamepad1.a && !turningButtonIsDown) {
 //                turningButtonIsDown = true;
