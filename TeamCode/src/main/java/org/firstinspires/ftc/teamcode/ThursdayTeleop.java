@@ -257,7 +257,19 @@ public class ThursdayTeleop extends LinearOpMode {
 
             shooter.pivot(((-gamepad2.left_stick_y) * 0.2) + 0.22);
 
+            if (gamepad2.dpad_up) {
+                hopper.movePlatform(0);
+            }
+
+            if (gamepad2.dpad_right) {
+                hopper.movePlatform(0);
+            }
+
             if (gamepad2.dpad_down) {
+                hopper.movePlatform(0);
+            }
+
+            if (gamepad2.dpad_left) {
                 hopper.movePlatform(0);
             }
 
