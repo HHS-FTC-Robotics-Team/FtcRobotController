@@ -30,7 +30,7 @@ public class Shooter extends LinearOpMode {
 
     public void out() { // TODO: find speeds and find which motor should be reverse
         Topmtr.setPower(-1);
-        Bottommtr.setPower(-1);
+        Bottommtr.setPower(1);
     }
 
     public void rest() {
@@ -39,7 +39,7 @@ public class Shooter extends LinearOpMode {
     }
 
     public void setPower(double p) {
-        Topmtr.setPower(p);
+        Topmtr.setPower(-p);
         Bottommtr.setPower(p);
     }
 
@@ -54,7 +54,6 @@ public class Shooter extends LinearOpMode {
         leftservo.setPosition(goal); // servo goes to .1
         rightservo.setPosition(Math.abs(goal - 1)); // servo goes to .9
     }
-
 
     public void runOpMode() {
 

@@ -21,9 +21,9 @@ public class Hopper extends LinearOpMode {
         platformservo = s;
     }
 
-    public void in() { // TODO: find speeds
-        wheelmotor.setPower(1);
-    }
+//    public void in() { // TODO: find speeds
+//        wheelmotor.setPower(1);
+//    }
 
     public void out() { // TODO: find speeds
         wheelmotor.setPower(-1);

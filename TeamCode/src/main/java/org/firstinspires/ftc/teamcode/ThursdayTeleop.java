@@ -9,13 +9,18 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName; //for "eyes" init
 
-@TeleOp(name="Ring Troubleshoot", group="Linear Opmode")
+@TeleOp(name="Thursday Teleop", group="Linear Opmode")
 
-public class RingTroubleshoot extends LinearOpMode {
+public class ThursdayTeleop extends LinearOpMode {
 
     //creating objects for all of the different parts
 
     private Drive d;
+
+    private TwoPosServo claw; //the file this used to be is still called Foundation btw
+    private TwoPosServo gear;
+    private boolean clawButtonIsDown = false; // controls the claw servo button press
+    private boolean gearboxButtonIsDown = false; // controls the gearbox servo button press
 
     private boolean aButtonIsDown = false; // controls the a button press
     private boolean bButtonIsDown = false; // controls the b button press
@@ -23,8 +28,8 @@ public class RingTroubleshoot extends LinearOpMode {
     private boolean yButtonIsDown = false; // controls the y button press
 
 
-  //  private Sensors touchin;
-   // private Sensors touchout;
+    //  private Sensors touchin;
+    // private Sensors touchout;
 
 
     private Collect col;
@@ -45,6 +50,13 @@ public class RingTroubleshoot extends LinearOpMode {
                 hardwareMap.get(DcMotor.class, "lfmotor"),
                 hardwareMap.get(DcMotor.class, "lbmotor")
         );
+
+        claw = new TwoPosServo(
+                hardwareMap.get(Servo.class, "claw"),
+                0.5, 0.6);
+        gear = new TwoPosServo(
+                hardwareMap.get(Servo.class, "gearbox"),
+                0.5, 0.6);
 
 //        touchin = new Sensors(
 //                hardwareMap.get(DigitalChannel.class, "touchin")
@@ -95,7 +107,7 @@ public class RingTroubleshoot extends LinearOpMode {
 
 //            if (state == "rotate") {
 
-                //else if(cam2.isTargetVisible()) {
+            //else if(cam2.isTargetVisible()) {
 //                    heading = cam2.getHeading();
 //                    x = 72 - cam2.getPosition().get(0);
 //                    y = 36 - cam2.getPosition().get(1);
@@ -106,12 +118,35 @@ public class RingTroubleshoot extends LinearOpMode {
 //                    state = "drive";
 //                }
 //            } else if (state == "drive") {
-                d.setPower(
-                        gamepad1.left_stick_y,
-                        gamepad1.left_stick_x,
-                        gamepad1.right_stick_x,
-                        gamepad1.right_trigger
-                );
+
+            if (gamepad1.x && !clawButtonIsDown) {
+                clawButtonIsDown = true;
+                claw.nextPos();
+            } else if (!gamepad1.x) {
+                clawButtonIsDown = false;
+            }
+
+            if (gamepad1.y && !gearboxButtonIsDown) {
+                gearboxButtonIsDown = true;
+                gear.minPos();
+            } else if (!gamepad1.y) {
+                gearboxButtonIsDown = false;
+            }
+
+            if (gamepad1.a && !gearboxButtonIsDown) {
+                gearboxButtonIsDown = true;
+                gear.maxPos();
+            } else if (!gamepad1.a) {
+                gearboxButtonIsDown = false;
+            }
+
+
+            d.setPower(
+                    gamepad1.left_stick_y,
+                    gamepad1.left_stick_x,
+                    gamepad1.right_stick_x,
+                    gamepad1.right_trigger
+            );
 //            }
 
 
@@ -143,22 +178,84 @@ public class RingTroubleshoot extends LinearOpMode {
                 aButtonIsDown = false;
             }
 
+//
+//            if (gamepad1.left_bumper) {
+//                shooter.pivot(0.42);
+//
+//            } else if (!gamepad1.left_bumper) {
+//                shooter.pivot(0.22);
+//            }
+//
+//
+//            if (gamepad1.right_bumper) {
+//                hopper.out();
+//
+//            } else if (!gamepad1.right_bumper) {
+//                hopper.rest();
+//            }
+//
+            //Official controls for Thursday 1/28/20
 
-            if (gamepad1.left_bumper) {
-                shooter.pivot(0.42);
-
-            } else if (!gamepad1.left_bumper) {
-                shooter.pivot(0.22);
-            }
-
-
-            if (gamepad1.right_bumper) {
+            if (gamepad2.left_bumper) {
                 hopper.out();
+                shooter.setPower(0.5);
 
-            } else if (!gamepad1.right_bumper) {
+            } else if (!gamepad2.left_bumper) {
                 hopper.rest();
+                shooter.rest();
             }
 
+
+            if (gamepad2.right_bumper) {
+                hopper.out();
+                shooter.setPower(0.6);
+
+            } else if (!gamepad2.right_bumper) {
+                hopper.rest();
+                shooter.rest();
+            }
+
+
+            if (gamepad2.a) {
+                hopper.out();
+                shooter.setPower(0.7);
+
+            } else if (!gamepad2.a) {
+                hopper.rest();
+                shooter.rest();
+            }
+
+
+            if (gamepad2.b) {
+                hopper.out();
+                shooter.setPower(0.8);
+
+            } else if (!gamepad2.b) {
+                hopper.rest();
+                shooter.rest();
+            }
+
+
+            if (gamepad2.x) {
+                hopper.out();
+                shooter.setPower(0.9);
+
+            } else if (!gamepad2.x) {
+                hopper.rest();
+                shooter.rest();
+            }
+
+
+            if (gamepad2.y) {
+                hopper.out();
+                shooter.setPower(1);
+
+            } else if (!gamepad2.y) {
+                hopper.rest();
+                shooter.rest();
+            }
+
+            shooter.pivot(gamepad2.left_stick_y/0.005 + 0.22);
 
 //            if (gamepad1.a && !turningButtonIsDown) {
 //                turningButtonIsDown = true;
