@@ -56,12 +56,14 @@ public class ThursdayTeleop extends LinearOpMode {
                 hardwareMap.get(DcMotor.class, "lbmotor")
         );
 
+  //This is where you can change the range of the servos. Just change the minimum and maximum
+  //servo values. Remember, only positive values for servo positions
         claw = new TwoPosServo(
                 hardwareMap.get(Servo.class, "claw"),
                 0.15, 0.54);
         gear = new TwoPosServo(
                 hardwareMap.get(Servo.class, "gearbox"),
-                0.74, 0.79);
+                0.74, 0.81);
 
 //        touchin = new Sensors(
 //                hardwareMap.get(DigitalChannel.class, "touchin")
@@ -211,99 +213,61 @@ public class ThursdayTeleop extends LinearOpMode {
 //
             //Official controls for Thursday 1/28/20
 
+           // these are the controls for the various shooter settings.
+           // you can change the number in the parenthesis next to "setPower" to change
+           // the motor power. Motor powers range from -1 to 1, negative power will
+           // reverse direction.
             if (gamepad2.left_bumper) {
                 hopper.out();
                 shooter.setPower(0.5);
 
-            } else if (!gamepad2.left_bumper) {
-                hopper.rest();
-                shooter.rest();
-            }
-
-
-            if (gamepad2.right_bumper) {
+            } else if (gamepad2.right_bumper) {
                 hopper.out();
                 shooter.setPower(0.6);
 
-            } else if (!gamepad2.right_bumper) {
-                hopper.rest();
-                shooter.rest();
-            }
-
-
-            if (gamepad2.a) {
+            } else if (gamepad2.a) {
                 hopper.out();
                 shooter.setPower(0.7);
 
-            } else if (!gamepad2.a) {
-                hopper.rest();
-                shooter.rest();
-            }
-
-
-            if (gamepad2.b) {
+            } else if (gamepad2.b) {
                 hopper.out();
                 shooter.setPower(0.8);
 
-            } else if (!gamepad2.b) {
-                hopper.rest();
-                shooter.rest();
-            }
-
-
-            if (gamepad2.x) {
+            } else if (gamepad2.x) {
                 hopper.out();
                 shooter.setPower(0.9);
 
-            } else if (!gamepad2.x) {
-                hopper.rest();
-                shooter.rest();
-            }
-
-
-            if (gamepad2.y) {
+            } else if (gamepad2.y) {
                 hopper.out();
                 shooter.setPower(1);
+               // hopper.movePlatform(0);
 
-            } else if (!gamepad2.y) {
+            } else {
                 hopper.rest();
                 shooter.rest();
+                //hopper.movePlatform(0.1);
             }
 
+            // This controls the d-pad controls. Change the "g" values to change the servo position
+            // for each d-pad button.
+            if (gamepad2.dpad_up) {
+                hopper.movePlatform(0);
+            } else if (gamepad2.dpad_right) {
+                hopper.movePlatform(0.1);
+            } else if (gamepad2.dpad_down) {
+                hopper.movePlatform(0.16);
+            } else if (gamepad2.dpad_left) {
+                hopper.movePlatform(0.27);
+            }
+
+            // This sets the shooter pivot servos to whatever value you hold the joystick to.
             shooter.pivot(((-gamepad2.left_stick_y) * 0.2) + 0.22);
 
-            //*values had to be made negative in order to go in the correct direction
-            if (gamepad2.dpad_up && !dpadUpIsDown) {
-                dpadUpIsDown = true;
-                hopper.movePlatform(0);
-            } else if (!gamepad2.dpad_up) {
-                dpadUpIsDown = false;
-            }
-
-            if (gamepad2.dpad_right && !dpadRightIsDown) {
-                dpadRightIsDown = true;
-                hopper.movePlatform(0);
-            } else if (!gamepad2.dpad_right) {
-                dpadRightIsDown = false;
-            }
-
-            if (gamepad2.dpad_down && !dpadDownIsDown) {
-                dpadDownIsDown = true;
-                hopper.movePlatform(0.05);
-            } else if (!gamepad2.dpad_down) {
-                dpadDownIsDown = false;
-            }
-
-            if (gamepad2.dpad_left && !dpadLeftIsDown) {
-                dpadLeftIsDown = true;
-                hopper.movePlatform(0);
-            } else if (!gamepad2.dpad_left) {
-                dpadLeftIsDown = false;
-            }
+            //hopper.movePlatform(0);
 
 
-
-
+    // This instructs the claw and gearbox positions to switch when you press the appropriate button(s).
+            // you change the actual servo positions above.
             if (gamepad1.x && !clawButtonIsDown) {
                 clawButtonIsDown = true;
                 claw.nextPos();
@@ -325,21 +289,19 @@ public class ThursdayTeleop extends LinearOpMode {
                 gearboxButtonIsDown = false;
             }
 
-
+// This contains instructions for the collector/lift motor. 
             if (gamepad1.left_bumper) {
-                col.out();
-
-            } else if (!gamepad1.left_bumper) {
-                col.rest();
-            }
-
-            if (gamepad1.right_bumper) {
                 col.in();
 
-            } else if (!gamepad1.left_bumper) {
+            } else if (gamepad1.right_bumper) {
+                col.out();
+
+            } else if (gamepad2.right_stick_y != 0) {
+                col.setPower(gamepad2.right_stick_y);
+
+            } else {
                 col.rest();
             }
-
 
 //            if (gamepad1.a && !turningButtonIsDown) {
 //                turningButtonIsDown = true;
@@ -377,6 +339,7 @@ public class ThursdayTeleop extends LinearOpMode {
             telemetry.addData("lb", d.getPowerlb());
             telemetry.addData("rf", d.getPowerrf());
             telemetry.addData("rb", d.getPowerrb());
+            telemetry.addData("platform position", hopper.getPlatformPos());
 //            telemetry.addData("Lift", lift.getClicks());
 //            telemetry.addData("touch in", touchin.getTouch());
 //            telemetry.addData("touch out", touchout.getTouch());

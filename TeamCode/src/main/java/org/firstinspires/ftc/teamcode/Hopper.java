@@ -41,8 +41,8 @@ public class Hopper extends LinearOpMode {
         return wheelmotor.getPower();
     }
 
-    public void movePlatform(double goal) { //move to given pos
-        platformservo.setPosition(goal);
+    public void movePlatform(double g) { //move to given pos
+        platformservo.setPosition(g);
     }
 
     public void incrementPlatform() {

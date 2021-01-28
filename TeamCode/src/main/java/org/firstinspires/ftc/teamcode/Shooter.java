@@ -39,7 +39,7 @@ public class Shooter extends LinearOpMode {
     }
 
     public void setPower(double p) {
-        Topmtr.setPower(-p);
+        Topmtr.setPower(p);
         Bottommtr.setPower(p);
     }
 
