@@ -260,15 +260,17 @@ public class ThursdayTeleop extends LinearOpMode {
 //                hopper.movePlatform(0.27);
 //            }
 
+            String hpos = "zero";
             if (gamepad2.dpad_up) {
-                hopper.incrementToPos("zero");
+                hpos = "zero";
             } else if (gamepad2.dpad_right) {
-                hopper.incrementToPos("one");
+                hpos = "one";
             } else if (gamepad2.dpad_down) {
-                hopper.incrementToPos("two");
+                hpos = "two";
             } else if (gamepad2.dpad_left) {
-                hopper.incrementToPos("three");
+                hpos = "three";
             }
+            hopper.incrementToPos(hpos);
 
             // This sets the shooter pivot servos to whatever value you hold the joystick to.
             if (gamepad2.left_stick_y < 0) {
