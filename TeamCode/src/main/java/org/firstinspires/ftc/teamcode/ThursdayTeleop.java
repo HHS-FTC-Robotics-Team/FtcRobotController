@@ -33,6 +33,8 @@ public class ThursdayTeleop extends LinearOpMode {
     private boolean dpadDownIsDown = false;
     private boolean dpadLeftIsDown = false;
 
+    private String hpos = "zero";
+
     //  private Sensors touchin;
     // private Sensors touchout;
 
@@ -260,7 +262,6 @@ public class ThursdayTeleop extends LinearOpMode {
 //                hopper.movePlatform(0.27);
 //            }
 
-            String hpos = "zero";
             if (gamepad2.dpad_up) {
                 hpos = "zero";
             } else if (gamepad2.dpad_right) {
