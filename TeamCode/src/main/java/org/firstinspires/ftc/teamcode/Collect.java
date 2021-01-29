@@ -14,6 +14,7 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
 
   private double liftclicks = 0; // for lift
   private String liftposition = "vertical"; // lift positions: "vertical" , "horizontal" , "above ground" , "over wall"
+  private boolean completed = false;
 
 
   public Collect (DcMotor m, Servo s) {
@@ -52,15 +53,24 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
     mtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     if (liftposition == "vertical") {
       liftposition = "horizontal";
-      moveLift(500); //TODO find the right positions here
     } else if (liftposition == "horizontal") {
       liftposition = "above ground";
-      moveLift(1000);
     } else if (liftposition == "above ground") {
       liftposition = "over wall";
-      moveLift(1500);
     } else if (liftposition == "over wall") {
       liftposition = "vertical";
+    }
+    completed = false;
+  }
+
+  public void updateLift() {
+    if (liftposition == "vertical") {
+      moveLift(500);
+    } else if (liftposition == "horizontal") {
+      moveLift(1000);
+    } else if (liftposition == "above ground") {
+      moveLift(1500);
+    } else if (liftposition == "over wall") {
       moveLift(0);
     }
   }
@@ -68,13 +78,29 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
   public void moveLift(double position) {
 
     double goal = position - liftclicks; //find the relative amount the motor has to move, because now the motor clicks say zero. Use the clicks variable that we save
+//
+//    mtr.setTargetPosition((int)goal); // move that relative amount to get to new position
+//    mtr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//    mtr.setPower(0.5); //TODO maybe change this power if you need?
+//
+//    liftclicks = position;
 
-    mtr.setTargetPosition((int)goal); // move that relative amount to get to new position
-    mtr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    mtr.setPower(0.5); //TODO maybe change this power if you need?
 
-    liftclicks = position;
+    double current = mtr.getCurrentPosition();
+
+    double ACCURACY = 50;
+    completed = current > goal - ACCURACY && current < goal + ACCURACY;
+    if(completed) {
+      mtr.setPower(0);
+      liftclicks = position;
+    } else if (current > goal) {
+      mtr.setPower(-0.5);
+    } else if (current < goal) {
+      mtr.setPower(0.5);
+    }
+
   }
 
   public double getClicks() {
@@ -89,6 +115,10 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
 
   public boolean isBusy() {
     return mtr.isBusy();
+  }
+
+  public boolean isCompleted() {
+    return completed;
   }
 
   public double getPower() {

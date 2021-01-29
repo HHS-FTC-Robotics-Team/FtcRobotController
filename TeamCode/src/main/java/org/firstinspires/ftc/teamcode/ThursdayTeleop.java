@@ -309,11 +309,15 @@ public class ThursdayTeleop extends LinearOpMode {
          //    lift motor
             if (gamepad1.a) {
                 if (gear.incrementToPos("max")) { //TODO test this (moves lift) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    if (!col.isBusy()) {
+                    if (col.isCompleted()) {
                         col.nextLiftPosition();
                     }
                 }
             }
+            if (!col.isCompleted()) {
+                col.updateLift();
+            }
+
 
 
             // This contains instructions for the collector
