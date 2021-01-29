@@ -250,14 +250,24 @@ public class ThursdayTeleop extends LinearOpMode {
 
             // This controls the d-pad controls. Change the "g" values to change the servo position
             // for each d-pad button.
+//            if (gamepad2.dpad_up) {
+//                hopper.movePlatform(0);
+//            } else if (gamepad2.dpad_right) {
+//                hopper.movePlatform(0.1);
+//            } else if (gamepad2.dpad_down) {
+//                hopper.movePlatform(0.16);
+//            } else if (gamepad2.dpad_left) {
+//                hopper.movePlatform(0.27);
+//            }
+
             if (gamepad2.dpad_up) {
-                hopper.movePlatform(0);
+                hopper.incrementToPos("zero");
             } else if (gamepad2.dpad_right) {
-                hopper.movePlatform(0.1);
+                hopper.incrementToPos("one");
             } else if (gamepad2.dpad_down) {
-                hopper.movePlatform(0.16);
+                hopper.incrementToPos("two");
             } else if (gamepad2.dpad_left) {
-                hopper.movePlatform(0.27);
+                hopper.incrementToPos("three");
             }
 
             // This sets the shooter pivot servos to whatever value you hold the joystick to.

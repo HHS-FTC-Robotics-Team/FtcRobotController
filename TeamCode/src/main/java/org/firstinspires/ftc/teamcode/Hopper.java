@@ -15,6 +15,11 @@ public class Hopper extends LinearOpMode {
     private DcMotor wheelmotor = null;
     private Servo platformservo = null;
 
+    private double zeroring = 0;
+    private double onering = 0.1;
+    private double tworing = 0.16;
+    private double threering = 0.27;
+
     public Hopper (DcMotor m, Servo s) {
         wheelmotor = m;
         //servos move opposite
@@ -61,16 +66,20 @@ public class Hopper extends LinearOpMode {
 
     public boolean incrementToPos(String g) {
         double goal;
-        if (g == "max") {
-            goal = max;
-        } else if (g == "min") {
-            goal = min;
+        if (g == "zero") {
+            goal = zeroring;
+        } else if (g == "one") {
+            goal = onering;
+        } else if (g == "two") {
+            goal = tworing;
+        } else if (g == "three") {
+            goal = threering;
         } else {
-            goal = min;
+            goal = threering;
         }
         double error = 0.05;
         double increment = 0.01; //TODO if this is too fast make the number smaller
-        double pos1 = servo.getPosition();
+        double pos1 = platformservo.getPosition();
         if (pos1 > goal) {
             pos1 -= increment;
         } else if (pos1 < goal){
@@ -79,7 +88,7 @@ public class Hopper extends LinearOpMode {
             //   } else if (pos1 < goal - error && pos1 > goal + error) { //TODO switch < and > signs if they're wrong
             pos1 = goal;
         }
-        servo.setPosition(pos1);
+        platformservo.setPosition(pos1);
         return pos1 > goal - error && pos1 < goal + error;
     }
 
