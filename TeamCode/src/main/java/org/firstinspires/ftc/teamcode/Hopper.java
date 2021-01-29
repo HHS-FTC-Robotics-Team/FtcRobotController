@@ -59,6 +59,30 @@ public class Hopper extends LinearOpMode {
         return platformservo.getPosition();
     }
 
+    public boolean incrementToPos(String g) {
+        double goal;
+        if (g == "max") {
+            goal = max;
+        } else if (g == "min") {
+            goal = min;
+        } else {
+            goal = min;
+        }
+        double error = 0.05;
+        double increment = 0.01; //TODO if this is too fast make the number smaller
+        double pos1 = servo.getPosition();
+        if (pos1 > goal) {
+            pos1 -= increment;
+        } else if (pos1 < goal){
+            pos1 += increment;
+        } else if (pos1 > goal - error && pos1 < goal + error) { //TODO switch < and > signs if they're wrong
+            //   } else if (pos1 < goal - error && pos1 > goal + error) { //TODO switch < and > signs if they're wrong
+            pos1 = goal;
+        }
+        servo.setPosition(pos1);
+        return pos1 > goal - error && pos1 < goal + error;
+    }
+
     public void runOpMode() {
 
     }
