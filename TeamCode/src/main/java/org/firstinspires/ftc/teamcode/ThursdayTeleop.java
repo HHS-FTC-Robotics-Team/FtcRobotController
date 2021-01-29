@@ -65,7 +65,7 @@ public class ThursdayTeleop extends LinearOpMode {
                 0.15, 0.54);
         gear = new TwoPosServo(
                 hardwareMap.get(Servo.class, "gearbox"),
-                0.74, 0.81);
+                0.74, 0.82);
 
 //        touchin = new Sensors(
 //                hardwareMap.get(DigitalChannel.class, "touchin")
@@ -309,7 +309,7 @@ public class ThursdayTeleop extends LinearOpMode {
          //    lift motor
             if (gamepad1.a) {
                 if (gear.incrementToPos("max")) { //TODO test this (moves lift) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    if (col.isBusy() == false) {
+                    if (!col.isBusy()) {
                         col.nextLiftPosition();
                     }
                 }
@@ -319,17 +319,19 @@ public class ThursdayTeleop extends LinearOpMode {
             // This contains instructions for the collector
             if (gamepad1.left_bumper) {
                 if (gear.incrementToPos("min")) { //TODO test this (collector only) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    col.setPower(-0.1);
+                    col.setPower(-1);
                 }
             } else if (gamepad1.right_bumper) {
                 if (gear.incrementToPos("min")) {
-                    col.setPower(0.1);
+                    col.setPower(1);
                 }
             } else if (gamepad2.right_stick_y != 0) {
-                if (gear.incrementToPos("min")) { //incrementToPos will both move the gearbox servo AND return if it has reached the goal yet
-                    col.setPower(gamepad2.right_stick_y);
+                if (gear.incrementToPos("max")) { //incrementToPos will both move the gearbox servo AND return if it has reached the goal yet
+                    if (!col.isBusy()) {
+                        col.setPower(0.5 * gamepad2.right_stick_y);
+                    }
                 }
-            } else /** if (gear.isPos("min")) **/ { //isPos will check if servo is at the specified goal, does not move servo like incrementToPos does
+            } else if (gear.isPos("min"))  { //isPos will check if servo is at the specified goal, does not move servo like incrementToPos does
                 col.rest();
             }
 
@@ -400,6 +402,8 @@ public class ThursdayTeleop extends LinearOpMode {
             telemetry.addData("rb", d.getPowerrb());
             telemetry.addData("platform position", hopper.getPlatformPos());
             telemetry.addData("gearbox servo", gear.getPos());
+            telemetry.addData("gearbox max?", gear.isPos("max"));
+            telemetry.addData("motor power", col.getPower());
 //            telemetry.addData("Lift", lift.getClicks());
 //            telemetry.addData("touch in", touchin.getTouch());
 //            telemetry.addData("touch out", touchout.getTouch());

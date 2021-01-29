@@ -48,15 +48,17 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
   }
 
   public void nextLiftPosition() { //move lift to the next state
+    mtr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); //reset encoder first
+    mtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     if (liftposition == "vertical") {
       liftposition = "horizontal";
-      moveLift(100); //TODO find the right positions here
+      moveLift(500); //TODO find the right positions here
     } else if (liftposition == "horizontal") {
       liftposition = "above ground";
-      moveLift(200);
+      moveLift(1000);
     } else if (liftposition == "above ground") {
       liftposition = "over wall";
-      moveLift(300);
+      moveLift(1500);
     } else if (liftposition == "over wall") {
       liftposition = "vertical";
       moveLift(0);
@@ -64,15 +66,13 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
   }
 
   public void moveLift(double position) {
-    mtr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); //reset encoder first
-    mtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     double goal = position - liftclicks; //find the relative amount the motor has to move, because now the motor clicks say zero. Use the clicks variable that we save
 
     mtr.setTargetPosition((int)goal); // move that relative amount to get to new position
     mtr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    mtr.setPower(0.3); //TODO maybe change this power if you need?
+    mtr.setPower(0.5); //TODO maybe change this power if you need?
 
     liftclicks = position;
   }
@@ -91,6 +91,9 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
     return mtr.isBusy();
   }
 
+  public double getPower() {
+    return mtr.getPower();
+  }
 
   public void runOpMode() {
 

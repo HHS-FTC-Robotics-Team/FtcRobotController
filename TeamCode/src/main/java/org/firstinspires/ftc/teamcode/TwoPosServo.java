@@ -45,8 +45,8 @@ public class TwoPosServo extends LinearOpMode {
         } else {
             goal = min;
         }
-        double error = 0.05;
-        double increment = 0.01; //TODO if this is too fast make the number smaller
+        double error = 0.008;
+        double increment = 0.005; //TODO if this is too fast make the number smaller
         double pos1 = servo.getPosition();
         if (pos1 > goal) {
             pos1 -= increment;
