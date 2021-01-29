@@ -261,8 +261,9 @@ public class ThursdayTeleop extends LinearOpMode {
             }
 
             // This sets the shooter pivot servos to whatever value you hold the joystick to.
-            shooter.pivot(((-gamepad2.left_stick_y) * 0.2) + 0.22);
-
+            if (gamepad2.left_stick_y < 0) {
+                shooter.pivot(((-gamepad2.left_stick_y) * 0.2) + 0.22);
+            }
             //hopper.movePlatform(0);
 
 
@@ -292,7 +293,7 @@ public class ThursdayTeleop extends LinearOpMode {
             //TODO the new stuff below ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             //TODO see the TODO things in this file, the Collect file, and the TwoPosServo file
 
-            // lift motor
+         //    lift motor
             if (gamepad1.a) {
                 if (gear.incrementToPos("max")) { //TODO test this (moves lift) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     if (col.isBusy() == false) {
@@ -305,19 +306,48 @@ public class ThursdayTeleop extends LinearOpMode {
             // This contains instructions for the collector
             if (gamepad1.left_bumper) {
                 if (gear.incrementToPos("min")) { //TODO test this (collector only) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    col.in();
+                    col.setPower(-0.1);
                 }
             } else if (gamepad1.right_bumper) {
                 if (gear.incrementToPos("min")) {
-                    col.out();
+                    col.setPower(0.1);
                 }
             } else if (gamepad2.right_stick_y != 0) {
                 if (gear.incrementToPos("min")) { //incrementToPos will both move the gearbox servo AND return if it has reached the goal yet
                     col.setPower(gamepad2.right_stick_y);
                 }
-            } else if (gear.isPos("min")) { //isPos will check if servo is at the specified goal, does not move servo like incrementToPos does
+            } else /** if (gear.isPos("min")) **/ { //isPos will check if servo is at the specified goal, does not move servo like incrementToPos does
                 col.rest();
             }
+
+//            // Anish's primitive version:
+//            if (gamepad1.left_bumper) {
+//                if (gear.getPos() > 0.76) {
+//                    gear.minPos();
+//                } else if (gear.getPos() < 0.76) {
+//                    col.in();
+//                }
+//            } else if (gamepad1.right_bumper) {
+//                if (gear.getPos() > 0.76) {
+//                    gear.minPos();
+//                } else if (gear.getPos() < 0.76) {
+//                    col.out();
+//                }
+//            } else if (gamepad2.right_stick_y != 0) {
+//                if (gear.getPos() < 0.79) {
+//                    gear.maxPos();
+//                } else if (gear.getPos() > 0.79) {
+//                    col.setPower(gamepad2.right_stick_y);
+//                }
+//            } else if (gamepad1.a) {
+//                if (gear.getPos() > 0.79) {
+//                    col.nextLiftPosition();
+//                } else if (gear.getPos() < 0.79) {
+//                    gear.maxPos();
+//                }
+//            } else {
+//                col.rest();
+//            }
 
 //            if (gamepad1.a && !turningButtonIsDown) {
 //                turningButtonIsDown = true;
@@ -356,6 +386,7 @@ public class ThursdayTeleop extends LinearOpMode {
             telemetry.addData("rf", d.getPowerrf());
             telemetry.addData("rb", d.getPowerrb());
             telemetry.addData("platform position", hopper.getPlatformPos());
+            telemetry.addData("gearbox servo", gear.getPos());
 //            telemetry.addData("Lift", lift.getClicks());
 //            telemetry.addData("touch in", touchin.getTouch());
 //            telemetry.addData("touch out", touchout.getTouch());

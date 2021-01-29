@@ -72,7 +72,7 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
     mtr.setTargetPosition((int)goal); // move that relative amount to get to new position
     mtr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    mtr.setPower(1); //TODO maybe change this power if you need?
+    mtr.setPower(0.3); //TODO maybe change this power if you need?
 
     liftclicks = position;
   }
