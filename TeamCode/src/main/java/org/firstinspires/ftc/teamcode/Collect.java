@@ -65,13 +65,13 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
 
   public void updateLift() {
     if (liftposition == "vertical") {
-      moveLift(500);
-    } else if (liftposition == "horizontal") {
-      moveLift(1000);
-    } else if (liftposition == "above ground") {
-      moveLift(1500);
-    } else if (liftposition == "over wall") {
       moveLift(0);
+    } else if (liftposition == "horizontal") {
+      moveLift(500);
+    } else if (liftposition == "above ground") {
+      moveLift(1000);
+    } else if (liftposition == "over wall") {
+      moveLift(1500);
     }
   }
 
@@ -96,9 +96,9 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
       mtr.setPower(0);
       liftclicks = position;
     } else if (current > goal) {
-      mtr.setPower(-0.5);
+      mtr.setPower(-0.75);
     } else if (current < goal) {
-      mtr.setPower(0.5);
+      mtr.setPower(0.75);
     }
 
   }
@@ -113,6 +113,10 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
     mtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
   }
 
+  public double getMotorClicks() {
+    return mtr.getCurrentPosition();
+  }
+
   public boolean isBusy() {
     return mtr.isBusy();
   }
@@ -123,6 +127,10 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
 
   public double getPower() {
     return mtr.getPower();
+  }
+
+  public String getLiftposition() {
+    return liftposition;
   }
 
   public void runOpMode() {

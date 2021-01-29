@@ -409,6 +409,11 @@ public class ThursdayTeleop extends LinearOpMode {
             telemetry.addData("gearbox max?", gear.isPos("max"));
             telemetry.addData("motor power", col.getPower());
             telemetry.addData("Busy?", col.isBusy());
+            telemetry.addData("completed?", col.isCompleted());
+            telemetry.addData("liftClicks", col.getClicks());
+            telemetry.addData("Position", col.getLiftposition());
+            telemetry.addData("Lift Motor Clicks", col.getMotorClicks());
+
 //            telemetry.addData("Lift", lift.getClicks());
 //            telemetry.addData("touch in", touchin.getTouch());
 //            telemetry.addData("touch out", touchout.getTouch());
