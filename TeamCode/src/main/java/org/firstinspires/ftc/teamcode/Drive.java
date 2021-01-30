@@ -65,6 +65,11 @@ public class Drive extends LinearOpMode {
     motorrf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     motorrb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     motorrb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+    motorlf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    motorlb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    motorrf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    motorrb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
   }
 //  public void setthepos() {
 //    motorlf.setTargetPosition(1200);
@@ -123,6 +128,7 @@ public class Drive extends LinearOpMode {
                     // not sure what the rest of this math means anymore
                     // (134.4/(Math.PI * 3.85827)) is how many clicks are in an inch (11.088 clicks/inch)
                     //134.4 is the wheel's pulses (clicks) per rotation
+    // 114.8
     motorlf.setTargetPosition((int)position);
     motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     
@@ -144,7 +150,7 @@ public class Drive extends LinearOpMode {
 
   public void runToPosition(float inches, double power) {
 
-    double position = inches * (134.4/(Math.PI * 3.85827)); // convert inches to clicks based on circumference in inches
+    double position = inches * 35.75; // convert inches to clicks based on circumference in inches
           // same as inches * 11.088
     motorlf.setTargetPosition((int)position);
     motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -152,10 +158,10 @@ public class Drive extends LinearOpMode {
     motorlb.setTargetPosition((int)position);
     motorlb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    motorrf.setTargetPosition(-(int)position);
+    motorrf.setTargetPosition((int)position);
     motorrf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    motorrb.setTargetPosition(-(int)position);
+    motorrb.setTargetPosition((int)position);
     motorrb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
