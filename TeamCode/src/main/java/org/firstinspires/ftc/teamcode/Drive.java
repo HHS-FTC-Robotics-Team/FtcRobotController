@@ -150,18 +150,18 @@ public class Drive extends LinearOpMode {
 
   public void runToPosition(float inches, double power) {
 
-    double position = inches * 35.75; // convert inches to clicks based on circumference in inches
+    double position = inches * 42; // convert inches to clicks based on circumference in inches
           // same as inches * 11.088
-    motorlf.setTargetPosition((int)position);
+    motorlf.setTargetPosition(-(int)position);
     motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    motorlb.setTargetPosition((int)position);
+    motorlb.setTargetPosition(-(int)position);
     motorlb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    motorrf.setTargetPosition((int)position);
+    motorrf.setTargetPosition(-(int)position);
     motorrf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    motorrb.setTargetPosition((int)position);
+    motorrb.setTargetPosition(-(int)position);
     motorrb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
