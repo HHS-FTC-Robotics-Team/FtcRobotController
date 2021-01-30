@@ -88,11 +88,12 @@ public class ForwardUntil extends OurState {
      */
     @Override
     public void start() {
-      if (goal < 0) {
-        d.setPower(-1, 0, 0, 0);
-      } else {
-        d.setPower(1, 0, 0, 0);
-      }
+//      if (goal < 0) {
+//        d.setPower(-1, 0, 0, 0);
+//      } else {
+//        d.setPower(1, 0, 0, 0);
+//      }
+        d.runToPosition((float) goal, 1);
     }
 
     /*
@@ -100,15 +101,19 @@ public class ForwardUntil extends OurState {
      */
     @Override
     public void loop() {
-      double current = d.getClickslf();
-      if(current > goal - ACCURACY && current < goal + ACCURACY) {
-          d.setPower(0, 0, 0, 0);
-          running = false;
-      } else if (current > goal) {
-        d.setPower(-1, 0, 0, Math.abs(goal-current/goal));
-      } else if (current < goal) {
-        d.setPower(1, 0, 0, Math.abs(goal-current/goal));
-      }
+//      double current = d.getClickslf();
+//      if(current > goal - ACCURACY && current < goal + ACCURACY) {
+//          d.setPower(0, 0, 0, 0);
+//          running = false;
+//      } else if (current > goal) {
+//        d.setPower(-1, 0, 0, Math.abs(goal-current/goal));
+//      } else if (current < goal) {
+//        d.setPower(1, 0, 0, Math.abs(goal-current/goal));
+//      }
+        if(!d.isBusy()) { //if done moving
+            running = false;
+            d.setPower(0,0,0,0);
+        }
     }
 
     /*

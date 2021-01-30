@@ -64,8 +64,8 @@ public class Auto2021 extends OpMode {
             //new MoveClaw("open"),
             //new MoveClaw("close")
             // new LiftUntilTime(120, -1),
-            //new ForwardUntil(1500),
-            new TurnUntilAngle(90),
+            new ForwardUntil(24),
+//            new TurnUntilAngle(90),
             // new ForwardUntil(-900),
             // new SeekUntilColor(),
             // new LinearStack(new OurState[] {

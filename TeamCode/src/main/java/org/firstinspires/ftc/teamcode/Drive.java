@@ -118,6 +118,11 @@ public class Drive extends LinearOpMode {
   public void rotateToAngle(float angle, double power) {
 
     double position = ((angle/360) * Math.PI * 114.8 ) * (134.4/(Math.PI * 3.85827)); // convert inches to clicks based on circumference in inches
+                    // angle/360 part is what fraction of a full circle that we wanna turn
+                    // diagonal from one wheel to the opposite diagonal wheel of the robot ....
+                    // not sure what the rest of this math means anymore
+                    // (134.4/(Math.PI * 3.85827)) is how many clicks are in an inch (11.088 clicks/inch)
+                    //134.4 is the wheel's pulses (clicks) per rotation
     motorlf.setTargetPosition((int)position);
     motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     
@@ -129,13 +134,35 @@ public class Drive extends LinearOpMode {
     
     motorrb.setTargetPosition(-(int)position);
     motorrb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    
 
     motorlf.setPower(power);
     motorlb.setPower(power);
     motorrf.setPower(power);
     motorrb.setPower(power);
 
+  }
+
+  public void runToPosition(float inches, double power) {
+
+    double position = inches * (134.4/(Math.PI * 3.85827)); // convert inches to clicks based on circumference in inches
+          // same as inches * 11.088
+    motorlf.setTargetPosition((int)position);
+    motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+    motorlb.setTargetPosition((int)position);
+    motorlb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+    motorrf.setTargetPosition(-(int)position);
+    motorrf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+    motorrb.setTargetPosition(-(int)position);
+    motorrb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
+    motorlf.setPower(power);
+    motorlb.setPower(power);
+    motorrf.setPower(power);
+    motorrb.setPower(power);
 
   }
 

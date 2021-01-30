@@ -51,9 +51,9 @@ import org.firstinspires.ftc.teamcode.RobotHardware;
 public class TurnUntilAngle extends OurState {
     /* Declare OpMode members. */
     public Drive d = null;
-    private BNO055IMU imu = null;
+//    private BNO055IMU imu = null;
     public double goalangle = 0;
-    public double theta = 0;
+//    public double theta = 0;
     
     public TurnUntilAngle(double g) {
       super();
@@ -66,7 +66,9 @@ public class TurnUntilAngle extends OurState {
         
         robotHardware = r;
         d = robotHardware.d;
-        imu = robotHardware.imu;
+//        imu = robotHardware.imu;
+
+        d.resetAllEncoders();
         
     }
 
@@ -82,7 +84,7 @@ public class TurnUntilAngle extends OurState {
      */
     @Override
     public void start() {
-
+        d.rotateToAngle((float) goalangle, 1); //TODO should this be in start or init or loop?
     }
 
     /*
@@ -90,12 +92,10 @@ public class TurnUntilAngle extends OurState {
      */
     @Override
     public void loop() {
-      theta = robotHardware.updateGlobalAngle();
-      d.setPower(0, 0, (goalangle - theta) / (Math.abs(goalangle - theta)), 1 );
-      if(Math.abs(theta - goalangle) < 1) { //if diff is less than 2 degrees
-        running = false;
-        d.setPower(0,0,0,0);
-      }
+        if(!d.isBusy()) { //if done moving
+            running = false;
+            d.setPower(0,0,0,0);
+        }
     }
 
     /*
