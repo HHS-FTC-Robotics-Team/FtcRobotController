@@ -77,8 +77,8 @@ public class Hopper extends LinearOpMode {
         } else {
             goal = threering;
         }
-        double error = 0.004;
-        double increment = 0.002; //TODO if this is too fast make the number smaller
+        double error = 0.005;
+        double increment = 0.004; //TODO if this is too fast make the number smaller
         double pos1 = platformservo.getPosition();
         if (pos1 > goal) {
             pos1 -= increment;

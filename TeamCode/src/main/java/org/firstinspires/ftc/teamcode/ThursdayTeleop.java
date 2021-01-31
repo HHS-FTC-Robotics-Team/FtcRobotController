@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -70,11 +71,11 @@ public class ThursdayTeleop extends LinearOpMode {
                 0.74, 0.82);
 
         colorLeft = new Sensors(
-                hardwareMap.get(DigitalChannel.class, "colorleft")
+                hardwareMap.get(ColorSensor.class, "colorleft")
         );
 
         colorRight = new Sensors(
-                hardwareMap.get(DigitalChannel.class, "colorright")
+                hardwareMap.get(ColorSensor.class, "colorright")
         );
 
 
