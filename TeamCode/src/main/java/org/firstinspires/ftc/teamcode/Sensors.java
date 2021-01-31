@@ -19,7 +19,7 @@ public class Sensors extends LinearOpMode {
     public Rev2mDistanceSensor distanceright = null;
 
     public ColorSensor colorleft = null;
-    public ColorSensor colorright = null;
+    public ColorSensor colorright = null; //deprecated
     float hsvValuesLeft[] = {0F,0F,0F};
     float hsvValuesRight[] = {0F,0F,0F};
 
@@ -56,10 +56,8 @@ public class Sensors extends LinearOpMode {
         digitaltouch = t;
     }
 
-    public Sensors(ColorSensor cl,
-                   ColorSensor cr) {
-        colorleft = cl;
-        colorright = cr;
+    public Sensors(ColorSensor c) {
+        colorleft = c;
     }
 
     public Sensors(Rev2mDistanceSensor f) {
@@ -78,25 +76,20 @@ public class Sensors extends LinearOpMode {
     public double getDistanceRight() {
         return distanceright.getDistance(DistanceUnit.INCH);
     }
-    public float[] getHSVLeft() {
+
+    public float[] getHSV() {
         Color.RGBToHSV(colorleft.red()*8, colorleft.green()*8, colorleft.blue()*8, hsvValuesLeft);
         return hsvValuesLeft;
     }
-    public float[] getHSVRight() {
-        Color.RGBToHSV(colorright.red()*8, colorright.green()*8, colorright.blue()*8, hsvValuesRight);
-        return hsvValuesRight;
-    }
-    public double[] getRGBLeft() {
+    public double[] getRGB() {
         double[] a = {colorleft.red(), colorleft.green(), colorleft.blue()};
         return a;
     }
-    public double[] getRGBRight() {
-        double[] a = {colorright.red(), colorright.green(), colorright.blue()};
-        return a;
+    public double getAlpha() {
+        return colorleft.alpha();
     }
 
     public boolean getTouch() {
-
         return digitaltouch.getState();
     }
 

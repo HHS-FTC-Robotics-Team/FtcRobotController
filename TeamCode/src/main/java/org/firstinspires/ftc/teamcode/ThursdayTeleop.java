@@ -33,10 +33,12 @@ public class ThursdayTeleop extends LinearOpMode {
     private boolean dpadDownIsDown = false;
     private boolean dpadLeftIsDown = false;
 
+    private String onMidline = "no";
+
     private String hpos = "zero";
 
-    //  private Sensors touchin;
-    // private Sensors touchout;
+    private Sensors colorLeft;
+    private Sensors colorRight;
 
 
     private Collect col;
@@ -67,13 +69,13 @@ public class ThursdayTeleop extends LinearOpMode {
                 hardwareMap.get(Servo.class, "gearbox"),
                 0.74, 0.82);
 
-//        touchin = new Sensors(
-//                hardwareMap.get(DigitalChannel.class, "touchin")
-//        );
-//
-//        touchout = new Sensors(
-//                hardwareMap.get(DigitalChannel.class, "touchout")
-//        );
+        colorLeft = new Sensors(
+                hardwareMap.get(DigitalChannel.class, "colorleft")
+        );
+
+        colorRight = new Sensors(
+                hardwareMap.get(DigitalChannel.class, "colorright")
+        );
 
 
         col = new Collect(
@@ -90,6 +92,8 @@ public class ThursdayTeleop extends LinearOpMode {
                 hardwareMap.get(Servo.class, "pivotleft"),
                 hardwareMap.get(Servo.class, "pivotright")
         );
+
+
 
 
         waitForStart();
@@ -393,6 +397,16 @@ public class ThursdayTeleop extends LinearOpMode {
 //            cam1.trackPosition(); // vuforia
 //            cam2.trackPosition();
 
+            if (colorLeft.getAlpha() >= 0.9 && colorRight.getAlpha() >= 0.9) {
+                onMidline = "yes";
+            } else if (colorLeft.getAlpha() >= 0.9) {
+                onMidline = "left only";
+            } else if (colorRight.getAlpha() >= 0.9) {
+                onMidline = "right only";
+            } else {
+                onMidline = "no";
+            }
+
             telemetry.addData("Status", "Run Time: ");
             telemetry.addData("Motor Power", gamepad1.left_stick_y);
             telemetry.addData("Right Stick Pos", gamepad1.right_stick_y);
@@ -413,6 +427,8 @@ public class ThursdayTeleop extends LinearOpMode {
             telemetry.addData("liftClicks", col.getClicks());
             telemetry.addData("Position", col.getLiftposition());
             telemetry.addData("Lift Motor Clicks", col.getMotorClicks());
+
+            telemetry.addData("On Midline?", onMidline);
 
 //            telemetry.addData("Lift", lift.getClicks());
 //            telemetry.addData("touch in", touchin.getTouch());
