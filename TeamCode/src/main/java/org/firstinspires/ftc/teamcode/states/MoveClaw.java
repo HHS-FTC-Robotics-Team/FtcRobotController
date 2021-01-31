@@ -54,8 +54,8 @@ public class MoveClaw extends OurState {
     //public Drive d = null;
     private Servo f = null;
     public RobotHardware robotHardware = null;
-    private double lmax = 1;
-    private double lmin = .5;
+    private double lmax = .54;
+    private double lmin = .15;
     //private double lmid = .5;
     private double goal = lmin;
 

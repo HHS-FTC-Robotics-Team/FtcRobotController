@@ -69,7 +69,7 @@ public class TurnUntilAngle extends OurState {
 //        imu = robotHardware.imu;
 
         d.resetAllEncoders();
-        
+        d.rotateToAngle((float) goalangle, 0.5); //TODO should this be in start or init or loop?
     }
 
     /*
@@ -84,7 +84,7 @@ public class TurnUntilAngle extends OurState {
      */
     @Override
     public void start() {
-        d.rotateToAngle((float) goalangle, 1); //TODO should this be in start or init or loop?
+
     }
 
     /*

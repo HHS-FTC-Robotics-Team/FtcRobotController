@@ -122,7 +122,7 @@ public class Drive extends LinearOpMode {
   
   public void rotateToAngle(float angle, double power) {
 
-    double position = ((angle/360) * Math.PI * 114.8 ) * (134.4/(Math.PI * 3.85827)); // convert inches to clicks based on circumference in inches
+    double position = ((angle* 1.1 / 360) * Math.PI * 114.8 ) * (134.4/(Math.PI * 3.85827)); // convert inches to clicks based on circumference in inches
                     // angle/360 part is what fraction of a full circle that we wanna turn
                     // diagonal from one wheel to the opposite diagonal wheel of the robot ....
                     // not sure what the rest of this math means anymore
