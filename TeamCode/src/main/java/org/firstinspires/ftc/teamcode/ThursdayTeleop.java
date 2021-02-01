@@ -160,9 +160,10 @@ public class ThursdayTeleop extends LinearOpMode {
 
             if (gamepad1.b && !bButtonIsDown) {
                 bButtonIsDown = true;
-
+                shooter.pivotToAngle(30);
             } else if (!gamepad1.b) {
                 bButtonIsDown = false;
+//                shooter.pivotToAngle(19);
             }
 
             if (gamepad1.a && !aButtonIsDown) {

@@ -55,6 +55,25 @@ public class Shooter extends LinearOpMode {
         rightservo.setPosition(Math.abs(goal - 1)); // servo goes to .9
     }
 
+    public void pivotToAngle(double goal) { // if goal = 40 degrees
+        double minAngle = 19;
+        double maxAngle = 30;
+        double minPos = 0.22;
+        double maxPos = 0.42;
+
+        double goalPos = minAngle;
+        if (goal > minAngle && goal < maxAngle) {
+            goalPos = ( goal-minAngle / maxAngle-minAngle * maxPos-minPos ) + minPos;
+        } else if (goal <= minAngle) {
+            goalPos = minPos;
+        } else if (goal >= maxAngle) {
+            goalPos = maxPos;
+        }
+
+        leftservo.setPosition(goalPos); // servo goes to .1
+        rightservo.setPosition(Math.abs(goalPos - 1)); // servo goes to .9
+    }
+
     public void runOpMode() {
 
     }
