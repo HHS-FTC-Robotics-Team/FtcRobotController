@@ -63,7 +63,7 @@ public class Shooter extends LinearOpMode {
 
         double goalPos = minAngle;
         if (goal > minAngle && goal < maxAngle) {
-            goalPos = ( goal-minAngle / maxAngle-minAngle * maxPos-minPos ) + minPos;
+            goalPos = ( (goal-minAngle) / (maxAngle-minAngle) * (maxPos-minPos) ) + minPos;
         } else if (goal <= minAngle) {
             goalPos = minPos;
         } else if (goal >= maxAngle) {
