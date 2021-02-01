@@ -74,12 +74,12 @@ public class Teleop2021 extends LinearOpMode {
         );
 
         cam1 = new Eyes(
-                hardwareMap.get(WebcamName.class, "Webcam 1")
+                hardwareMap.get(WebcamName.class, "Webcam 1"), 8.0f, 0.625f, 2.42f
         );
 
-//        cam2 = new Eyes(
-//                hardwareMap.get(WebcamName.class, "Webcam 2")
-//        );
+        cam2 = new Eyes(
+                hardwareMap.get(WebcamName.class, "Webcam 2"), 0, 0, 0 //TODO find the offsets for the second camera
+        );
 
         col = new Collect(
                 hardwareMap.get(DcMotor.class, "collectmotor"),
@@ -112,13 +112,6 @@ public class Teleop2021 extends LinearOpMode {
 
 
             if (state == "rotate") {
-
-                 //else if(cam2.isTargetVisible()) {
-//                    heading = cam2.getHeading();
-//                    x = 72 - cam2.getPosition().get(0);
-//                    y = 36 - cam2.getPosition().get(1);
-//                    theta = (float) Math.tan(y/x);
-//                }
                 if (d.isBusy() == false) {
                     d.resetAllEncoders();
                     state = "drive";
@@ -175,15 +168,21 @@ public class Teleop2021 extends LinearOpMode {
                         x = 72 - cam1.getPositionX();
                         y = 36 - cam1.getPositionY();
                         theta = (float) (Math.atan2(y, x) * (180/Math.PI));
-                        d.rotateToAngle((heading + theta), 0.25);
-                    } // TODO now heading is weird fix it tomorrow
+                        d.rotateToAngle((heading + theta), 0.25); // TODO now heading is weird fix it tomorrow
+                    } else if (cam2.isTargetVisible()) {
+                        heading = cam2.getHeading() - 90;
+                        x = 72 - cam2.getPositionX();
+                        y = 36 - cam2.getPositionY();
+                        theta = (float) (Math.atan2(y, x) * (180/Math.PI));
+                        d.rotateToAngle((heading + theta), 0.25); // TODO now heading is weird fix it tomorrow
+                    }
                 }
             } else if (!gamepad1.a) {
                 turningButtonIsDown = false;
             }
 
             cam1.trackPosition(); // vuforia
-//            cam2.trackPosition();
+            cam2.trackPosition();
 
             telemetry.addData("Status", "Run Time: ");
             telemetry.addData("Motor Power", gamepad1.left_stick_y);
