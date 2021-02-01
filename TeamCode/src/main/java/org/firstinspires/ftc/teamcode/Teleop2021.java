@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -14,8 +15,6 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName; //fo
 public class Teleop2021 extends LinearOpMode {
 
     //creating objects for all of the different parts
-    private SciLift lift;
-
     private Drive d;
 
     private TwoPosServo claw; //the file this used to be is still called Foundation btw
@@ -28,6 +27,8 @@ public class Teleop2021 extends LinearOpMode {
 
     private Sensors touchin;
     private Sensors touchout;
+    private Sensors colorLeft;
+    private Sensors colorRight;
 
     private Eyes cam1;
     private Eyes cam2;
@@ -42,10 +43,6 @@ public class Teleop2021 extends LinearOpMode {
 
         //initializing every motor, servo, and sensor
         //these names all need to match the names in the config
-        lift = new SciLift(
-                hardwareMap.get(DcMotor.class, "liftmotor")
-        );
-
         d = new Drive(
                 hardwareMap.get(DcMotor.class, "rbmotor"),
                 hardwareMap.get(DcMotor.class, "rfmotor"),
@@ -55,10 +52,10 @@ public class Teleop2021 extends LinearOpMode {
 
         claw = new TwoPosServo(
                 hardwareMap.get(Servo.class, "claw"),
-                0.5, 1);
+                0.15, 0.54);
         gear = new TwoPosServo(
                 hardwareMap.get(Servo.class, "gearbox"),
-                0.5, 1);
+                0.74, 0.82);
 
         touchin = new Sensors(
                 hardwareMap.get(DigitalChannel.class, "touchin")
@@ -66,6 +63,14 @@ public class Teleop2021 extends LinearOpMode {
 
         touchout = new Sensors(
                 hardwareMap.get(DigitalChannel.class, "touchout")
+        );
+
+        colorLeft = new Sensors(
+                hardwareMap.get(ColorSensor.class, "colorleft")
+        );
+
+        colorRight = new Sensors(
+                hardwareMap.get(ColorSensor.class, "colorright")
         );
 
         cam1 = new Eyes(
@@ -103,14 +108,6 @@ public class Teleop2021 extends LinearOpMode {
 //                lift.rest();
 //            }
 
-            if (gamepad1.right_bumper) {
-                lift.up(1);
-            } else if (gamepad1.left_bumper){
-                lift.down(1);
-            } else {
-                lift.rest();
-            }
-
 
 
 
@@ -136,19 +133,32 @@ public class Teleop2021 extends LinearOpMode {
             }
 
 
-            if (gamepad1.y && !clawButtonIsDown) {
+            if (gamepad2.x && !clawButtonIsDown) {
                 clawButtonIsDown = true;
                 claw.nextPos();
-            } else if (!gamepad1.y) {
+            } else if (!gamepad2.x) {
                 clawButtonIsDown = false;
             }
 
-            if (gamepad1.x && !gearboxButtonIsDown) {
-                gearboxButtonIsDown = true;
-                gear.nextPos();
-            } else if (!gamepad1.x) {
-                gearboxButtonIsDown = false;
+            // This contains instructions for the collector and lift (lift is the stick)
+            if (gamepad1.left_bumper) {
+                if (gear.incrementToPos("min")) { //TODO test this (collector only) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    col.setPower(-1);
+                }
+            } else if (gamepad1.right_bumper) {
+                if (gear.incrementToPos("min")) {
+                    col.setPower(1);
+                }
+            } else if (gamepad2.left_stick_y != 0) {
+                if (gear.incrementToPos("max")) { //incrementToPos will both move the gearbox servo AND return if it has reached the goal yet
+                    if (!col.isBusy()) {
+                        col.setPower(0.5 * gamepad2.right_stick_y);
+                    }
+                }
+            } else if (gear.isPos("min"))  { //isPos will check if servo is at the specified goal, does not move servo like incrementToPos does
+                col.rest();
             }
+
 
             if (gamepad1.a && !turningButtonIsDown) {
                 turningButtonIsDown = true;
@@ -186,7 +196,6 @@ public class Teleop2021 extends LinearOpMode {
             telemetry.addData("lb", d.getPowerlb());
             telemetry.addData("rf", d.getPowerrf());
             telemetry.addData("rb", d.getPowerrb());
-            telemetry.addData("Lift", lift.getClicks());
             telemetry.addData("touch in", touchin.getTouch());
             telemetry.addData("touch out", touchout.getTouch());
             if (cam1.isTargetVisible()) {
