@@ -33,6 +33,7 @@ public class Teleop2021 extends LinearOpMode {
     private boolean incrementSpeedButtonIsDown = false;
     private boolean decrementSpeedButtonIsDown = false;
     private double shooterSpeed = 0;
+    private double shooterAngle = 19;
 
     private String state = "drive";
     private float theta = 0.0f;
@@ -88,8 +89,10 @@ public class Teleop2021 extends LinearOpMode {
         );
 
         cam1 = new Eyes(
-                hardwareMap.get(WebcamName.class, "Webcam 1"), 8.0f, 0.625f, 2.42f
+//                hardwareMap.get(WebcamName.class, "Webcam 1"), 8.0f, 0.625f, 2.42f //the correct offset for the center of the robot
+                hardwareMap.get(WebcamName.class, "Webcam 1"), 8.75f, 0.5f, 1.5f //the offset for the shooter pivot
         );
+
 
 //        cam2 = new Eyes(
 //                hardwareMap.get(WebcamName.class, "Webcam 2"), 0, 0, 0 //TODO find the offsets for the second camera
@@ -257,9 +260,16 @@ public class Teleop2021 extends LinearOpMode {
             } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
 
             if (gamepad2.b) {
+                double x = 72 - cam1.getPositionX() + 1.125;
+                double y = 36 - cam1.getPositionY();
+                double distToGoal = Math.sqrt((x*x) + (y*y));
+
+                shooterAngle = (0.00181854)*(distToGoal-106.033)*(distToGoal-106.033) + 26.5169;
+                shooter.pivotToAngle(shooterAngle);
                 shooter.setPower(shooterSpeed);
                 hopper.out();
             } else if (!gamepad2.b) {
+//                shooter.pivotToAngle(19);
                 hopper.rest();
                 shooter.rest();
             }
@@ -287,6 +297,7 @@ public class Teleop2021 extends LinearOpMode {
             telemetry.addData("Drive theta", theta);
             telemetry.addData("Hopper position", hopperPos);
             telemetry.addData("Shooter speed", shooterSpeed);
+            telemetry.addData("Shooter angle", shooterAngle);
             telemetry.update();
 
         }
