@@ -229,12 +229,14 @@ public class Teleop2021 extends LinearOpMode {
 //                    double y = 36 - cam1.getPositionY();
 //                    distToGoal = Math.sqrt((x * x) + (y * y));
 //                } else {
-                double x = 72 - cam2.getPositionX() + 1.125;
-                double y = 36 - cam2.getPositionY();
-                distToGoal = Math.sqrt((x * x) + (y * y));
+                if (cam2.isTargetVisible()) {
+                    double x = 72 - cam2.getPositionX() + 1.125;
+                    double y = 36 - cam2.getPositionY();
+                    distToGoal = Math.sqrt((x * x) + (y * y));
+                    shooterAngle = (0.00181854)*(distToGoal-106.033)*(distToGoal-106.033) + 26.5169;
+                    shooter.pivotToAngle(shooterAngle);
+                }
 //                }
-                shooterAngle = (0.00181854)*(distToGoal-106.033)*(distToGoal-106.033) + 26.5169;
-                shooter.pivotToAngle(shooterAngle);
             } else if (!gamepad1.a) {
                 turningButtonIsDown = false;
             }
