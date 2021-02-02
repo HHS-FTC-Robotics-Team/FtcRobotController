@@ -43,8 +43,8 @@ public class Teleop2021 extends LinearOpMode {
     private Sensors colorLeft;
     private Sensors colorRight;
 
-    private Eyes cam1;
-   // private Eyes cam2;
+//    private Eyes cam1;
+    private Eyes cam2;
 
     private Collect col;
     private Hopper hopper;
@@ -88,15 +88,15 @@ public class Teleop2021 extends LinearOpMode {
                 hardwareMap.get(ColorSensor.class, "colorright")
         );
 
-        cam1 = new Eyes(
-//                hardwareMap.get(WebcamName.class, "Webcam 1"), 8.0f, 0.625f, 2.42f //the correct offset for the center of the robot
-                hardwareMap.get(WebcamName.class, "Webcam 1"), 8.75f, 0.5f, 1.5f //the offset for the shooter pivot
-        );
-
-
-//        cam2 = new Eyes(
-//                hardwareMap.get(WebcamName.class, "Webcam 2"), 0, 0, 0 //TODO find the offsets for the second camera
+//        cam1 = new Eyes(
+////old                hardwareMap.get(WebcamName.class, "Webcam 1"), 8.0f, 0.625f, 2.42f //the correct offset for the center of the robot
+//                hardwareMap.get(WebcamName.class, "Webcam 1"), 8.75f, 0.5f, 1.5f //the offset for the shooter pivot
 //        );
+
+
+        cam2 = new Eyes(
+                hardwareMap.get(WebcamName.class, "Webcam 2"), 0.375f, -8.75f, 5.625f //TODO find the offsets for the second camera
+        );
 
         col = new Collect(
                 hardwareMap.get(DcMotor.class, "liftmotor"),
@@ -199,27 +199,28 @@ public class Teleop2021 extends LinearOpMode {
                     float heading = 0f;
                     float x = 0f;
                     float y = 0f;
-                    if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
-                        heading = cam1.getHeading() - 90;
-                        x = 72 - cam1.getPositionX();
-                        y = 36 - cam1.getPositionY();
-                        theta = (float) (Math.atan2(y, x) * (180/Math.PI));
-                        d.rotateToAngle((heading + theta), 0.25); // TODO now heading is weird fix it tomorrow
-                    }
-//                    else if (cam2.isTargetVisible()) {
-//                        heading = cam2.getHeading() - 90;
-//                        x = 72 - cam2.getPositionX();
-//                        y = 36 - cam2.getPositionY();
+//                    if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
+//                        heading = cam1.getHeading() - 90;
+//                        x = 72 - cam1.getPositionX();
+//                        y = 36 - cam1.getPositionY();
 //                        theta = (float) (Math.atan2(y, x) * (180/Math.PI));
-//                        d.rotateToAngle((heading + theta), 0.25); // TODO now heading is weird fix it tomorrow
+//                        d.rotateToAngle((heading - theta), 0.5); // TODO now heading is weird fix it tomorrow
 //                    }
+//                    else
+                        if (cam2.isTargetVisible()) {
+                        heading = cam2.getHeading() - 180;
+                        x = 72 - cam2.getPositionX();
+                        y = 36 - cam2.getPositionY();
+                        theta = (float) (Math.atan2(y, x) * (180/Math.PI));
+                        d.rotateToAngle((heading - theta), 0.5); // TODO now heading is weird fix it tomorrow
+                    }
                 }
             } else if (!gamepad1.a) {
                 turningButtonIsDown = false;
             }
 
-            cam1.trackPosition(); // vuforia
-//            cam2.trackPosition();
+//            cam1.trackPosition(); // vuforia
+            cam2.trackPosition();
 
             //manually set the position of the hopper servo
             if (gamepad2.dpad_up && !dpadUpIsDown) { dpadUpIsDown = true;
@@ -260,10 +261,18 @@ public class Teleop2021 extends LinearOpMode {
             } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
 
             if (gamepad2.b) {
-                double x = 72 - cam1.getPositionX() + 1.125;
-                double y = 36 - cam1.getPositionY();
-                double distToGoal = Math.sqrt((x*x) + (y*y));
 
+                double distToGoal;
+
+//                if(cam1.isTargetVisible()) {
+//                    double x = 72 - cam1.getPositionX() + 1.125;
+//                    double y = 36 - cam1.getPositionY();
+//                    distToGoal = Math.sqrt((x * x) + (y * y));
+//                } else {
+                    double x = 72 - cam2.getPositionX() + 1.125;
+                    double y = 36 - cam2.getPositionY();
+                    distToGoal = Math.sqrt((x * x) + (y * y));
+//                }
                 shooterAngle = (0.00181854)*(distToGoal-106.033)*(distToGoal-106.033) + 26.5169;
                 shooter.pivotToAngle(shooterAngle);
                 shooter.setPower(shooterSpeed);
@@ -288,11 +297,16 @@ public class Teleop2021 extends LinearOpMode {
             telemetry.addData("rb", d.getPowerrb());
             telemetry.addData("touch in", touchin.getTouch());
             telemetry.addData("touch out", touchout.getTouch());
-            if (cam1.isTargetVisible()) {
-                telemetry.addData("Vuf translation", cam1.getTranslation());
-                telemetry.addData("Vuf rotation", cam1.getRotation());
+//            if (cam1.isTargetVisible()) {
+//                telemetry.addData("Vuf 1 translation", cam1.getTranslation());
+//                telemetry.addData("Vuf 1 rotation", cam1.getRotation());
+//            }
+            if (cam2.isTargetVisible()) {
+                telemetry.addData("Vuf 2 translation", cam2.getTranslation());
+                telemetry.addData("Vuf 2 rotation", cam2.getRotation());
             }
-            telemetry.addData("Visible Target", cam1.isTargetVisible()/* && cam2.isTargetVisible()*/);
+//            telemetry.addData("Visible Target 1", cam1.isTargetVisible());
+            telemetry.addData("Visible Target 2", cam2.isTargetVisible());
             telemetry.addData("Drive state", state);
             telemetry.addData("Drive theta", theta);
             telemetry.addData("Hopper position", hopperPos);
