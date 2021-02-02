@@ -59,10 +59,10 @@ public class Auto2021 extends OpMode {
     public RobotHardware robotHardware = new RobotHardware();
     public LinearStack states = new LinearStack(new OurState[] {
 
-            //Blue 0
-            new ForwardUntil(-72),
+//            Blue 0
+//            new ForwardUntil(-72),
             new TurnUntilAngle(180),
-            new MoveClaw("open"),
+//            new MoveClaw("open"),
 
 //            //Blue 1
 //            new ForwardUntil(-96),

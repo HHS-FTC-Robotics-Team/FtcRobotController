@@ -122,12 +122,13 @@ public class Drive extends LinearOpMode {
   
   public void rotateToAngle(float angle, double power) {
 
-    double position = ((angle* 1.1 / 360) * Math.PI * 114.8 ) * (134.4/(Math.PI * 3.85827)); // convert inches to clicks based on circumference in inches
+    double position = ((angle / 360) * Math.PI * 114.8 ) * (134.4/(Math.PI * 3.85827) * 1.05); // convert inches to clicks based on circumference in inches
                     // angle/360 part is what fraction of a full circle that we wanna turn
                     // diagonal from one wheel to the opposite diagonal wheel of the robot ....
                     // not sure what the rest of this math means anymore
                     // (134.4/(Math.PI * 3.85827)) is how many clicks are in an inch (11.088 clicks/inch)
                     //134.4 is the wheel's pulses (clicks) per rotation
+                    //1.05 is a correction added during troubleshooting
     // 114.8
     motorlf.setTargetPosition((int)position);
     motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -150,7 +151,7 @@ public class Drive extends LinearOpMode {
 
   public void runToPosition(float inches, double power) {
 
-    double position = inches * 42; // convert inches to clicks based on circumference in inches
+    double position = inches * 43.75; // convert inches to clicks based on circumference in inches
           // same as inches * 11.088
     motorlf.setTargetPosition(-(int)position);
     motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
