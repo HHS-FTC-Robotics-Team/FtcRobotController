@@ -16,9 +16,9 @@ public class Hopper extends LinearOpMode {
     private Servo platformservo = null;
 
     private double zeroring = 0;
-    private double onering = 0.1;
-    private double tworing = 0.16;
-    private double threering = 0.27;
+    private double onering = 0.15;
+    private double tworing = 0.35;
+    private double threering = 0.46;
 
     public Hopper (DcMotor m, Servo s) {
         wheelmotor = m;
@@ -77,8 +77,8 @@ public class Hopper extends LinearOpMode {
         } else {
             goal = threering;
         }
-        double error = 0.005;
-        double increment = 0.004; //TODO if this is too fast make the number smaller
+        double error = 0.009;
+        double increment = 0.008; //TODO if this is too fast make the number smaller
         double pos1 = platformservo.getPosition();
         if (pos1 > goal) {
             pos1 -= increment;

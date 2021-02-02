@@ -36,7 +36,7 @@ public class ThursdayTeleop extends LinearOpMode {
 
     private String onMidline = "no";
 
-    private String hpos = "zero";
+    private String hpos = "three";
 
     private Sensors colorLeft;
     private Sensors colorRight;
@@ -160,10 +160,10 @@ public class ThursdayTeleop extends LinearOpMode {
 
             if (gamepad1.b && !bButtonIsDown) {
                 bButtonIsDown = true;
-                shooter.pivotToAngle(23);
+                //shooter.pivotToAngle(23);
             } else if (!gamepad1.b) {
                 bButtonIsDown = false;
-                shooter.pivotToAngle(19);
+                //shooter.pivotToAngle(19);
             }
 
             if (gamepad1.a && !aButtonIsDown) {
@@ -313,22 +313,22 @@ public class ThursdayTeleop extends LinearOpMode {
             //TODO see the TODO things in this file, the Collect file, and the TwoPosServo file
 
          //    lift motor
-            if (gamepad1.a) {
-                if (gear.incrementToPos("max")) { //TODO test this (moves lift) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    if (col.isCompleted()) {
-                        col.nextLiftPosition();
-                    }
-                }
-            }
-            if (!col.isCompleted()) {
-                col.updateLift();
-            }
+//            if (gamepad1.a) {
+//                if (gear.incrementToPos("max")) { //TODO test this (moves lift) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//                    if (col.isCompleted()) {
+//                        col.nextLiftPosition();
+//                    }
+//                }
+//            }
+//            if (!col.isCompleted()) {
+//                col.updateLift();
+//            }
 
 
 
             // This contains instructions for the collector
             if (gamepad1.left_bumper) {
-                if (gear.incrementToPos("min")) { //TODO test this (collector only) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                if (gear.incrementToPos("min")) {
                     col.setPower(-1);
                 }
             } else if (gamepad1.right_bumper) {

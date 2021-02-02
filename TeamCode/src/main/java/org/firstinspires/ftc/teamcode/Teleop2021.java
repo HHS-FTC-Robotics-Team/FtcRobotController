@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName; //for "eyes" init
 
@@ -31,11 +32,13 @@ public class Teleop2021 extends LinearOpMode {
     private Sensors colorRight;
 
     private Eyes cam1;
-    private Eyes cam2;
+   // private Eyes cam2;
 
     private Collect col;
     private Hopper hopper;
     private Shooter shooter;
+
+    private String hpos = "three";
 
 
     @Override
@@ -58,11 +61,11 @@ public class Teleop2021 extends LinearOpMode {
                 0.74, 0.82);
 
         touchin = new Sensors(
-                hardwareMap.get(DigitalChannel.class, "touchin")
+                hardwareMap.get(TouchSensor.class, "touchin")
         );
 
         touchout = new Sensors(
-                hardwareMap.get(DigitalChannel.class, "touchout")
+                hardwareMap.get(TouchSensor.class, "touchout")
         );
 
         colorLeft = new Sensors(
@@ -77,12 +80,12 @@ public class Teleop2021 extends LinearOpMode {
                 hardwareMap.get(WebcamName.class, "Webcam 1"), 8.0f, 0.625f, 2.42f
         );
 
-        cam2 = new Eyes(
-                hardwareMap.get(WebcamName.class, "Webcam 2"), 0, 0, 0 //TODO find the offsets for the second camera
-        );
+//        cam2 = new Eyes(
+//                hardwareMap.get(WebcamName.class, "Webcam 2"), 0, 0, 0 //TODO find the offsets for the second camera
+//        );
 
         col = new Collect(
-                hardwareMap.get(DcMotor.class, "collectmotor"),
+                hardwareMap.get(DcMotor.class, "liftmotor"),
                 hardwareMap.get(Servo.class, "release")
         );
         hopper = new Hopper(
@@ -152,6 +155,25 @@ public class Teleop2021 extends LinearOpMode {
                 col.rest();
             }
 
+            if (gamepad2.dpad_up) {
+                hpos = "zero";
+            } else if (gamepad2.dpad_right) {
+                hpos = "one";
+            } else if (gamepad2.dpad_down) {
+                hpos = "two";
+            } else if (gamepad2.dpad_left) {
+                hpos = "three";
+            }
+            hopper.incrementToPos(hpos);
+
+            if (gamepad2.y) {
+            hopper.out();
+            shooter.setPower(1);
+            } else {
+                hopper.rest();
+                shooter.rest();
+                //hopper.movePlatform(0.1);
+            }
 
             if (gamepad1.a && !turningButtonIsDown) {
                 turningButtonIsDown = true;
@@ -169,20 +191,21 @@ public class Teleop2021 extends LinearOpMode {
                         y = 36 - cam1.getPositionY();
                         theta = (float) (Math.atan2(y, x) * (180/Math.PI));
                         d.rotateToAngle((heading + theta), 0.25); // TODO now heading is weird fix it tomorrow
-                    } else if (cam2.isTargetVisible()) {
-                        heading = cam2.getHeading() - 90;
-                        x = 72 - cam2.getPositionX();
-                        y = 36 - cam2.getPositionY();
-                        theta = (float) (Math.atan2(y, x) * (180/Math.PI));
-                        d.rotateToAngle((heading + theta), 0.25); // TODO now heading is weird fix it tomorrow
                     }
+//                    else if (cam2.isTargetVisible()) {
+//                        heading = cam2.getHeading() - 90;
+//                        x = 72 - cam2.getPositionX();
+//                        y = 36 - cam2.getPositionY();
+//                        theta = (float) (Math.atan2(y, x) * (180/Math.PI));
+//                        d.rotateToAngle((heading + theta), 0.25); // TODO now heading is weird fix it tomorrow
+//                    }
                 }
             } else if (!gamepad1.a) {
                 turningButtonIsDown = false;
             }
 
             cam1.trackPosition(); // vuforia
-            cam2.trackPosition();
+//            cam2.trackPosition();
 
             telemetry.addData("Status", "Run Time: ");
             telemetry.addData("Motor Power", gamepad1.left_stick_y);
