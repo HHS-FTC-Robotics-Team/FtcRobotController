@@ -178,16 +178,16 @@ public class Teleop2021 extends LinearOpMode {
 //            } else if (gamepad2.dpad_left) {
 //                hpos = "three";
 //            }
-            hopper.incrementToPos(hpos);
+//            hopper.incrementToPos(hpos);
 
-            if (gamepad2.y) {
-            hopper.out();
-            shooter.setPower(1);
-            } else {
-                hopper.rest();
-                shooter.rest();
-                //hopper.movePlatform(0.1);
-            }
+//            if (gamepad2.y) {
+//            hopper.out();
+//            shooter.setPower(1);
+//            } else {
+//                hopper.rest();
+//                shooter.rest();
+//                //hopper.movePlatform(0.1);
+//            }
 
             if (gamepad1.a && !turningButtonIsDown) {
                 turningButtonIsDown = true;
