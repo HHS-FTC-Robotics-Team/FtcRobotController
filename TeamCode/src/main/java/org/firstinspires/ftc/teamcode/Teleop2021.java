@@ -212,7 +212,12 @@ public class Teleop2021 extends LinearOpMode {
                         x = 72 - cam2.getPositionX();
                         y = 36 - cam2.getPositionY();
                         theta = (float) (Math.atan2(y, x) * (180/Math.PI));
-                        d.rotateToAngle((heading - theta), 0.5); // TODO now heading is weird fix it tomorrow
+                        float rotationAngle = (heading - theta);
+                        if (rotationAngle >= -180) {
+                            d.rotateToAngle(rotationAngle, -0.5); // TODO now heading is weird fix it tomorrow
+                        } else if (rotationAngle < -180) {
+                            d.rotateToAngle(rotationAngle, 0.5); // TODO now heading is weird fix it tomorrow
+                        }
                     }
                 }
             } else if (!gamepad1.a) {
