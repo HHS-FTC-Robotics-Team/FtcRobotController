@@ -227,27 +227,38 @@ public class ThursdayTeleop extends LinearOpMode {
            // reverse direction.
             if (gamepad2.left_bumper) {
                 hopper.out();
-                shooter.setPower(0.5);
+                shooter.setPower(1);
+//                shooter.pivotToAngle(26.8); //6'8'' between bumper and goal
+//                shooter.pivotToAngle(26.5); //7'2'' between bumper and goal
+//                shooter.pivotToAngle(26); //7'8'' between bumper and goal
+//                shooter.pivotToAngle(26.5); //8'2'' between bumper and goal
+//                shooter.pivotToAngle(27); //8'8'' between bumper and goal
+                shooter.pivotToAngle(26.9); //9'2'' between bumper and goal
 
             } else if (gamepad2.right_bumper) {
                 hopper.out();
-                shooter.setPower(0.6);
+                shooter.setPower(1);
+                shooter.pivotToAngle(27.5);
 
             } else if (gamepad2.a) {
                 hopper.out();
-                shooter.setPower(0.7);
+                shooter.setPower(1);
+                shooter.pivotToAngle(28.5);
 
             } else if (gamepad2.b) {
                 hopper.out();
-                shooter.setPower(0.8);
+                shooter.setPower(1);
+                shooter.pivotToAngle(28.829);
 
             } else if (gamepad2.x) {
                 hopper.out();
-                shooter.setPower(0.9);
+                shooter.setPower(1);
+                shooter.pivotToAngle(29.5);
 
             } else if (gamepad2.y) {
                 hopper.out();
                 shooter.setPower(1);
+                shooter.pivotToAngle(30);
                // hopper.movePlatform(0);
 
             } else {
