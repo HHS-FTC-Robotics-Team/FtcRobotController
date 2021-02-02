@@ -166,15 +166,15 @@ public class Teleop2021 extends LinearOpMode {
                 col.rest();
             }
 
-            if (gamepad2.dpad_up) {
-                hpos = "zero";
-            } else if (gamepad2.dpad_right) {
-                hpos = "one";
-            } else if (gamepad2.dpad_down) {
-                hpos = "two";
-            } else if (gamepad2.dpad_left) {
-                hpos = "three";
-            }
+//            if (gamepad2.dpad_up) {
+//                hpos = "zero";
+//            } else if (gamepad2.dpad_right) {
+//                hpos = "one";
+//            } else if (gamepad2.dpad_down) {
+//                hpos = "two";
+//            } else if (gamepad2.dpad_left) {
+//                hpos = "three";
+//            }
             hopper.incrementToPos(hpos);
 
             if (gamepad2.y) {
