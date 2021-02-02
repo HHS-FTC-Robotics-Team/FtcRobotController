@@ -191,6 +191,7 @@ public class Teleop2021 extends LinearOpMode {
 
             if (gamepad1.a && !turningButtonIsDown) {
                 turningButtonIsDown = true;
+                // auto rotation towards the goal ==================================================
                 if (state == "rotate") {
                     state = "drive";
                 } else {
@@ -204,7 +205,7 @@ public class Teleop2021 extends LinearOpMode {
 //                        x = 72 - cam1.getPositionX();
 //                        y = 36 - cam1.getPositionY();
 //                        theta = (float) (Math.atan2(y, x) * (180/Math.PI));
-//                        d.rotateToAngle((heading - theta), 0.5); // TODO now heading is weird fix it tomorrow
+//                        d.rotateToAngle((heading - theta), 0.5);
 //                    }
 //                    else
                         if (cam2.isTargetVisible()) {
@@ -214,12 +215,26 @@ public class Teleop2021 extends LinearOpMode {
                         theta = (float) (Math.atan2(y, x) * (180/Math.PI));
                         float rotationAngle = (heading - theta);
                         if (rotationAngle >= -180) {
-                            d.rotateToAngle(rotationAngle, -0.5); // TODO now heading is weird fix it tomorrow
+                            d.rotateToAngle(rotationAngle, -0.5); // TODO conditional does not work
                         } else if (rotationAngle < -180) {
-                            d.rotateToAngle(rotationAngle, 0.5); // TODO now heading is weird fix it tomorrow
+                            d.rotateToAngle(rotationAngle, 0.5);
                         }
                     }
                 }
+                // auto pivoting towards the goal ==================================================
+                double distToGoal;
+
+//                if(cam1.isTargetVisible()) {
+//                    double x = 72 - cam1.getPositionX() + 1.125;
+//                    double y = 36 - cam1.getPositionY();
+//                    distToGoal = Math.sqrt((x * x) + (y * y));
+//                } else {
+                double x = 72 - cam2.getPositionX() + 1.125;
+                double y = 36 - cam2.getPositionY();
+                distToGoal = Math.sqrt((x * x) + (y * y));
+//                }
+                shooterAngle = (0.00181854)*(distToGoal-106.033)*(distToGoal-106.033) + 26.5169;
+                shooter.pivotToAngle(shooterAngle);
             } else if (!gamepad1.a) {
                 turningButtonIsDown = false;
             }
@@ -267,19 +282,7 @@ public class Teleop2021 extends LinearOpMode {
 
             if (gamepad2.b) {
 
-                double distToGoal;
 
-//                if(cam1.isTargetVisible()) {
-//                    double x = 72 - cam1.getPositionX() + 1.125;
-//                    double y = 36 - cam1.getPositionY();
-//                    distToGoal = Math.sqrt((x * x) + (y * y));
-//                } else {
-                    double x = 72 - cam2.getPositionX() + 1.125;
-                    double y = 36 - cam2.getPositionY();
-                    distToGoal = Math.sqrt((x * x) + (y * y));
-//                }
-                shooterAngle = (0.00181854)*(distToGoal-106.033)*(distToGoal-106.033) + 26.5169;
-                shooter.pivotToAngle(shooterAngle);
                 shooter.setPower(shooterSpeed);
                 hopper.out();
             } else if (!gamepad2.b) {
