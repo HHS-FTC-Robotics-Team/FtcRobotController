@@ -23,6 +23,17 @@ public class Teleop2021 extends LinearOpMode {
     private boolean clawButtonIsDown = false; // controls the claw servo button press
     private boolean gearboxButtonIsDown = false; // controls the gearbox servo button press
     private boolean turningButtonIsDown = false; // controls the gearbox servo button press
+
+    // controls all of the d buttons
+    private boolean dpadUpIsDown = false;
+    private boolean dpadRightIsDown = false;
+    private boolean dpadDownIsDown = false;
+    private boolean dpadLeftIsDown = false;
+    private String hopperPos = "three";
+    private boolean incrementSpeedButtonIsDown = false;
+    private boolean decrementSpeedButtonIsDown = false;
+    private double shooterSpeed = 0;
+
     private String state = "drive";
     private float theta = 0.0f;
 
@@ -138,7 +149,7 @@ public class Teleop2021 extends LinearOpMode {
 
             // This contains instructions for the collector and lift (lift is the stick)
             if (gamepad1.left_bumper) {
-                if (gear.incrementToPos("min")) { //TODO test this (collector only) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                if (gear.incrementToPos("min")) {
                     col.setPower(-1);
                 }
             } else if (gamepad1.right_bumper) {
@@ -207,6 +218,53 @@ public class Teleop2021 extends LinearOpMode {
             cam1.trackPosition(); // vuforia
 //            cam2.trackPosition();
 
+            //manually set the position of the hopper servo
+            if (gamepad2.dpad_up && !dpadUpIsDown) { dpadUpIsDown = true;
+                hopperPos = "zero";
+            } else if (!gamepad2.dpad_up) { dpadUpIsDown = false; }
+
+            if (gamepad2.dpad_right && !dpadRightIsDown) { dpadRightIsDown = true;
+                hopperPos = "one";
+            } else if (!gamepad2.dpad_right) { dpadRightIsDown = false; }
+
+            if (gamepad2.dpad_down && !dpadDownIsDown) { dpadDownIsDown = true;
+                hopperPos = "two";
+            } else if (!gamepad2.dpad_down) { dpadDownIsDown = false; }
+
+            if (gamepad2.dpad_left && !dpadLeftIsDown) { dpadLeftIsDown = true;
+                hopperPos = "three";
+            } else if (!gamepad2.dpad_left) { dpadLeftIsDown = false; }
+
+            hopper.incrementToPos(hopperPos);
+
+            // control the shooter motor speed using the A and Y buttons on gamepad 2.
+            // after setting the speed, power the shooter by holding down the B button.
+            // with the B button held down, select the proper hopper position on the dPad to insert a ring into the shooter.
+            if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
+                if (shooterSpeed < 0.95) {
+                    shooterSpeed += 0.05;
+                } else if (shooterSpeed >= 0.95) {
+                    shooterSpeed = 1.0;
+                }
+            } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
+
+            if (gamepad2.a && !decrementSpeedButtonIsDown) { decrementSpeedButtonIsDown = true;
+                if (shooterSpeed > 0.05) {
+                    shooterSpeed -= 0.05;
+                } else if (shooterSpeed <= 0.05) {
+                    shooterSpeed = 0.0;
+                }
+            } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
+
+            if (gamepad2.b) {
+                shooter.setPower(shooterSpeed);
+                hopper.out();
+            } else if (!gamepad2.b) {
+                hopper.rest();
+                shooter.rest();
+            }
+
+
             telemetry.addData("Status", "Run Time: ");
             telemetry.addData("Motor Power", gamepad1.left_stick_y);
             telemetry.addData("Right Stick Pos", gamepad1.right_stick_y);
@@ -227,6 +285,8 @@ public class Teleop2021 extends LinearOpMode {
             telemetry.addData("Visible Target", cam1.isTargetVisible()/* && cam2.isTargetVisible()*/);
             telemetry.addData("Drive state", state);
             telemetry.addData("Drive theta", theta);
+            telemetry.addData("Hopper position", hopperPos);
+            telemetry.addData("Shooter speed", shooterSpeed);
             telemetry.update();
 
         }
