@@ -103,15 +103,15 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
 
   }
 
-  public double getClicks() {
-    return liftclicks;
-  }
-
-  public void updateClicks() {
-    liftclicks = liftclicks + mtr.getCurrentPosition(); //set clicks variable to the lift's actual position
-    mtr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    mtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-  }
+//  public double getClicks() {
+//    return liftclicks;
+//  }
+//
+//  public void updateClicks() {
+//    liftclicks = liftclicks + mtr.getCurrentPosition(); //set clicks variable to the lift's actual position
+//    mtr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//    mtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//  }
 
   public double getMotorClicks() {
     return mtr.getCurrentPosition();

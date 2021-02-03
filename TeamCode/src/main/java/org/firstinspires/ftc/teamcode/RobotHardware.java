@@ -21,7 +21,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 public class RobotHardware {
     public HardwareMap hardwareMap = null;
     public Drive d = null;
-    //public Collect c = null;
+    public Collect c = null;
     public DcMotor lift = null;
     //public ColorSensor color = null;
     public Servo f = null;
@@ -42,12 +42,11 @@ public class RobotHardware {
             hardwareMap.get(DcMotor.class, "lfmotor"),
             hardwareMap.get(DcMotor.class, "lbmotor")
         );
-        
-//        c = new Collect(
-//          hardwareMap.get(DcMotor.class, "col_left"),
-//          hardwareMap.get(DcMotor.class, "col_right"),
-//          hardwareMap.get(Rev2mDistanceSensor.class, "distance_sensor")
-//        );
+
+        c = new Collect(
+                hardwareMap.get(DcMotor.class, "liftmotor"),
+                hardwareMap.get(Servo.class, "release")
+        );
         
 //        lastAngles = new Orientation();
 //        imu = hardwareMap.get(BNO055IMU.class, "imu");

@@ -27,6 +27,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.states.ForwardUntil;
+import org.firstinspires.ftc.teamcode.states.LiftUntilPos;
 import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.MoveArm;
 import org.firstinspires.ftc.teamcode.states.MoveGearbox;
@@ -61,8 +62,9 @@ public class Auto2021 extends OpMode {
     public RobotHardware robotHardware = new RobotHardware();
     public LinearStack states = new LinearStack(new OurState[] {
 
-            new MoveClaw("close"),
-            new DetectRings(),
+            new LiftUntilPos("horizontal")
+//            new MoveClaw("close"),
+//            new DetectRings(),
 //            Blue Left 0
             //Lift(Something)
 
