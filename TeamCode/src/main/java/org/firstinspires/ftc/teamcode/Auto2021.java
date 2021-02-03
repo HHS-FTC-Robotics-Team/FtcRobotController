@@ -122,12 +122,15 @@ public class Auto2021 extends OpMode {
     });
     public LinearStack zerostates = new LinearStack(new OurState[] {
             new TurnUntilAngle(45),
+            new TurnUntilAngle(-45),
     });
     public LinearStack onestates = new LinearStack(new OurState[] {
             new TurnUntilAngle(90),
+            new TurnUntilAngle(-90),
     });
     public LinearStack fourstates = new LinearStack(new OurState[] {
             new TurnUntilAngle(180),
+            new TurnUntilAngle(-180),
     });
 
     @Override
@@ -173,14 +176,17 @@ public class Auto2021 extends OpMode {
                 //zerostates.loop();
                 states = zerostates;
                 states.init(robotHardware);
+                states.start();
             } else if (states.getVariable() == (double) 1.0) {
                 telemetry.addData("state", "one");
                 states = onestates;
                 states.init(robotHardware);
+                states.start();
             } else if (states.getVariable() == (double) 4.0) {
                 telemetry.addData("state", "four");
                 states = fourstates;
                 states.init(robotHardware);
+                states.start();
             }
         }
     }
