@@ -154,7 +154,7 @@ public class DetectRings extends OurState {
         } else if( pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE ) {
             return 0.0;
         }
-        return 0.0;
+        return 20.0;
     }
 
 
@@ -280,6 +280,7 @@ public class DetectRings extends OurState {
         {
             return avg1;
         }
+
     }
 
 }
