@@ -127,7 +127,7 @@ public class EasyOpenCVExample extends LinearOpMode
         static final int REGION_WIDTH = 35;
         static final int REGION_HEIGHT = 25;
 
-        final int FOUR_RING_THRESHOLD = 145;
+        final int FOUR_RING_THRESHOLD = 140;
         final int ONE_RING_THRESHOLD = 125;
 
         Point region1_pointA = new Point(
