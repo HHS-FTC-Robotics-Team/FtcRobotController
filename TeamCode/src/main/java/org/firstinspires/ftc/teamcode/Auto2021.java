@@ -163,10 +163,12 @@ public class Auto2021 extends OpMode {
     public void loop() {
         // RobotStatus r = robotHardware.update(); // update state of robot based on sensor input
         // states.loop(r);
+        telemetry.addData("Status", "Looping");
         if (states.running) {
             states.loop();
         } else {
             //transition to next states
+            telemetry.addData("rings", states.getVariable());
             if (states.getVariable() == 0) {
                 //zerostates.loop();
                 states = zerostates;
