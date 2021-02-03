@@ -129,6 +129,7 @@ public class Teleop2021 extends LinearOpMode {
 //                lift.rest();
 //            }
 
+//            col.Release(); //Todo: Fix!
 
             if (state == "rotate") {
                 if (d.isBusy() == false) {
