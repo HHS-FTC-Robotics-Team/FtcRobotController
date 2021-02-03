@@ -170,19 +170,20 @@ public class Auto2021 extends OpMode {
             states.loop();
         } else {
             //transition to next states
-            telemetry.addData("rings", states.getVariable());
-            if (states.getVariable() == (double) 0.0) {
+            double rings = states.getVariable();
+            telemetry.addData("rings", rings);
+            if (rings == (double) 0.0) {
                 telemetry.addData("state", "zero");
                 //zerostates.loop();
                 states = zerostates;
                 states.init(robotHardware);
                 states.start();
-            } else if (states.getVariable() == (double) 1.0) {
+            } else if (rings == (double) 1.0) {
                 telemetry.addData("state", "one");
                 states = onestates;
                 states.init(robotHardware);
                 states.start();
-            } else if (states.getVariable() == (double) 4.0) {
+            } else if (rings == (double) 4.0) {
                 telemetry.addData("state", "four");
                 states = fourstates;
                 states.init(robotHardware);

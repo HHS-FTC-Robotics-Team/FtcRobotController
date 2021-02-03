@@ -155,6 +155,6 @@ public class LinearStack extends OurState {
 
     @Override
     public double getVariable() {
-        return 0;
+        return states[count].getVariable();
     }
 }
