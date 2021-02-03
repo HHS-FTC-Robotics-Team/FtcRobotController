@@ -36,7 +36,7 @@ public class Teleop2021 extends LinearOpMode {
     private boolean incrementAngleButtonIsDown = false;
     private boolean decrementAngleButtonIsDown = false;
 
-    private double shooterSpeed = 0;
+    private double shooterSpeed = 100;
     private double shooterAngle = 19;
 
     private String state = "drive";
@@ -47,8 +47,8 @@ public class Teleop2021 extends LinearOpMode {
     private Sensors colorLeft;
     private Sensors colorRight;
 
-//    private Eyes cam1;
-    private Eyes cam2;
+    private Eyes cam1;
+//    private Eyes cam2;
 
     private Collect col;
     private Hopper hopper;
@@ -92,15 +92,15 @@ public class Teleop2021 extends LinearOpMode {
                 hardwareMap.get(ColorSensor.class, "colorright")
         );
 
-//        cam1 = new Eyes(
-////old                hardwareMap.get(WebcamName.class, "Webcam 1"), 8.0f, 0.625f, 2.42f //the correct offset for the center of the robot
-//                hardwareMap.get(WebcamName.class, "Webcam 1"), 8.75f, 0.5f, 1.5f //the offset for the shooter pivot
-//        );
-
-
-        cam2 = new Eyes(
-                hardwareMap.get(WebcamName.class, "Webcam 2"), 0.375f, -8.75f, 5.625f //TODO find the offsets for the second camera
+        cam1 = new Eyes(
+//old                hardwareMap.get(WebcamName.class, "Webcam 1"), 8.0f, 0.625f, 2.42f //the correct offset for the center of the robot
+                hardwareMap.get(WebcamName.class, "Webcam 1"), 8.75f, 0.5f, 1.5f //the offset for the shooter pivot
         );
+
+
+//        cam2 = new Eyes(
+//                hardwareMap.get(WebcamName.class, "Webcam 2"), 0.375f, -8.75f, 5.625f //TODO find the offsets for the second camera
+//        );
 
         col = new Collect(
                 hardwareMap.get(DcMotor.class, "liftmotor"),
@@ -128,8 +128,6 @@ public class Teleop2021 extends LinearOpMode {
 //            } else {
 //                lift.rest();
 //            }
-
-
 
 
             if (state == "rotate") {
@@ -204,18 +202,10 @@ public class Teleop2021 extends LinearOpMode {
                     float heading = 0f;
                     float x = 0f;
                     float y = 0f;
-//                    if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
-//                        heading = cam1.getHeading() - 90;
-//                        x = 72 - cam1.getPositionX();
-//                        y = 36 - cam1.getPositionY();
-//                        theta = (float) (Math.atan2(y, x) * (180/Math.PI));
-//                        d.rotateToAngle((heading - theta), 0.5);
-//                    }
-//                    else
-                        if (cam2.isTargetVisible()) {
-                        heading = cam2.getHeading() - 180;
-                        x = 72 - cam2.getPositionX();
-                        y = 36 - cam2.getPositionY();
+                    if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
+                        heading = cam1.getHeading() - 90;
+                        x = 72 - cam1.getPositionX();
+                        y = 36 - cam1.getPositionY();
                         theta = (float) (Math.atan2(y, x) * (180/Math.PI));
                         float rotationAngle = (heading - theta);
                         if (rotationAngle >= -180) {
@@ -224,29 +214,45 @@ public class Teleop2021 extends LinearOpMode {
                             d.rotateToAngle(rotationAngle, 0.5);
                         }
                     }
+//                    else
+//                        if (cam2.isTargetVisible()) {
+//                        heading = cam2.getHeading() - 180;
+//                        x = 72 - cam2.getPositionX();
+//                        y = 36 - cam2.getPositionY();
+//                        theta = (float) (Math.atan2(y, x) * (180/Math.PI));
+//                        float rotationAngle = (heading - theta);
+//                        if (rotationAngle >= -180) {
+//                            d.rotateToAngle(rotationAngle, -0.5); // TODO conditional does not work
+//                        } else if (rotationAngle < -180) {
+//                            d.rotateToAngle(rotationAngle, 0.5);
+//                        }
+//                    }
                 }
                 // auto pivoting towards the goal ==================================================
                 double distToGoal;
 
-//                if(cam1.isTargetVisible()) {
-//                    double x = 72 - cam1.getPositionX() + 1.125;
-//                    double y = 36 - cam1.getPositionY();
-//                    distToGoal = Math.sqrt((x * x) + (y * y));
-//                } else {
-                if (cam2.isTargetVisible()) {
-                    double x = 72 - cam2.getPositionX() + 1.125;
-                    double y = 36 - cam2.getPositionY();
+                if(cam1.isTargetVisible()) {
+                    double x = 72 - cam1.getPositionX() + 1.125;
+                    double y = 36 - cam1.getPositionY();
                     distToGoal = Math.sqrt((x * x) + (y * y));
                     shooterAngle = (0.00181854)*(distToGoal-106.033)*(distToGoal-106.033) + 26.5169;
                     shooter.pivotToAngle(shooterAngle);
                 }
+//                else {
+//                if (cam2.isTargetVisible()) {
+//                    double x = 72 - cam2.getPositionX() + 1.125;
+//                    double y = 36 - cam2.getPositionY();
+//                    distToGoal = Math.sqrt((x * x) + (y * y));
+//                    shooterAngle = (0.00181854)*(distToGoal-106.033)*(distToGoal-106.033) + 26.5169;
+//                    shooter.pivotToAngle(shooterAngle);
+//                }
 //                }
             } else if (!gamepad1.a) {
                 turningButtonIsDown = false;
             }
 
-//            cam1.trackPosition(); // vuforia
-            cam2.trackPosition();
+            cam1.trackPosition(); // vuforia
+//            cam2.trackPosition();
 
             //manually set the position of the hopper servo
             if (gamepad2.dpad_up && !dpadUpIsDown) { dpadUpIsDown = true;
@@ -271,17 +277,17 @@ public class Teleop2021 extends LinearOpMode {
             // after setting the speed, power the shooter by holding down the B button.
             // with the B button held down, select the proper hopper position on the dPad to insert a ring into the shooter.
             if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
-                if (shooterSpeed < 0.95) {
-                    shooterSpeed += 0.05;
-                } else if (shooterSpeed >= 0.95) {
+                if (shooterSpeed < 0.99) {
+                    shooterSpeed += 0.01;
+                } else if (shooterSpeed >= 0.99) {
                     shooterSpeed = 1.0;
                 }
             } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
 
             if (gamepad2.a && !decrementSpeedButtonIsDown) { decrementSpeedButtonIsDown = true;
-                if (shooterSpeed > 0.05) {
-                    shooterSpeed -= 0.05;
-                } else if (shooterSpeed <= 0.05) {
+                if (shooterSpeed > 0.01) {
+                    shooterSpeed -= 0.01;
+                } else if (shooterSpeed <= 0.01) {
                     shooterSpeed = 0.0;
                 }
             } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
@@ -299,17 +305,17 @@ public class Teleop2021 extends LinearOpMode {
             //Increment shoooter angle using gamepad 2 left and right bumpers
 
             if (gamepad2.right_bumper && !incrementAngleButtonIsDown) { incrementAngleButtonIsDown = true;
-                if (shooterAngle < 29) {
-                    shooterAngle += 1;
-                } else if (shooterAngle >= 29) {
+                if (shooterAngle < 29.5) {
+                    shooterAngle += 0.5;
+                } else if (shooterAngle >= 29.5) {
                     shooterAngle = 30;
                 }
             } else if (!gamepad2.right_bumper) { incrementAngleButtonIsDown = false; }
 
             if (gamepad2.left_bumper && !decrementAngleButtonIsDown) { decrementAngleButtonIsDown = true;
-                if (shooterAngle > 20) {
-                    shooterAngle -= 1;
-                } else if (shooterAngle <= 20) {
+                if (shooterAngle > 19.5) {
+                    shooterAngle -= 0.5;
+                } else if (shooterAngle <= 19.5) {
                     shooterAngle = 19;
                 }
             } else if (!gamepad2.left_bumper) { decrementAngleButtonIsDown = false; }
@@ -329,16 +335,16 @@ public class Teleop2021 extends LinearOpMode {
             telemetry.addData("rb", d.getPowerrb());
             telemetry.addData("touch in", touchin.getTouch());
             telemetry.addData("touch out", touchout.getTouch());
-//            if (cam1.isTargetVisible()) {
-//                telemetry.addData("Vuf 1 translation", cam1.getTranslation());
-//                telemetry.addData("Vuf 1 rotation", cam1.getRotation());
-//            }
-            if (cam2.isTargetVisible()) {
-                telemetry.addData("Vuf 2 translation", cam2.getTranslation());
-                telemetry.addData("Vuf 2 rotation", cam2.getRotation());
+            if (cam1.isTargetVisible()) {
+                telemetry.addData("Vuf 1 translation", cam1.getTranslation());
+                telemetry.addData("Vuf 1 rotation", cam1.getRotation());
             }
-//            telemetry.addData("Visible Target 1", cam1.isTargetVisible());
-            telemetry.addData("Visible Target 2", cam2.isTargetVisible());
+//            if (cam2.isTargetVisible()) {
+//                telemetry.addData("Vuf 2 translation", cam2.getTranslation());
+//                telemetry.addData("Vuf 2 rotation", cam2.getRotation());
+//            }
+            telemetry.addData("Visible Target 1", cam1.isTargetVisible());
+//            telemetry.addData("Visible Target 2", cam2.isTargetVisible());
             telemetry.addData("Drive state", state);
             telemetry.addData("Drive theta", theta);
             telemetry.addData("Hopper position", hopperPos);

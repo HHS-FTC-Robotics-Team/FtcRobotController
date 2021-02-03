@@ -62,11 +62,11 @@ public class MoveClaw extends OurState {
     public MoveClaw(String p){
         super ();
         if (p == "close") {
-            goal = lmin;
+            goal = lmax;
         }
 
         if (p == "open") {
-            goal = lmax;
+            goal = lmin;
         }
     }
 
@@ -101,8 +101,8 @@ public class MoveClaw extends OurState {
     @Override
     public void loop() {
         if (running) {
-            double error = 0.09;
-            double increment = 0.001;
+            double error = 0.008;
+            double increment = 0.005;
             double pos1 = f.getPosition();
             if (pos1 > goal - error && pos1 < goal + error) {
               pos1 = goal;

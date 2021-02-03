@@ -59,32 +59,36 @@ public class Auto2021 extends OpMode {
     public RobotHardware robotHardware = new RobotHardware();
     public LinearStack states = new LinearStack(new OurState[] {
 
-//            Blue 0
-//            new ForwardUntil(-72),
+//            Blue Left 0
+            //Lift(Something)
+            new MoveClaw("close"),
+            //Lift(Something)
+            new ForwardUntil(-72),
             new TurnUntilAngle(180),
-//            new MoveClaw("open"),
+            new MoveClaw("open"),
+            //MoveUntilWhite()
 
-//            //Blue 1
+//            //Blue Left 1
 //            new ForwardUntil(-96),
-//            new MoveClaw("open"),
+//            new MoveClaw("close"),
 //
-//            //Blue 4
+//            //Blue Left 4
 //            new ForwardUntil(-120),
 //            new TurnUntilAngle(180),
-//            new MoveClaw("open"),
+//            new MoveClaw("close"),
 //
-//            //Red 0
+//            //Red Right 0
 //            new ForwardUntil(-72),
-//            new MoveClaw("open"),
+//            new MoveClaw("close"),
 //
-//            //Red 1
+//            //Red Right 1
 //            new ForwardUntil(-96),
 //            new TurnUntilAngle(180),
-//            new MoveClaw("open"),
+//            new MoveClaw("close"),
 //
-//            //Red 4
+//            //Red Right 4
 //            new ForwardUntil(-120),
-//            new MoveClaw("open"),
+//            new MoveClaw("close"),
 
 
 
