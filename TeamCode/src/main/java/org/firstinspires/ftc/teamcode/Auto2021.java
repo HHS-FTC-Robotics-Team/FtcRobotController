@@ -57,6 +57,7 @@ import java.util.Date;
 @Autonomous
 public class Auto2021 extends OpMode {
     /* Declare OpMode members. */
+    public int stage = 0;
     public RobotHardware robotHardware = new RobotHardware();
     public LinearStack states = new LinearStack(new OurState[] {
 
@@ -168,7 +169,7 @@ public class Auto2021 extends OpMode {
         telemetry.addData("Status", "Looping");
         if (states.running) {
             states.loop();
-        } else {
+        } else if (stage == 0){
             //transition to next states
             double rings = states.getVariable();
             telemetry.addData("rings", rings);
@@ -189,6 +190,7 @@ public class Auto2021 extends OpMode {
                 states.init(robotHardware);
                 states.start();
             }
+            stage = 1;
         }
     }
 
