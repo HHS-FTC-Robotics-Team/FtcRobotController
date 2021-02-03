@@ -130,14 +130,11 @@ public class DetectRings extends OurState {
 //        telemetry.addData("Analysis", pipeline.getAnalysis());
 //        telemetry.addData("Position", pipeline.position);
 //        telemetry.update();
-        pipeline.getAnalysis();
         //TODO instead of sleep, just only run detection once
-        if (count > 500) {
-            if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR || pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE || pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
+        if (pipeline.getAnalysis() != 0) {
+            if (getVariable() != (double) 20) {
                 running = false;
             }
-        } else {
-            count += 1;
         }
     }
 
