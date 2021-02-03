@@ -125,10 +125,9 @@ public class DetectRings extends OurState {
      */
     @Override
     public void loop() {
-//        telemetry.addData("Analysis", pipeline.getAnalysis());
-//        telemetry.addData("Position", pipeline.position);
-//        telemetry.update();
-        pipeline.getAnalysis();
+        telemetry.addData("Analysis", pipeline.getAnalysis());
+        telemetry.addData("Position", pipeline.position);
+        telemetry.update();
         //TODO instead of sleep, just only run detection once
 
         if( pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR || pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE || pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
