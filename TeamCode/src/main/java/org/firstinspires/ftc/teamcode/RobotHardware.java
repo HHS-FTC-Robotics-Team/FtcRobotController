@@ -7,6 +7,8 @@ import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.Drive;
 import org.firstinspires.ftc.teamcode.RobotStatus;
 //import org.firstinspires.ftc.teamcode.Collect;
@@ -26,6 +28,8 @@ public class RobotHardware {
     public Servo g = null;
    // public BNO055IMU imu = null;
     public Orientation lastAngles = null; // new Orientation();
+    public int camId;
+    public WebcamName cam;
     
     private double globalangle = 0;
 
@@ -59,6 +63,9 @@ public class RobotHardware {
         //color = hardwareMap.get(ColorSensor.class, "colorsensor");
         f = hardwareMap.get(Servo.class, "claw");
         g = hardwareMap.get(Servo.class, "gearbox");
+
+        camId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        cam = hardwareMap.get(WebcamName.class, "Webcam 1");
     }
     
     public void reset() {

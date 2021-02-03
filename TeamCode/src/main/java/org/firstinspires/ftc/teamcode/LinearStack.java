@@ -152,4 +152,9 @@ public class LinearStack extends OurState {
         //only will pass to last state in linear stack
         states[states.length-1].addToGoal(variable);
     }
+
+    @Override
+    public double getVariable() {
+        return 0;
+    }
 }

@@ -31,6 +31,7 @@ import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.MoveArm;
 import org.firstinspires.ftc.teamcode.states.MoveGearbox;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
+import org.firstinspires.ftc.teamcode.states.DetectRings;
 //import org.firstinspires.ftc.teamcode.states.StrafeUntilClicks;
 ////import org.firstinspires.ftc.teamcode.states.CollectUntilDist;
 ////import org.firstinspires.ftc.teamcode.states.DispenseUntilDist;
@@ -59,13 +60,15 @@ public class Auto2021 extends OpMode {
     public RobotHardware robotHardware = new RobotHardware();
     public LinearStack states = new LinearStack(new OurState[] {
 
+            new MoveClaw("close"),
+            new DetectRings(),
 //            Blue Left 0
             //Lift(Something)
-            new MoveClaw("close"),
+
             //Lift(Something)
-            new ForwardUntil(-72),
-            new TurnUntilAngle(180),
-            new MoveClaw("open"),
+//            new ForwardUntil(-72),
+//            new TurnUntilAngle(180),
+//            new MoveClaw("open"),
             //MoveUntilWhite()
 
 //            //Blue Left 1
@@ -103,8 +106,8 @@ public class Auto2021 extends OpMode {
             // new ForwardUntil(-900),
             // new SeekUntilColor(),
             // new LinearStack(new OurState[] {
-            //     new CollectUntilDist(),
-            //     new ForwardUntil(2200), // + y
+//                 new CollectUntilDist(),
+//                 new ForwardUntil(2200), // + y
             //     new StrafeUntilClicks(-9000) // + x
             //}
             //),
@@ -116,8 +119,17 @@ public class Auto2021 extends OpMode {
             // new ForwardUntil(3000),
             //new GrabFoundation(),
             //new DragFoundationR(-180),
-    }
-    );
+    });
+    public LinearStack zerostates = new LinearStack(new OurState[] {
+            new MoveClaw("close"),
+            new MoveClaw("open"),
+    });
+    public LinearStack onestates = new LinearStack(new OurState[] {
+            new TurnUntilAngle(90),
+    });
+    public LinearStack fourstates = new LinearStack(new OurState[] {
+            new TurnUntilAngle(180),
+    });
 
     @Override
     public void init() {
@@ -151,7 +163,22 @@ public class Auto2021 extends OpMode {
     public void loop() {
         // RobotStatus r = robotHardware.update(); // update state of robot based on sensor input
         // states.loop(r);
-        states.loop();
+        if (states.running) {
+            states.loop();
+        } else {
+            //transition to next states
+            if (states.getVariable() == 0) {
+                //zerostates.loop();
+                states = zerostates;
+                states.init(robotHardware);
+            } else if (states.getVariable() == 1) {
+                states = onestates;
+                states.init(robotHardware);
+            } else if (states.getVariable() == 4) {
+                states = fourstates;
+                states.init(robotHardware);
+            }
+        }
     }
 
     /*
