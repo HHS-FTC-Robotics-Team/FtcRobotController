@@ -191,6 +191,8 @@ public class Auto2021 extends OpMode {
                 states.start();
             }
             stage = 1;
+        } else {
+            telemetry.addData("Status", "Done");
         }
     }
 
