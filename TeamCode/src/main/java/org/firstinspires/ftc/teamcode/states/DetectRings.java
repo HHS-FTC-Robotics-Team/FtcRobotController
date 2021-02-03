@@ -71,6 +71,8 @@ public class DetectRings extends OurState {
     OpenCvCamera webcam;
     SkystoneDeterminationPipeline pipeline;
 
+    private int count = 0;
+
 
     //@Override
     public DetectRings() {
@@ -130,10 +132,12 @@ public class DetectRings extends OurState {
 //        telemetry.update();
         pipeline.getAnalysis();
         //TODO instead of sleep, just only run detection once
-
-        if( pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR || pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE || pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
-            running = false;
-
+        if (count > 500) {
+            if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR || pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE || pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
+                running = false;
+            }
+        } else {
+            count += 1;
         }
     }
 
