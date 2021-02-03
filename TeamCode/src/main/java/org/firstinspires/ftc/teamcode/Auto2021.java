@@ -121,8 +121,7 @@ public class Auto2021 extends OpMode {
             //new DragFoundationR(-180),
     });
     public LinearStack zerostates = new LinearStack(new OurState[] {
-            new MoveClaw("close"),
-            new MoveClaw("open"),
+            new TurnUntilAngle(45),
     });
     public LinearStack onestates = new LinearStack(new OurState[] {
             new TurnUntilAngle(90),
