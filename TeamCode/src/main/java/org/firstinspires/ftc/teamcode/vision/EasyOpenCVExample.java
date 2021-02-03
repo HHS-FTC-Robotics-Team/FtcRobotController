@@ -77,7 +77,7 @@ public class EasyOpenCVExample extends LinearOpMode
             telemetry.update();
 
             // Don't burn CPU cycles busy-looping in this sample
-            sleep(50);
+//            sleep(50);
         }
     }
 
