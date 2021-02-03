@@ -48,7 +48,7 @@ public class Teleop2021 extends LinearOpMode {
     private Sensors colorRight;
 
     private Eyes cam1;
-    private Eyes cam2;
+//    private Eyes cam2;
 
     private Collect col;
     private Hopper hopper;
@@ -74,7 +74,7 @@ public class Teleop2021 extends LinearOpMode {
                 0.15, 0.54);
         gear = new TwoPosServo(
                 hardwareMap.get(Servo.class, "gearbox"),
-                0.74, 0.82);
+                0.7, 0.79);
 
         touchin = new Sensors(
                 hardwareMap.get(TouchSensor.class, "touchin")
@@ -98,9 +98,9 @@ public class Teleop2021 extends LinearOpMode {
         );
 
 
-        cam2 = new Eyes(
-                hardwareMap.get(WebcamName.class, "Webcam 2"), 0.375f, -8.75f, 5.625f //TODO find the offsets for the second camera
-        );
+//        cam2 = new Eyes(
+//                hardwareMap.get(WebcamName.class, "Webcam 2"), 0.375f, -8.75f, 5.625f //TODO find the offsets for the second camera
+//        );
 
         col = new Collect(
                 hardwareMap.get(DcMotor.class, "liftmotor"),
@@ -129,7 +129,7 @@ public class Teleop2021 extends LinearOpMode {
 //                lift.rest();
 //            }
 
-//            col.Release(); //Todo: Fix!
+            col.Release(); //Todo: Fix!
 
             if (state == "rotate") {
                 if (d.isBusy() == false) {
@@ -145,6 +145,12 @@ public class Teleop2021 extends LinearOpMode {
                 );
             }
 
+
+            if (gamepad1.dpad_up) {
+                gear.incrementToPos("min");
+            } else if (gamepad1.dpad_down) {
+                gear.incrementToPos("max");
+            }
 
             if (gamepad2.x && !clawButtonIsDown) {
                 clawButtonIsDown = true;
@@ -165,10 +171,10 @@ public class Teleop2021 extends LinearOpMode {
             } else if (gamepad2.left_stick_y != 0) {
                 if (gear.incrementToPos("max")) { //incrementToPos will both move the gearbox servo AND return if it has reached the goal yet
                     if (!col.isBusy()) {
-                        col.setPower(0.5 * gamepad2.right_stick_y);
+                        col.setPower(0.5 * gamepad2.left_stick_y);
                     }
                 }
-            } else if (gear.isPos("min"))  { //isPos will check if servo is at the specified goal, does not move servo like incrementToPos does
+            } else /*if (gear.isPos("min"))*/  { //isPos will check if servo is at the specified goal, does not move servo like incrementToPos does
                 col.rest();
             }
 
