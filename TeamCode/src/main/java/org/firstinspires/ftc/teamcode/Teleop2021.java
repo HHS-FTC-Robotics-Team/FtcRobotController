@@ -32,6 +32,10 @@ public class Teleop2021 extends LinearOpMode {
     private String hopperPos = "three";
     private boolean incrementSpeedButtonIsDown = false;
     private boolean decrementSpeedButtonIsDown = false;
+
+    private boolean incrementAngleButtonIsDown = false;
+    private boolean decrementAngleButtonIsDown = false;
+
     private double shooterSpeed = 0;
     private double shooterAngle = 19;
 
@@ -283,8 +287,6 @@ public class Teleop2021 extends LinearOpMode {
             } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
 
             if (gamepad2.b) {
-
-
                 shooter.setPower(shooterSpeed);
                 hopper.out();
             } else if (!gamepad2.b) {
@@ -293,6 +295,26 @@ public class Teleop2021 extends LinearOpMode {
                 shooter.rest();
             }
 
+            //for testing on 2/3
+            //Increment shoooter angle using gamepad 2 left and right bumpers
+
+            if (gamepad2.right_bumper && !incrementAngleButtonIsDown) { incrementAngleButtonIsDown = true;
+                if (shooterAngle < 29) {
+                    shooterAngle += 1;
+                } else if (shooterAngle >= 29) {
+                    shooterAngle = 30;
+                }
+            } else if (!gamepad2.right_bumper) { incrementAngleButtonIsDown = false; }
+
+            if (gamepad2.left_bumper && !decrementAngleButtonIsDown) { decrementAngleButtonIsDown = true;
+                if (shooterAngle > 20) {
+                    shooterAngle -= 1;
+                } else if (shooterAngle <= 20) {
+                    shooterAngle = 19;
+                }
+            } else if (!gamepad2.left_bumper) { decrementAngleButtonIsDown = false; }
+
+            shooter.pivotToAngle(shooterAngle);
 
             telemetry.addData("Status", "Run Time: ");
             telemetry.addData("Motor Power", gamepad1.left_stick_y);
