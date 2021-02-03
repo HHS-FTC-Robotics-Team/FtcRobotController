@@ -48,7 +48,7 @@ public class Teleop2021 extends LinearOpMode {
     private Sensors colorRight;
 
     private Eyes cam1;
-//    private Eyes cam2;
+    private Eyes cam2;
 
     private Collect col;
     private Hopper hopper;
@@ -98,9 +98,9 @@ public class Teleop2021 extends LinearOpMode {
         );
 
 
-//        cam2 = new Eyes(
-//                hardwareMap.get(WebcamName.class, "Webcam 2"), 0.375f, -8.75f, 5.625f //TODO find the offsets for the second camera
-//        );
+        cam2 = new Eyes(
+                hardwareMap.get(WebcamName.class, "Webcam 2"), 0.375f, -8.75f, 5.625f //TODO find the offsets for the second camera
+        );
 
         col = new Collect(
                 hardwareMap.get(DcMotor.class, "liftmotor"),
