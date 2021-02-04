@@ -246,9 +246,10 @@ public class Teleop2021 extends LinearOpMode {
                     double x = 72 - cam1.getPositionX() + 1.125;
                     double y = 36 - cam1.getPositionY();
                     distToGoal = Math.sqrt((x * x) + (y * y));
-                    shooterAngle = (0.00121002)*(distToGoal-106.252)*(distToGoal-252) + 28.2387; //quadratic line of best fit equation
+                    shooterAngle = (0.00121002)*(distToGoal-106.252)*(distToGoal-106.252) + 28.2387; //quadratic line of best fit equation
 //                    shooterAngle = Math.pow( (0.00311978),(distToGoal-78.0766) ) + 28.4444; //exponential line of best fit equation
                     shooter.pivotToAngle(shooterAngle);
+                    shooterSpeed = (-0.0000126263)*(distToGoal-105)*(distToGoal-105) + 0.90175; //quadratic line of best fit equation
                 }
 //                else {
 //                if (cam2.isTargetVisible()) {
