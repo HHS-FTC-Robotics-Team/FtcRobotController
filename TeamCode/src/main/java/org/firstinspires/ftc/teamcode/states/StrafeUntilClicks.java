@@ -47,7 +47,7 @@
 // * or add a @Disabled annotation to prevent this OpMode from being added to the Driver Station
 // */
 //@Autonomous
-//
+//@Disabled
 //public class StrafeUntilClicks extends OurState {
 //
 //    /* Declare OpMode members. */

@@ -6,13 +6,12 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.Drive;
-import org.firstinspires.ftc.teamcode.Intake;
 import org.firstinspires.ftc.teamcode.SciLift;
 // import org.firstinspires.ftc.teamcode.Foundation;
 import org.firstinspires.ftc.teamcode.TwoPosServo;
 
-@Disabled
 @TeleOp(name="15317 Claw Teleop", group="Linear Opmode")
+@Disabled
 
 public class Teleop15317 extends LinearOpMode {
 

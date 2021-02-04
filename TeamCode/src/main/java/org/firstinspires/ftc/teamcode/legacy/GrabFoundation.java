@@ -48,7 +48,7 @@
 // * or add a @Disabled annotation to prevent this OpMode from being added to the Driver Station
 // */
 //@Autonomous
-//
+//@Disabled
 //public class GrabFoundation extends OurState {
 //    /* Declare OpMode members. */
 //    public Drive d = null;

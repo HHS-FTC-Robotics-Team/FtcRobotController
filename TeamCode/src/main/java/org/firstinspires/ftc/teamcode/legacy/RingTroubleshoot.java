@@ -1,6 +1,7 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.legacy;
 
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
@@ -8,8 +9,13 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName; //for "eyes" init
+import org.firstinspires.ftc.teamcode.Collect;
+import org.firstinspires.ftc.teamcode.Drive;
+import org.firstinspires.ftc.teamcode.Hopper;
+import org.firstinspires.ftc.teamcode.Shooter;
 
 @TeleOp(name="Ring Troubleshoot", group="Linear Opmode")
+@Disabled
 
 public class RingTroubleshoot extends LinearOpMode {
 

@@ -17,6 +17,8 @@ package org.firstinspires.ftc.teamcode.states;
 
 
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -48,6 +50,7 @@ import org.firstinspires.ftc.teamcode.RobotHardware;
  * or add a @Disabled annotation to prevent this OpMode from being added to the Driver Station
  */
 @Autonomous
+@Disabled
 
 public class MoveClaw extends OurState {
     /* Declare OpMode members. */

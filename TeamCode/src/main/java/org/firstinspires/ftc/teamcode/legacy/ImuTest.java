@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.legacy;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
@@ -56,6 +56,7 @@ import java.util.Locale;
 // * @see <a href="http://www.adafruit.com/products/2472">Adafruit IMU</a>
 // */
 @TeleOp(name = "Sensor: BNO055 IMU", group = "Sensor")
+@Disabled
 // Comment this out to add to the opmode list
 public class ImuTest extends LinearOpMode
 {
