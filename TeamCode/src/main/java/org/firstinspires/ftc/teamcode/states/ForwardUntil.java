@@ -56,24 +56,17 @@ public class ForwardUntil extends OurState {
     /* Declare OpMode members. */
     public Drive d = null;
     public RobotHardware robotHardware = null;
-    //public Boolean running = true;
     public double goal = 0;
-    private static double ACCURACY = 100;
 
-    //@Override
     public ForwardUntil(double g) {
         super();
         goal = g;
-        
     }
 
-   
     public void init(RobotHardware r) {
         telemetry.addData("Status", "Initialized");
         robotHardware = r;
         d = robotHardware.d;
-
-        
     }
 
     /*
@@ -88,14 +81,8 @@ public class ForwardUntil extends OurState {
      */
     @Override
     public void start() {
-//      if (goal < 0) {
-//        d.setPower(-1, 0, 0, 0);
-//      } else {
-//        d.setPower(1, 0, 0, 0);
-//      }
         d.resetAllEncoders();
         d.runToPosition((float) goal, 0.5);
-        //TODO: power=0.25
     }
 
     /*
@@ -103,15 +90,6 @@ public class ForwardUntil extends OurState {
      */
     @Override
     public void loop() {
-//      double current = d.getClickslf();
-//      if(current > goal - ACCURACY && current < goal + ACCURACY) {
-//          d.setPower(0, 0, 0, 0);
-//          running = false;
-//      } else if (current > goal) {
-//        d.setPower(-1, 0, 0, Math.abs(goal-current/goal));
-//      } else if (current < goal) {
-//        d.setPower(1, 0, 0, Math.abs(goal-current/goal));
-//      }
         if(!d.isBusy()) { //if done moving
             running = false;
             d.setPower(0,0,0,0);
@@ -127,7 +105,7 @@ public class ForwardUntil extends OurState {
     }
     
     @Override
-    public void addToGoal(double variable) {
+    public void addToGoal(double variable) { //this function is not used in our current auto
       goal = goal - variable;
     }
 }
