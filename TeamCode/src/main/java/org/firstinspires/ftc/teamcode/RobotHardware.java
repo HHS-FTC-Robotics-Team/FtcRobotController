@@ -25,7 +25,7 @@ public class RobotHardware {
     public DcMotor lift = null;
     //public ColorSensor color = null;
     public Servo f = null;
-    public Servo g = null;
+    public TwoPosServo g = null;
    // public BNO055IMU imu = null;
     public Orientation lastAngles = null; // new Orientation();
     public int camId;
@@ -61,7 +61,7 @@ public class RobotHardware {
         lift = hardwareMap.get(DcMotor.class, "liftmotor");
         //color = hardwareMap.get(ColorSensor.class, "colorsensor");
         f = hardwareMap.get(Servo.class, "claw");
-        g = hardwareMap.get(Servo.class, "gearbox");
+        g = (TwoPosServo) hardwareMap.get(Servo.class, "gearbox");
 
         camId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         cam = hardwareMap.get(WebcamName.class, "Webcam 1");

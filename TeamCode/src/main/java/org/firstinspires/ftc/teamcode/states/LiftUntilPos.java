@@ -37,6 +37,7 @@ import org.firstinspires.ftc.teamcode.Collect;
 import org.firstinspires.ftc.teamcode.Drive;
 import org.firstinspires.ftc.teamcode.OurState;
 import org.firstinspires.ftc.teamcode.RobotHardware;
+import org.firstinspires.ftc.teamcode.TwoPosServo;
 //import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
@@ -57,6 +58,7 @@ import java.util.Date;
 public class LiftUntilPos extends OurState {
     /* Declare OpMode members. */
     public Collect c = null;
+    public TwoPosServo g = null;
     public RobotHardware robotHardware = null;
 
     public double goal = 0;
@@ -80,6 +82,7 @@ public class LiftUntilPos extends OurState {
         telemetry.addData("Status", "Initialized");
         robotHardware = r;
         c = robotHardware.c;
+        g = robotHardware.g;
     }
 
     /*
@@ -106,13 +109,15 @@ public class LiftUntilPos extends OurState {
         double current = c.getMotorClicks();
         double ACCURACY = 50;
         boolean completed = current > goal - ACCURACY && current < goal + ACCURACY;
-        if(completed) {
-            running = false;
-            c.setPower(0);
-        } else if (current > goal) {
-            c.setPower(-0.75);
-        } else if (current < goal) {
-            c.setPower(0.75);
+        if (g.incrementToPos("max")) {
+            if (completed) {
+                running = false;
+                c.setPower(0);
+            } else if (current > goal) {
+                c.setPower(-0.75);
+            } else if (current < goal) {
+                c.setPower(0.75);
+            }
         }
     }
 
