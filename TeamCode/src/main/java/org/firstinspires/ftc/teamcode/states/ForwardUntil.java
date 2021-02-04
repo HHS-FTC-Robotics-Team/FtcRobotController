@@ -56,17 +56,13 @@ public class ForwardUntil extends OurState {
     /* Declare OpMode members. */
     public Drive d = null;
     public RobotHardware robotHardware = null;
-    //public Boolean running = true;
     public double goal = 0;
-    private static double ACCURACY = 100;
 
-    //@Override
     public ForwardUntil(double g) {
         super();
         goal = g;
     }
 
-   
     public void init(RobotHardware r) {
         telemetry.addData("Status", "Initialized");
         robotHardware = r;
