@@ -46,6 +46,7 @@ public class Teleop2021 extends LinearOpMode {
     private Sensors touchout;
     private Sensors colorLeft;
     private Sensors colorRight;
+    private String onMidline = "no";
 
 //    private Eyes cam1;
     private Eyes cam2;
@@ -337,6 +338,16 @@ public class Teleop2021 extends LinearOpMode {
 
             shooter.pivotToAngle(shooterAngle);
 
+            if (colorLeft.getAlpha() >= 0.9 && colorRight.getAlpha() >= 0.9) {
+                onMidline = "yes";
+            } else if (colorLeft.getAlpha() >= 0.9) {
+                onMidline = "left only";
+            } else if (colorRight.getAlpha() >= 0.9) {
+                onMidline = "right only";
+            } else {
+                onMidline = "no";
+            }
+
             telemetry.addData("Status", "Run Time: ");
             telemetry.addData("Motor Power", gamepad1.left_stick_y);
             telemetry.addData("Right Stick Pos", gamepad1.right_stick_y);
@@ -365,6 +376,7 @@ public class Teleop2021 extends LinearOpMode {
             telemetry.addData("Hopper position", hopperPos);
             telemetry.addData("Shooter speed", shooterSpeed);
             telemetry.addData("Shooter angle", shooterAngle);
+            telemetry.addData("On Midline?", onMidline);
             telemetry.update();
 
         }

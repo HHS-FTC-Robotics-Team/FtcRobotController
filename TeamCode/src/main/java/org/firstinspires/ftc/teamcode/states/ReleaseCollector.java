@@ -59,7 +59,7 @@ public class ReleaseCollector extends OurState {
     public RobotHardware robotHardware = null;
     private double goal = .54;
 
-    public ReleaseCollector(String p){
+    public ReleaseCollector(){
         super ();
     }
 
