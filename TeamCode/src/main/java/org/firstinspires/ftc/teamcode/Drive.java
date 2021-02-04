@@ -109,6 +109,15 @@ public class Drive extends LinearOpMode {
       rightfront = rightfront / max;
       rightback = rightback / max;
     }
+//    else {
+//      double max = findMax(leftfront,leftback,rightfront,rightback);
+//      max = max / 0.5;
+//      max = Math.abs(max);
+//      leftfront = leftfront / max;
+//      leftback = leftback / max;
+//      rightfront = rightfront / max;
+//      rightback = rightback / max;
+//    }
     //here we just set the power.
     powerlf = leftfront;
     motorlf.setPower(leftfront);
