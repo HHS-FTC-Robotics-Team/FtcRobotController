@@ -36,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.firstinspires.ftc.teamcode.OurState;
 import org.firstinspires.ftc.teamcode.RobotHardware;
+import org.firstinspires.ftc.teamcode.TwoPosServo;
 
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
@@ -52,21 +53,21 @@ import org.firstinspires.ftc.teamcode.RobotHardware;
 public class MoveGearbox extends OurState {
     /* Declare OpMode members. */
     //public Drive d = null;
-    private Servo g = null;
+    private TwoPosServo g = null;
     public RobotHardware robotHardware = null;
     private double lmax = 1;
     private double lmin = .5;
     //private double lmid = .5;
-    private double goal = lmin;
+    private String goal = "min";
 
     public MoveGearbox(String p){
         super ();
         if (p == "brake") {
-            goal = lmin;
+            goal = "min";
         }
 
         if (p == "mesh") {
-            goal = lmax;
+            goal = "max";
         }
     }
 
@@ -101,18 +102,9 @@ public class MoveGearbox extends OurState {
     @Override
     public void loop() {
         if (running) {
-            double error = 0.09;
-            double increment = 0.07;
-            double pos1 = g.getPosition();
-            if (pos1 > goal - error && pos1 < goal + error) {
-                pos1 = goal;
+            if (g.incrementToPos(goal)) {
                 running = false;
-            } else if (pos1 > goal) {
-                pos1 -= increment;
-            } else if (pos1 < goal){
-                pos1 += increment;
             }
-            g.setPosition(pos1);
         }
     }
 
