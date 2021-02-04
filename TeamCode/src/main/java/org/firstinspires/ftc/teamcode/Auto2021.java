@@ -32,6 +32,7 @@ import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.MoveArm;
 import org.firstinspires.ftc.teamcode.states.MoveGearbox;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
+import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 import org.firstinspires.ftc.teamcode.states.DetectRings;
 //import org.firstinspires.ftc.teamcode.states.StrafeUntilClicks;
 ////import org.firstinspires.ftc.teamcode.states.CollectUntilDist;
@@ -40,6 +41,7 @@ import org.firstinspires.ftc.teamcode.states.DetectRings;
 //import org.firstinspires.ftc.teamcode.states.GrabFoundation;
 //import org.firstinspires.ftc.teamcode.states.DragFoundationR;
 //import org.firstinspires.ftc.teamcode.states.LiftUntilTime;
+
 import org.firstinspires.ftc.teamcode.RobotHardware;
 //
 import java.text.SimpleDateFormat;
@@ -62,7 +64,7 @@ public class Auto2021 extends OpMode {
     public RobotHardware robotHardware = new RobotHardware();
     public LinearStack states = new LinearStack(new OurState[] {
 
-            new LiftUntilPos("horizontal")
+//            new LiftUntilPos("horizontal")
 //            new MoveClaw("close"),
 //            new DetectRings(),
 //            Blue Left 0
@@ -122,17 +124,47 @@ public class Auto2021 extends OpMode {
             // new ForwardUntil(3000),
             //new GrabFoundation(),
             //new DragFoundationR(-180),
+
+    //Blue left
+    new ReleaseCollector(""),
+
     });
     public LinearStack zerostates = new LinearStack(new OurState[] {
-            new TurnUntilAngle(45),
-            new TurnUntilAngle(-45),
-    });
-    public LinearStack onestates = new LinearStack(new OurState[] {
-            new TurnUntilAngle(90),
-            new TurnUntilAngle(-90),
-    });
-    public LinearStack fourstates = new LinearStack(new OurState[] {
+            new ForwardUntil(-6),
+            new LiftUntilPos("horizontal"),
+            new MoveClaw("close"),
+            new LiftUntilPos("above ground"),
+            new ForwardUntil(-72 + 6),
             new TurnUntilAngle(180),
+            new MoveClaw("open"),
+            new MoveClaw("close"),
+            new LiftUntilPos("vertical"),
+            new TurnUntilAngle(-180),
+    });
+
+    public LinearStack onestates = new LinearStack(new OurState[] {
+            new ForwardUntil(-6),
+            new LiftUntilPos("horizontal"),
+            new MoveClaw("close"),
+            new LiftUntilPos("above ground"),
+            new ForwardUntil(-96 + 6),
+            new TurnUntilAngle(180),
+            new MoveClaw("open"),
+            new MoveClaw("close"),
+            new LiftUntilPos("vertical"),
+            new TurnUntilAngle(-180),
+    });
+
+    public LinearStack fourstates = new LinearStack(new OurState[] {
+            new ForwardUntil(-6),
+            new LiftUntilPos("horizontal"),
+            new MoveClaw("close"),
+            new LiftUntilPos("above ground"),
+            new ForwardUntil(-120 + 6),
+            new TurnUntilAngle(180),
+            new MoveClaw("open"),
+            new MoveClaw("close"),
+            new LiftUntilPos("vertical"),
             new TurnUntilAngle(-180),
     });
 
