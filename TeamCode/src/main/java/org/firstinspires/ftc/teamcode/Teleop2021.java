@@ -36,7 +36,7 @@ public class Teleop2021 extends LinearOpMode {
     private boolean incrementAngleButtonIsDown = false;
     private boolean decrementAngleButtonIsDown = false;
 
-    private double shooterSpeed = 100;
+    private double shooterSpeed = 1;
     private double shooterAngle = 19;
 
     private String state = "drive";
@@ -141,16 +141,16 @@ public class Teleop2021 extends LinearOpMode {
                     gamepad1.left_stick_y,
                     gamepad1.left_stick_x,
                     gamepad1.right_stick_x,
-                    gamepad1.right_trigger
+                    gamepad1.left_trigger
                 );
             }
 
 
-            if (gamepad1.dpad_up) {
-                gear.incrementToPos("min");
-            } else if (gamepad1.dpad_down) {
-                gear.incrementToPos("max");
-            }
+//            if (gamepad1.dpad_up) {
+//                gear.incrementToPos("min");
+//            } else if (gamepad1.dpad_down) {
+//                gear.incrementToPos("max");
+//            }
 
             if (gamepad2.x && !clawButtonIsDown) {
                 clawButtonIsDown = true;
@@ -161,10 +161,14 @@ public class Teleop2021 extends LinearOpMode {
 
             // This contains instructions for the collector and lift (lift is the stick)
             if (gamepad1.left_bumper) {
+                shooterAngle = 27;
+                hopperPos = "three";
                 if (gear.incrementToPos("min")) {
                     col.setPower(-1);
                 }
             } else if (gamepad1.right_bumper) {
+                shooterAngle = 27;
+                hopperPos = "three";
                 if (gear.incrementToPos("min")) {
                     col.setPower(1);
                 }
