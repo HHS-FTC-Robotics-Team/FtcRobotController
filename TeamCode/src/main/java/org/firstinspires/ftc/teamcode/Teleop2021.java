@@ -100,7 +100,8 @@ public class Teleop2021 extends LinearOpMode {
 
 
         cam2 = new Eyes(
-                hardwareMap.get(WebcamName.class, "Webcam 2"), 0.375f, -8.75f, 5.625f //TODO find the offsets for the second camera
+//                hardwareMap.get(WebcamName.class, "Webcam 2"), 0.375f, -8.5f, 5.625f //TODO find the offsets for the second camera
+                hardwareMap.get(WebcamName.class, "Webcam 2"), 1f, 8.125f, 4f //from the PIVOT, positive y is blue side
         );
 
         col = new Collect(
@@ -228,8 +229,9 @@ public class Teleop2021 extends LinearOpMode {
 //                    }
 //                    else
                         if (cam2.isTargetVisible()) {
-                        heading = cam2.getHeading() - 180;
+                        heading = cam2.getHeading() - 184;
                         x = 72 - cam2.getPositionX();
+                        //OG: 36
                         y = 36 - cam2.getPositionY();
                         theta = (float) (Math.atan2(y, x) * (180/Math.PI));
                         float rotationAngle = (heading - theta);
