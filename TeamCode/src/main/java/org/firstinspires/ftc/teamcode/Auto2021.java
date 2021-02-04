@@ -126,7 +126,7 @@ public class Auto2021 extends OpMode {
             //new DragFoundationR(-180),
 
     //Blue left
-    new ReleaseCollector(""),
+    new ReleaseCollector(),
 
     });
     public LinearStack zerostates = new LinearStack(new OurState[] {
