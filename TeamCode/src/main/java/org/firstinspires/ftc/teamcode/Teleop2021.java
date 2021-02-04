@@ -121,6 +121,8 @@ public class Teleop2021 extends LinearOpMode {
 
 
         waitForStart();
+        col.releaseCollector();
+
         while (opModeIsActive()) {
 
 //            if (-gamepad2.right_stick_y > 0) {
@@ -131,7 +133,11 @@ public class Teleop2021 extends LinearOpMode {
 //                lift.rest();
 //            }
 
-            col.releaseCollector(); //Todo: Fix!
+            if (cam2.isTargetVisible()) {
+                col.releaseServoPosition(1); //Todo: Fix!
+            } else {
+                col.releaseServoPosition(0.8);
+            }
 
             if (state == "rotate") {
                 if (d.isBusy() == false) {

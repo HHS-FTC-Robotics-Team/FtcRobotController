@@ -118,6 +118,7 @@ public class Collect extends LinearOpMode { // TODO change name to CollectAndLif
   }
 
   public void releaseCollector() { release.setPosition(0.8); } //Todo: Correct this!
+  public void releaseServoPosition(double g) { release.setPosition(g); }
 
   public boolean isBusy() {
     return mtr.isBusy();
