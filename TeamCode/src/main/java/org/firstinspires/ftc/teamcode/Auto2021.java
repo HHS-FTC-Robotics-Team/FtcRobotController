@@ -226,17 +226,14 @@ public class Auto2021 extends OpMode {
                 //zerostates.loop();
                 states = zerostates;
                 states.init(robotHardware);
-                states.start();
             } else if (rings == (double) 1.0) {
                 telemetry.addData("state", "one");
                 states = onestates;
                 states.init(robotHardware);
-                states.start();
             } else if (rings == (double) 4.0) {
                 telemetry.addData("state", "four");
                 states = fourstates;
                 states.init(robotHardware);
-                states.start();
             }
             stage = 1;
         } else {
