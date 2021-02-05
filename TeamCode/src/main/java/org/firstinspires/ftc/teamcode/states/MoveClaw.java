@@ -61,15 +61,18 @@ public class MoveClaw extends OurState {
     private double lmin = .15;
     //private double lmid = .5;
     private double goal = lmin;
+    private double middleGoal = 0.40;
 
     public MoveClaw(String p){
         super ();
         if (p == "close") {
             goal = lmax;
+            middleGoal = 0.40;
         }
 
         if (p == "open") {
             goal = lmin;
+            middleGoal = 0.30;
         }
     }
 
@@ -95,7 +98,7 @@ public class MoveClaw extends OurState {
      */
     @Override
     public void start() {
-
+        f.setPosition(middleGoal);
     }
 
     /*
