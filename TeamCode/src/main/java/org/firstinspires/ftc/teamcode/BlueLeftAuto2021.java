@@ -133,6 +133,10 @@ public class BlueLeftAuto2021 extends OpMode {
     new ReleaseCollector(),
 
 //            new ForwardUntil(-6),
+//            new LiftUntilPos("over wall"),
+
+
+//            new ForwardUntil(-6),
 //            new LiftUntilPos("horizontal"),
 //            new MoveClaw("close"),
 //            new LiftUntilPos("above ground"),
@@ -172,12 +176,12 @@ public class BlueLeftAuto2021 extends OpMode {
             new ForwardUntil(-6),
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
-            new LiftUntilPos("above ground"),
-            new ForwardUntil(-114),
+            new LiftUntilPos("over wall"),
+            new ForwardUntil(-111),
             new TurnUntilAngle(180),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
-            new ForwardUntil(-48),
+            new ForwardUntil(-45),
     });
 
     @Override

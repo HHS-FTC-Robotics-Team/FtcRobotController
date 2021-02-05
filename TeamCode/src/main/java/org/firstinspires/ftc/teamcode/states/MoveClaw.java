@@ -57,7 +57,7 @@ public class MoveClaw extends OurState {
     //public Drive d = null;
     private Servo f = null;
     public RobotHardware robotHardware = null;
-    private double lmax = .54;
+    private double lmax = .56;
     private double lmin = .15;
     //private double lmid = .5;
     private double goal = lmin;
@@ -67,12 +67,12 @@ public class MoveClaw extends OurState {
         super ();
         if (p == "close") {
             goal = lmax;
-           // middleGoal = 0.40;
+            middleGoal = 0.40;
         }
 
         if (p == "open") {
             goal = lmin;
-          //  middleGoal = 0.30;
+            middleGoal = 0.20;
         }
     }
 

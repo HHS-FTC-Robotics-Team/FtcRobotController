@@ -72,7 +72,7 @@ public class BlueTeleop2021 extends LinearOpMode {
 
         claw = new TwoPosServo(
                 hardwareMap.get(Servo.class, "claw"),
-                0.15, 0.54);
+                0.15, 0.56);
         gear = new TwoPosServo(
                 hardwareMap.get(Servo.class, "gearbox"),
                 0.7, 0.81);
@@ -267,7 +267,7 @@ public class BlueTeleop2021 extends LinearOpMode {
                     double x = 72 - cam2.getPositionX() + 1.125;
                     double y = 36 - cam2.getPositionY();
                     distToGoal = Math.sqrt((x * x) + (y * y));
-                    shooterAngle = (0.00121002)*(distToGoal-106.252)*(distToGoal-106.252) + 28.2387; //quadratic line of best fit equation
+                    shooterAngle = (0.00121002)*(distToGoal-106.252)*(distToGoal-106.252) + 28.2387 - 0.22; //quadratic line of best fit equation, best so far, -0.22 as correction
 //                    shooterAngle = Math.pow( (0.00311978),(distToGoal-78.0766) ) + 28.4444; //exponential line of best fit equation
                     shooter.pivotToAngle(shooterAngle);
                     shooterSpeed = (-0.0000126263)*(distToGoal-105)*(distToGoal-105) + 0.90175; //quadratic line of best fit equation

@@ -60,8 +60,7 @@ import java.util.Date;
 // * or add a @Disabled annotation to prevent this OpMode from being added to the Driver Station
 // */
 @Autonomous
-@Disabled
-public class BlueRightAuto2021 extends OpMode {
+public class RedRightAuto2021 extends OpMode {
     /* Declare OpMode members. */
     public int stage = 0;
     public RobotHardware robotHardware = new RobotHardware();
@@ -134,6 +133,10 @@ public class BlueRightAuto2021 extends OpMode {
             new ReleaseCollector(),
 
 //            new ForwardUntil(-6),
+//            new LiftUntilPos("over wall"),
+
+
+//            new ForwardUntil(-6),
 //            new LiftUntilPos("horizontal"),
 //            new MoveClaw("close"),
 //            new LiftUntilPos("above ground"),
@@ -153,11 +156,6 @@ public class BlueRightAuto2021 extends OpMode {
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
             new ForwardUntil(-66),
-
-            new TurnUntilAngle(-90),
-            new ForwardUntil(-24),
-
-            new TurnUntilAngle(-90),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
     });
@@ -166,16 +164,12 @@ public class BlueRightAuto2021 extends OpMode {
             new ForwardUntil(-6),
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
-            new LiftUntilPos("above ground"),
+            new LiftUntilPos("over wall"),
             new ForwardUntil(-90),
-
-            new TurnUntilAngle(-90),
-            new ForwardUntil(-24),
-            new TurnUntilAngle(90),
-
+            new TurnUntilAngle(-180),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
-            new ForwardUntil(24),
+            new ForwardUntil(-24),
     });
 
     public LinearStack fourstates = new LinearStack(new OurState[] {
@@ -184,14 +178,9 @@ public class BlueRightAuto2021 extends OpMode {
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
             new ForwardUntil(-114),
-
-            new TurnUntilAngle(-90),
-            new ForwardUntil(-24),
-
-            new TurnUntilAngle(-90),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
-            new ForwardUntil(-48),
+            new ForwardUntil(48),
     });
 
     @Override

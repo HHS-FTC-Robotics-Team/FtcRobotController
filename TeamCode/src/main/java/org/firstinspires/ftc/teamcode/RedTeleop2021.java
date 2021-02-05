@@ -72,7 +72,7 @@ public class RedTeleop2021 extends LinearOpMode {
 
         claw = new TwoPosServo(
                 hardwareMap.get(Servo.class, "claw"),
-                0.15, 0.54);
+                0.15, 0.56);
         gear = new TwoPosServo(
                 hardwareMap.get(Servo.class, "gearbox"),
                 0.7, 0.81);
