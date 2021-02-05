@@ -147,11 +147,11 @@ public class Auto2021 extends OpMode {
 
     });
     public LinearStack zerostates = new LinearStack(new OurState[] {
-//            new ForwardUntil(-6),
-//            new LiftUntilPos("horizontal"),
-//            new MoveClaw("close"),
-//            new LiftUntilPos("above ground"),
-//            new ForwardUntil(-66),
+            new ForwardUntil(-6),
+            new LiftUntilPos("horizontal"),
+            new MoveClaw("close"),
+            new LiftUntilPos("above ground"),
+            new ForwardUntil(66),
 //            new TurnUntilAngle(180),
 //            new MoveClaw("open"),
 //            new LiftUntilPos("vertical"),
@@ -160,11 +160,11 @@ public class Auto2021 extends OpMode {
     });
 
     public LinearStack onestates = new LinearStack(new OurState[] {
-//            new ForwardUntil(-6),
-//            new LiftUntilPos("horizontal"),
-//            new MoveClaw("close"),
-//            new LiftUntilPos("above ground"),
-//            new ForwardUntil(-90),
+            new ForwardUntil(-6),
+            new LiftUntilPos("horizontal"),
+            new MoveClaw("close"),
+            new LiftUntilPos("above ground"),
+            new ForwardUntil(-90),
 //            new TurnUntilAngle(-180),
 //            new MoveClaw("open"),
 //            new LiftUntilPos("vertical"),
@@ -173,11 +173,11 @@ public class Auto2021 extends OpMode {
     });
 
     public LinearStack fourstates = new LinearStack(new OurState[] {
-//            new ForwardUntil(-6),
-//            new LiftUntilPos("horizontal"),
-//            new MoveClaw("close"),
-//            new LiftUntilPos("above ground"),
-//            new ForwardUntil(-114),
+            new ForwardUntil(-6),
+            new LiftUntilPos("horizontal"),
+            new MoveClaw("close"),
+            new LiftUntilPos("above ground"),
+            new ForwardUntil(-114),
 //            new TurnUntilAngle(180),
 //            new MoveClaw("open"),
 //            new LiftUntilPos("vertical"),

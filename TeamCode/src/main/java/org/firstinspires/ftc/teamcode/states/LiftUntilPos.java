@@ -69,11 +69,11 @@ public class LiftUntilPos extends OurState {
         if (g == "vertical") {
             goal = 0;
         } else if (g == "horizontal") {
-            goal = 500;
+            goal = -425;
         } else if (g == "above ground") {
-            goal = 750;
+            goal = -600;
         } else if (g == "over wall") {
-            goal = 1500;
+            goal = -1500;
         }
     }
 
@@ -107,16 +107,16 @@ public class LiftUntilPos extends OurState {
     @Override
     public void loop() {
         double current = c.getMotorClicks();
-        double ACCURACY = 50;
+        double ACCURACY = 20;
         boolean completed = current > goal - ACCURACY && current < goal + ACCURACY;
         if (g.incrementToPos("max")) {
             if (completed) {
                 running = false;
                 c.setPower(0);
             } else if (current > goal) {
-                c.setPower(-0.75);
+                c.setPower(-0.4);
             } else if (current < goal) {
-                c.setPower(0.75);
+                c.setPower(0.4);
             }
         }
     }
