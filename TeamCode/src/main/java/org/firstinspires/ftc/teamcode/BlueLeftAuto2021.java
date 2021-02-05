@@ -32,6 +32,7 @@ import org.firstinspires.ftc.teamcode.states.LiftUntilPos;
 import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.MoveArm;
 import org.firstinspires.ftc.teamcode.states.MoveGearbox;
+import org.firstinspires.ftc.teamcode.states.ShootRings;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 import org.firstinspires.ftc.teamcode.states.LeftDetectRings;
@@ -152,6 +153,9 @@ public class BlueLeftAuto2021 extends OpMode {
     });
     public LinearStack zerostates = new LinearStack(new OurState[] {
             new ForwardUntil(-6),
+            new TurnUntilAngle(10),
+            new ShootRings("three", 28.5, 90),
+            new TurnUntilAngle(-10),
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
