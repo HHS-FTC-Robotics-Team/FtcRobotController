@@ -27,13 +27,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.states.ForwardUntil;
+import org.firstinspires.ftc.teamcode.states.LeftDetectRings;
 import org.firstinspires.ftc.teamcode.states.LiftUntilPos;
 import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.MoveArm;
 import org.firstinspires.ftc.teamcode.states.MoveGearbox;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
-import org.firstinspires.ftc.teamcode.states.DetectRings;
+import org.firstinspires.ftc.teamcode.states.LeftDetectRings;
+import org.firstinspires.ftc.teamcode.states.RightDetectRings;
 //import org.firstinspires.ftc.teamcode.states.StrafeUntilClicks;
 ////import org.firstinspires.ftc.teamcode.states.CollectUntilDist;
 ////import org.firstinspires.ftc.teamcode.states.DispenseUntilDist;
@@ -125,9 +127,11 @@ public class Auto2021 extends OpMode {
             //new GrabFoundation(),
             //new DragFoundationR(-180),
 
+////========================== OFFICIAL
+
     //Blue left
     new ReleaseCollector(),
-    new DetectRings(),
+    new LeftDetectRings(),
 
     });
     public LinearStack zerostates = new LinearStack(new OurState[] {

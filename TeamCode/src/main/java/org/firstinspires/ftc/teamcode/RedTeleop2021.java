@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName; //for "eyes" init
 
-@TeleOp(name="Teleop2021", group="Linear Opmode")
+@TeleOp(name="RedTeleop2021", group="Linear Opmode")
 
 public class RedTeleop2021 extends LinearOpMode {
 

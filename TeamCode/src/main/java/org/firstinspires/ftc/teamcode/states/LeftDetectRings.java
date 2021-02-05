@@ -64,7 +64,7 @@ import java.util.Date;
  * or add a @Disabled annotation to prevent this OpMode from being added to the Driver Station
  */
 
-public class DetectRings extends OurState {
+public class LeftDetectRings extends OurState {
     /* Declare OpMode members. */
     //TODO include webcam
     public RobotHardware robotHardware = null;
@@ -75,7 +75,7 @@ public class DetectRings extends OurState {
 
 
     //@Override
-    public DetectRings() {
+    public LeftDetectRings() {
         super();
     }
 
