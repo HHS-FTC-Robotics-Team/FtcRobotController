@@ -104,8 +104,8 @@ public class MoveClaw extends OurState {
     @Override
     public void loop() {
 
-        double error = 0.015;
-        double increment = 0.01;
+        double error = 0.00027;
+        double increment = 0.00025;
         double pos1 = f.getPosition();
         if (pos1 > goal - error && pos1 < goal + error) {
           pos1 = goal;

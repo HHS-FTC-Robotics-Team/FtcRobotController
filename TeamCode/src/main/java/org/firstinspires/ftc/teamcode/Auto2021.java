@@ -151,7 +151,7 @@ public class Auto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
-            new ForwardUntil(66),
+            new ForwardUntil(-66),
 //            new TurnUntilAngle(180),
 //            new MoveClaw("open"),
 //            new LiftUntilPos("vertical"),
