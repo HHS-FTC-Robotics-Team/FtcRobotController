@@ -59,14 +59,12 @@ public class ShootRings extends OurState {
     public Hopper h = null;
     public Shooter s = null;
     public RobotHardware robotHardware = null;
-    public String rings = "three";
     public double shooterSpeed = 1;
     public double shooterAngle = 19;
     public int timer = 0; //**this is icky i know
 
-    public ShootRings(String r, double angle, double speed) {
+    public ShootRings(double angle, double speed) {
         super();
-        rings = r;
         shooterAngle = angle;
         shooterSpeed = speed;
     }
@@ -103,10 +101,14 @@ public class ShootRings extends OurState {
         s.pivotToAngle(shooterAngle);
         s.setPower(shooterSpeed);
         h.out();
-        if (timer > 400) {
-            h.incrementToPos(rings);
+        if (timer > 600) {
+            h.incrementToPos("two");
+        } else if (timer > 500) {
+            h.incrementToPos("one");
+        } else if (timer > 400) {
+            h.incrementToPos("zero");
         }
-        if (timer > 800) {
+        if (timer > 900) {
             running = false;
         }
         timer += 1;

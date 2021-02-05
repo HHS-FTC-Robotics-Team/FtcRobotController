@@ -154,7 +154,7 @@ public class BlueLeftAuto2021 extends OpMode {
     public LinearStack zerostates = new LinearStack(new OurState[] {
             new ForwardUntil(-6),
             new TurnUntilAngle(10),
-            new ShootRings("three", 28.5, 90),
+            new ShootRings(28.5, 90),
             new TurnUntilAngle(-10),
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
