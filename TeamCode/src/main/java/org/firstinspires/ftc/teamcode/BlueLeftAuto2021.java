@@ -60,7 +60,7 @@ import java.util.Date;
 // * or add a @Disabled annotation to prevent this OpMode from being added to the Driver Station
 // */
 @Autonomous
-public class Auto2021 extends OpMode {
+public class BlueLeftAuto2021 extends OpMode {
     /* Declare OpMode members. */
     public int stage = 0;
     public RobotHardware robotHardware = new RobotHardware();
@@ -155,7 +155,6 @@ public class Auto2021 extends OpMode {
             new TurnUntilAngle(180),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
-            new TurnUntilAngle(-180),
     });
 
     public LinearStack onestates = new LinearStack(new OurState[] {
@@ -164,10 +163,9 @@ public class Auto2021 extends OpMode {
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
             new ForwardUntil(-90),
-//            new TurnUntilAngle(-180),
-//            new MoveClaw("open"),
-//            new LiftUntilPos("vertical"),
-//            new TurnUntilAngle(180),
+            new MoveClaw("open"),
+            new LiftUntilPos("vertical"),
+            new ForwardUntil(24),
     });
 
     public LinearStack fourstates = new LinearStack(new OurState[] {
@@ -176,10 +174,10 @@ public class Auto2021 extends OpMode {
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
             new ForwardUntil(-114),
-//            new TurnUntilAngle(180),
-//            new MoveClaw("open"),
-//            new LiftUntilPos("vertical"),
-//            new TurnUntilAngle(-180),
+            new TurnUntilAngle(180),
+            new MoveClaw("open"),
+            new LiftUntilPos("vertical"),
+            new ForwardUntil(-48),
     });
 
     @Override
