@@ -135,7 +135,7 @@ public class RedTeleop2021 extends LinearOpMode {
 //            }
 
             if (cam2.isTargetVisible()) {
-                col.releaseServoPosition(1); //Todo: Fix!
+                col.releaseServoPosition(1);
             } else {
                 col.releaseServoPosition(0.8);
             }
@@ -302,21 +302,32 @@ public class RedTeleop2021 extends LinearOpMode {
             // control the shooter motor speed using the A and Y buttons on gamepad 2.
             // after setting the speed, power the shooter by holding down the B button.
             // with the B button held down, select the proper hopper position on the dPad to insert a ring into the shooter.
+
+            //New 2/5 - use y button to make shooter go to 26 degrees and adjust power
+            //for manual power shot aiming TODO: Find power!
+
             if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
-                if (shooterSpeed < 0.99) {
-                    shooterSpeed += 0.01;
-                } else if (shooterSpeed >= 0.99) {
-                    shooterSpeed = 1.0;
-                }
+
+                shooterAngle = 26;
+                shooterSpeed = 1.0;
+
             } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
 
-            if (gamepad2.a && !decrementSpeedButtonIsDown) { decrementSpeedButtonIsDown = true;
-                if (shooterSpeed > 0.01) {
-                    shooterSpeed -= 0.01;
-                } else if (shooterSpeed <= 0.01) {
-                    shooterSpeed = 0.0;
-                }
-            } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
+//            if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
+//                if (shooterSpeed < 0.99) {
+//                    shooterSpeed += 0.01;
+//                } else if (shooterSpeed >= 0.99) {
+//                    shooterSpeed = 1.0;
+//                }
+//            } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
+//
+//            if (gamepad2.a && !decrementSpeedButtonIsDown) { decrementSpeedButtonIsDown = true;
+//                if (shooterSpeed > 0.01) {
+//                    shooterSpeed -= 0.01;
+//                } else if (shooterSpeed <= 0.01) {
+//                    shooterSpeed = 0.0;
+//                }
+//            } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
 
             if (gamepad2.b) {
                 shooter.setPower(shooterSpeed);
@@ -330,21 +341,21 @@ public class RedTeleop2021 extends LinearOpMode {
             //for testing on 2/3
             //Increment shoooter angle using gamepad 2 left and right bumpers
 
-            if (gamepad2.right_bumper && !incrementAngleButtonIsDown) { incrementAngleButtonIsDown = true;
-                if (shooterAngle < 29.5) {
-                    shooterAngle += 0.5;
-                } else if (shooterAngle >= 29.5) {
-                    shooterAngle = 30;
-                }
-            } else if (!gamepad2.right_bumper) { incrementAngleButtonIsDown = false; }
-
-            if (gamepad2.left_bumper && !decrementAngleButtonIsDown) { decrementAngleButtonIsDown = true;
-                if (shooterAngle > 19.5) {
-                    shooterAngle -= 0.5;
-                } else if (shooterAngle <= 19.5) {
-                    shooterAngle = 19;
-                }
-            } else if (!gamepad2.left_bumper) { decrementAngleButtonIsDown = false; }
+//            if (gamepad2.right_bumper && !incrementAngleButtonIsDown) { incrementAngleButtonIsDown = true;
+//                if (shooterAngle < 29.5) {
+//                    shooterAngle += 0.5;
+//                } else if (shooterAngle >= 29.5) {
+//                    shooterAngle = 30;
+//                }
+//            } else if (!gamepad2.right_bumper) { incrementAngleButtonIsDown = false; }
+//
+//            if (gamepad2.left_bumper && !decrementAngleButtonIsDown) { decrementAngleButtonIsDown = true;
+//                if (shooterAngle > 19.5) {
+//                    shooterAngle -= 0.5;
+//                } else if (shooterAngle <= 19.5) {
+//                    shooterAngle = 19;
+//                }
+//            } else if (!gamepad2.left_bumper) { decrementAngleButtonIsDown = false; }
 
             shooter.pivotToAngle(shooterAngle);
 
