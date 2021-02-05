@@ -153,10 +153,10 @@ public class BlueRightAuto2021 extends OpMode {
             new LiftUntilPos("above ground"),
             new ForwardUntil(-66),
 
-            new TurnUntilAngle(90),
+            new TurnUntilAngle(-90),
             new ForwardUntil(-24),
 
-            new TurnUntilAngle(90),
+            new TurnUntilAngle(-90),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
     });
@@ -168,9 +168,9 @@ public class BlueRightAuto2021 extends OpMode {
             new LiftUntilPos("above ground"),
             new ForwardUntil(-90),
 
-            new TurnUntilAngle(90),
-            new ForwardUntil(-24),
             new TurnUntilAngle(-90),
+            new ForwardUntil(-24),
+            new TurnUntilAngle(90),
 
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
@@ -184,10 +184,10 @@ public class BlueRightAuto2021 extends OpMode {
             new LiftUntilPos("above ground"),
             new ForwardUntil(-114),
 
-            new TurnUntilAngle(90),
+            new TurnUntilAngle(-90),
             new ForwardUntil(-24),
 
-            new TurnUntilAngle(90),
+            new TurnUntilAngle(-90),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
             new ForwardUntil(-48),
