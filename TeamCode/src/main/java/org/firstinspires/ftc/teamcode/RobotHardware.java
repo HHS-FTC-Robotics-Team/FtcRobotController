@@ -22,6 +22,8 @@ public class RobotHardware {
     public HardwareMap hardwareMap = null;
     public Drive d = null;
     public Collect c = null;
+    public Hopper hopper = null;
+    public Shooter shooter = null;
     public DcMotor lift = null;
     //public ColorSensor color = null;
     public Servo f = null;
@@ -46,6 +48,17 @@ public class RobotHardware {
         c = new Collect(
                 hardwareMap.get(DcMotor.class, "liftmotor"),
                 hardwareMap.get(Servo.class, "release")
+        );
+
+        hopper = new Hopper(
+                hardwareMap.get(DcMotor.class, "hoppermotor"),
+                hardwareMap.get(Servo.class, "hopperservo")
+        );
+        shooter = new Shooter(
+                hardwareMap.get(DcMotor.class, "shootertop"),
+                hardwareMap.get(DcMotor.class, "shooterbottom"),
+                hardwareMap.get(Servo.class, "pivotleft"),
+                hardwareMap.get(Servo.class, "pivotright")
         );
         
 //        lastAngles = new Orientation();
