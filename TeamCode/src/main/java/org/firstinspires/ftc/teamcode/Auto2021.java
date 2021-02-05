@@ -152,11 +152,10 @@ public class Auto2021 extends OpMode {
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
             new ForwardUntil(-66),
-//            new TurnUntilAngle(180),
-//            new MoveClaw("open"),
-//            new LiftUntilPos("vertical"),
-//            new MoveClaw("close"),
-//            new TurnUntilAngle(-180),
+            new TurnUntilAngle(180),
+            new MoveClaw("open"),
+            new LiftUntilPos("vertical"),
+            new TurnUntilAngle(-180),
     });
 
     public LinearStack onestates = new LinearStack(new OurState[] {
@@ -168,7 +167,6 @@ public class Auto2021 extends OpMode {
 //            new TurnUntilAngle(-180),
 //            new MoveClaw("open"),
 //            new LiftUntilPos("vertical"),
-//            new MoveClaw("close"),
 //            new TurnUntilAngle(180),
     });
 
@@ -181,7 +179,6 @@ public class Auto2021 extends OpMode {
 //            new TurnUntilAngle(180),
 //            new MoveClaw("open"),
 //            new LiftUntilPos("vertical"),
-//            new MoveClaw("close"),
 //            new TurnUntilAngle(-180),
     });
 

@@ -92,7 +92,7 @@ public class TurnUntilAngle extends OurState {
      */
     @Override
     public void loop() {
-        d.rotateToAngle((float) goalangle, 0.5); //TODO should this be in start or init or loop?
+        d.rotateToAngle((float) goalangle, 0.4); //TODO should this be in start or init or loop?
         if(!d.isBusy()) { //if done moving
             running = false;
             d.setPower(0,0,0,0);

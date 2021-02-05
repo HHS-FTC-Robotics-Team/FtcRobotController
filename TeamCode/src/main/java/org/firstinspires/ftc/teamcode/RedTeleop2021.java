@@ -155,11 +155,11 @@ public class RedTeleop2021 extends LinearOpMode {
             }
 
 
-//            if (gamepad1.dpad_up) {
-//                gear.incrementToPos("min");
-//            } else if (gamepad1.dpad_down) {
-//                gear.incrementToPos("max");
-//            }
+            if (gamepad1.dpad_up) {
+                gear.incrementToPos("min");
+            } else if (gamepad1.dpad_down) {
+                gear.incrementToPos("max");
+            }
 
             if (gamepad2.x && !clawButtonIsDown) {
                 clawButtonIsDown = true;

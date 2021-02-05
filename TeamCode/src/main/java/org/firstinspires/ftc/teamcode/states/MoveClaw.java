@@ -67,12 +67,12 @@ public class MoveClaw extends OurState {
         super ();
         if (p == "close") {
             goal = lmax;
-            middleGoal = 0.40;
+           // middleGoal = 0.40;
         }
 
         if (p == "open") {
             goal = lmin;
-            middleGoal = 0.30;
+          //  middleGoal = 0.30;
         }
     }
 
@@ -82,7 +82,7 @@ public class MoveClaw extends OurState {
         telemetry.addData("Status", "Initialized");
         //d = robotHardware.d;
         f = robotHardware.f;
-
+        f.setPosition(middleGoal);
         //f.setPosition(lmax);
     }
 
@@ -98,7 +98,7 @@ public class MoveClaw extends OurState {
      */
     @Override
     public void start() {
-        f.setPosition(middleGoal);
+
     }
 
     /*
@@ -107,8 +107,8 @@ public class MoveClaw extends OurState {
     @Override
     public void loop() {
 
-        double error = 0.00027;
-        double increment = 0.00025;
+        double error = 0.00017;
+        double increment = 0.00015;
         double pos1 = f.getPosition();
         if (pos1 > goal - error && pos1 < goal + error) {
           pos1 = goal;

@@ -67,6 +67,8 @@ public class ForwardUntil extends OurState {
         telemetry.addData("Status", "Initialized");
         robotHardware = r;
         d = robotHardware.d;
+        d.resetAllEncoders();
+        d.runToPosition((float) goal, 0.4);
     }
 
     /*
@@ -74,6 +76,7 @@ public class ForwardUntil extends OurState {
      */
     @Override
     public void init_loop() {
+
     }
 
     /*
@@ -81,8 +84,7 @@ public class ForwardUntil extends OurState {
      */
     @Override
     public void start() {
-        d.resetAllEncoders();
-        d.runToPosition((float) goal, 0.5);
+
     }
 
     /*
