@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName; //fo
 
 @TeleOp(name="Teleop2021", group="Linear Opmode")
 
-public class Teleop2021 extends LinearOpMode {
+public class BlueTeleop2021 extends LinearOpMode {
 
     //creating objects for all of the different parts
     private Drive d;
@@ -75,7 +75,7 @@ public class Teleop2021 extends LinearOpMode {
                 0.15, 0.54);
         gear = new TwoPosServo(
                 hardwareMap.get(Servo.class, "gearbox"),
-                0.7, 0.79);
+                0.7, 0.81);
 
         touchin = new Sensors(
                 hardwareMap.get(TouchSensor.class, "touchin")

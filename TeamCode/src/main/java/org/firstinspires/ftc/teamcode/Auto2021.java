@@ -127,6 +127,7 @@ public class Auto2021 extends OpMode {
 
     //Blue left
     new ReleaseCollector(),
+    new DetectRings(),
 
     });
     public LinearStack zerostates = new LinearStack(new OurState[] {
@@ -134,7 +135,7 @@ public class Auto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
-            new ForwardUntil(-72 + 6),
+            new ForwardUntil(-66),
             new TurnUntilAngle(180),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
@@ -147,7 +148,7 @@ public class Auto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
-            new ForwardUntil(-96 + 6),
+            new ForwardUntil(-90),
             new TurnUntilAngle(-180),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
@@ -160,7 +161,7 @@ public class Auto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
-            new ForwardUntil(-120 + 6),
+            new ForwardUntil(-114),
             new TurnUntilAngle(180),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),

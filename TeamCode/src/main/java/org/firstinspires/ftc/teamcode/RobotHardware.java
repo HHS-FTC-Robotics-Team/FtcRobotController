@@ -63,7 +63,7 @@ public class RobotHardware {
         f = hardwareMap.get(Servo.class, "claw");
         g = new TwoPosServo(
                 hardwareMap.get(Servo.class, "gearbox"),
-                0.7, 0.79);
+                0.7, 0.81);
 
         camId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         cam = hardwareMap.get(WebcamName.class, "Webcam 1");
