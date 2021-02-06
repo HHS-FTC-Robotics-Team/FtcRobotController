@@ -341,21 +341,21 @@ public class BlueTeleop2021 extends LinearOpMode {
             //for testing on 2/3
             //Increment shoooter angle using gamepad 2 left and right bumpers
 
-//            if (gamepad2.right_bumper && !incrementAngleButtonIsDown) { incrementAngleButtonIsDown = true;
-//                if (shooterAngle < 29.5) {
-//                    shooterAngle += 0.5;
-//                } else if (shooterAngle >= 29.5) {
-//                    shooterAngle = 30;
-//                }
-//            } else if (!gamepad2.right_bumper) { incrementAngleButtonIsDown = false; }
-//
-//            if (gamepad2.left_bumper && !decrementAngleButtonIsDown) { decrementAngleButtonIsDown = true;
-//                if (shooterAngle > 19.5) {
-//                    shooterAngle -= 0.5;
-//                } else if (shooterAngle <= 19.5) {
-//                    shooterAngle = 19;
-//                }
-//            } else if (!gamepad2.left_bumper) { decrementAngleButtonIsDown = false; }
+            if (gamepad2.right_bumper && !incrementAngleButtonIsDown) { incrementAngleButtonIsDown = true;
+                if (shooterAngle < 29.5) {
+                    shooterAngle += 0.5;
+                } else if (shooterAngle >= 29.5) {
+                    shooterAngle = 30;
+                }
+            } else if (!gamepad2.right_bumper) { incrementAngleButtonIsDown = false; }
+
+            if (gamepad2.left_bumper && !decrementAngleButtonIsDown) { decrementAngleButtonIsDown = true;
+                if (shooterAngle > 19.5) {
+                    shooterAngle -= 0.5;
+                } else if (shooterAngle <= 19.5) {
+                    shooterAngle = 19;
+                }
+            } else if (!gamepad2.left_bumper) { decrementAngleButtonIsDown = false; }
 
 
 

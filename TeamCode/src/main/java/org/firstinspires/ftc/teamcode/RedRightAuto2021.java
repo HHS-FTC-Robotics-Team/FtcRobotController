@@ -32,6 +32,7 @@ import org.firstinspires.ftc.teamcode.states.LiftUntilPos;
 import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.MoveArm;
 import org.firstinspires.ftc.teamcode.states.MoveGearbox;
+import org.firstinspires.ftc.teamcode.states.ShootRings;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 import org.firstinspires.ftc.teamcode.states.LeftDetectRings;
@@ -129,7 +130,7 @@ public class RedRightAuto2021 extends OpMode {
 
 ////========================== OFFICIAL
 
-            //Blue left
+            //Red Right
             new ReleaseCollector(),
 
 //            new ForwardUntil(-6),
@@ -155,6 +156,11 @@ public class RedRightAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
+
+            new TurnUntilAngle(-5),
+            new ShootRings(27, 0.9),
+            new TurnUntilAngle(5),
+
             new ForwardUntil(-66),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
@@ -165,6 +171,11 @@ public class RedRightAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("over wall"),
+
+            new TurnUntilAngle(-5),
+            new ShootRings(27, 0.9),
+            new TurnUntilAngle(5),
+
             new ForwardUntil(-90),
             new TurnUntilAngle(-180),
             new MoveClaw("open"),
@@ -177,6 +188,11 @@ public class RedRightAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
+
+            new TurnUntilAngle(-5),
+            new ShootRings(27, 0.9),
+            new TurnUntilAngle(5),
+
             new ForwardUntil(-114),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
