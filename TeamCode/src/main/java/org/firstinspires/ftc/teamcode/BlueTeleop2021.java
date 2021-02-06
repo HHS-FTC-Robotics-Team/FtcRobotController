@@ -309,7 +309,7 @@ public class BlueTeleop2021 extends LinearOpMode {
             if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
 
                     shooterAngle = 26;
-                    shooterSpeed = 1.0;
+                    shooterSpeed = 0.9;
 
             } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
 
