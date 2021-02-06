@@ -101,15 +101,17 @@ public class ShootRings extends OurState {
         s.pivotToAngle(shooterAngle);
         s.setPower(shooterSpeed);
         h.out();
-        if (timer > 600) {
-            h.incrementToPos("two");
-        } else if (timer > 500) {
-            h.incrementToPos("one");
-        } else if (timer > 400) {
+        if (timer > 1400) {
             h.incrementToPos("zero");
+        } else if (timer > 1050) {
+            h.incrementToPos("one");
+        } else if (timer > 700) {
+            h.incrementToPos("two");
         }
-        if (timer > 900) {
+        if (timer > 1600) {
             running = false;
+            s.rest();
+            h.rest();
         }
         timer += 1;
     }
