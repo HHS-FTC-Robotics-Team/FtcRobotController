@@ -152,7 +152,7 @@ public class BlueLeftAuto2021 extends OpMode {
 
     });
     public LinearStack zerostates = new LinearStack(new OurState[] {
-            new ForwardUntil(-6),
+            new ForwardUntil(-24),
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
@@ -161,14 +161,14 @@ public class BlueLeftAuto2021 extends OpMode {
             new ShootRings(27, 0.9),
             new TurnUntilAngle(-5),
 
-            new ForwardUntil(-66),
+            new ForwardUntil(-48),
             new TurnUntilAngle(180),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
     });
 
     public LinearStack onestates = new LinearStack(new OurState[] {
-            new ForwardUntil(-6),
+            new ForwardUntil(-24),
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
@@ -177,14 +177,14 @@ public class BlueLeftAuto2021 extends OpMode {
             new ShootRings(27, 0.9),
             new TurnUntilAngle(-5),
 
-            new ForwardUntil(-90),
+            new ForwardUntil(-72),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
             new ForwardUntil(24),
     });
 
     public LinearStack fourstates = new LinearStack(new OurState[] {
-            new ForwardUntil(-6),
+            new ForwardUntil(-24),
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("over wall"),
@@ -193,7 +193,7 @@ public class BlueLeftAuto2021 extends OpMode {
             new ShootRings(27, 0.9),
             new TurnUntilAngle(-5),
 
-            new ForwardUntil(-111),
+            new ForwardUntil(-93),
             new TurnUntilAngle(180),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),

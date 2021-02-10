@@ -26,9 +26,15 @@ public class Shooter extends LinearOpMode {
         //servos move opposite
         leftservo = sl;
         rightservo = sr;
+//        Topmtr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        Bottommtr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        //Control Todo: remove
+        Topmtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        Bottommtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
-    public void out() { // TODO: find speeds and find which motor should be reverse
+    public void out() {
         Topmtr.setPower(-1);
         Bottommtr.setPower(1);
     }

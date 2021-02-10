@@ -304,30 +304,30 @@ public class BlueTeleop2021 extends LinearOpMode {
             // with the B button held down, select the proper hopper position on the dPad to insert a ring into the shooter.
 
             //New 2/5 - use y button to make shooter go to 26 degrees and adjust power
-            //for manual power shot aiming TODO: Find power!
+            //for manual power shot aiming TODO: Modify power
+
+//            if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true; //TODO: Replace before Thurs
+//
+//                    shooterAngle = 26;
+//                    shooterSpeed = 0.9;
+//
+//            } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
 
             if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
-
-                    shooterAngle = 26;
-                    shooterSpeed = 0.9;
-
+                if (shooterSpeed < 0.99) {
+                    shooterSpeed += 0.01;
+                } else if (shooterSpeed >= 0.99) {
+                    shooterSpeed = 1.0;
+                }
             } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
 
-//            if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
-//                if (shooterSpeed < 0.99) {
-//                    shooterSpeed += 0.01;
-//                } else if (shooterSpeed >= 0.99) {
-//                    shooterSpeed = 1.0;
-//                }
-//            } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
-//
-//            if (gamepad2.a && !decrementSpeedButtonIsDown) { decrementSpeedButtonIsDown = true;
-//                if (shooterSpeed > 0.01) {
-//                    shooterSpeed -= 0.01;
-//                } else if (shooterSpeed <= 0.01) {
-//                    shooterSpeed = 0.0;
-//                }
-//            } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
+            if (gamepad2.a && !decrementSpeedButtonIsDown) { decrementSpeedButtonIsDown = true;
+                if (shooterSpeed > 0.01) {
+                    shooterSpeed -= 0.01;
+                } else if (shooterSpeed <= 0.01) {
+                    shooterSpeed = 0.0;
+                }
+            } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
 
             if (gamepad2.b) {
                 shooter.setPower(shooterSpeed);
