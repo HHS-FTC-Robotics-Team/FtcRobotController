@@ -331,17 +331,17 @@ public class BlueTeleop2021 extends LinearOpMode {
 //            } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
 
             if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
-                if (shooterSpeed < 3950) {
-                    shooterSpeed += 50;
-                } else if (shooterSpeed >= 3950) {
+                if (shooterSpeed < 3990) {
+                    shooterSpeed += 10;
+                } else if (shooterSpeed >= 3990) {
                     shooterSpeed = 4000;
                 }
             } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
 
             if (gamepad2.a && !decrementSpeedButtonIsDown) { decrementSpeedButtonIsDown = true;
-                if (shooterSpeed > 50) {
-                    shooterSpeed -= 50;
-                } else if (shooterSpeed <= 50) {
+                if (shooterSpeed > 10) {
+                    shooterSpeed -= 10;
+                } else if (shooterSpeed <= 10) {
                     shooterSpeed = 0;
                 }
             } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
@@ -359,17 +359,17 @@ public class BlueTeleop2021 extends LinearOpMode {
             //Increment shoooter angle using gamepad 2 left and right bumpers
 
             if (gamepad2.right_bumper && !incrementAngleButtonIsDown) { incrementAngleButtonIsDown = true;
-                if (shooterAngle < 29.5) {
-                    shooterAngle += 0.5;
-                } else if (shooterAngle >= 29.5) {
+                if (shooterAngle < 29.9) {
+                    shooterAngle += 0.1;
+                } else if (shooterAngle >= 29.9) {
                     shooterAngle = 30;
                 }
             } else if (!gamepad2.right_bumper) { incrementAngleButtonIsDown = false; }
 
             if (gamepad2.left_bumper && !decrementAngleButtonIsDown) { decrementAngleButtonIsDown = true;
-                if (shooterAngle > 19.5) {
-                    shooterAngle -= 0.5;
-                } else if (shooterAngle <= 19.5) {
+                if (shooterAngle > 19.1) {
+                    shooterAngle -= 0.1;
+                } else if (shooterAngle <= 19.1) {
                     shooterAngle = 19;
                 }
             } else if (!gamepad2.left_bumper) { decrementAngleButtonIsDown = false; }
