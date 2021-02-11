@@ -5,6 +5,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -13,17 +14,21 @@ import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 public class Shooter extends LinearOpMode {
 
     //init the two motors and distance sensor
-    private DcMotor Topmtr = null;
-    private DcMotor Bottommtr = null;
+//    private DcMotor Topmtr = null;
+//   private DcMotor Bottommtr = null;
+    private DcMotorEx Topmtr = null;
+    private DcMotorEx Bottommtr = null;
+
     private Servo leftservo = null;
     private Servo rightservo = null;
 
-    public Shooter (DcMotor l, DcMotor r, Servo sl, Servo sr) {
+    public Shooter (DcMotorEx l, DcMotorEx r, Servo sl, Servo sr) {
         Topmtr = l;
         Bottommtr = r;
         //direction for one is reversed so that
-        Topmtr.setDirection(DcMotor.Direction.REVERSE); // TODO: try to find the built in PID stuff
-        Bottommtr.setDirection(DcMotor.Direction.FORWARD); // TODO: runWithEncoders or something
+        Topmtr.setDirection(DcMotor.Direction.REVERSE);
+        Bottommtr.setDirection(DcMotor.Direction.FORWARD);
+
         //servos move opposite
         leftservo = sl;
         rightservo = sr;
@@ -46,8 +51,15 @@ public class Shooter extends LinearOpMode {
     }
 
     public void setPower(double p) {
-        Topmtr.setPower(p);
+        Topmtr.setPower(-p);
         Bottommtr.setPower(p);
+
+    }
+
+    public void setSpeed(double p) {
+        Topmtr.setVelocity(-p);
+        Bottommtr.setVelocity(p);
+
     }
 
     public String getPower() {

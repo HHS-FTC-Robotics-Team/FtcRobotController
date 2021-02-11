@@ -4,6 +4,7 @@ import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -114,8 +115,8 @@ public class RedTeleop2021 extends LinearOpMode {
                 hardwareMap.get(Servo.class, "hopperservo")
         );
         shooter = new Shooter(
-                hardwareMap.get(DcMotor.class, "shootertop"),
-                hardwareMap.get(DcMotor.class, "shooterbottom"),
+                hardwareMap.get(DcMotorEx.class, "shootertop"),
+                hardwareMap.get(DcMotorEx.class, "shooterbottom"),
                 hardwareMap.get(Servo.class, "pivotleft"),
                 hardwareMap.get(Servo.class, "pivotright")
         );

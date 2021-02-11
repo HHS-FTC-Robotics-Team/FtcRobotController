@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName; //for "eyes" init
@@ -36,7 +37,7 @@ public class BlueTeleop2021 extends LinearOpMode {
     private boolean incrementAngleButtonIsDown = false;
     private boolean decrementAngleButtonIsDown = false;
 
-    private double shooterSpeed = 1;
+    private double shooterSpeed = 2000;
     private double shooterAngle = 19;
 
     private String state = "drive";
@@ -114,8 +115,8 @@ public class BlueTeleop2021 extends LinearOpMode {
                 hardwareMap.get(Servo.class, "hopperservo")
         );
         shooter = new Shooter(
-                hardwareMap.get(DcMotor.class, "shootertop"),
-                hardwareMap.get(DcMotor.class, "shooterbottom"),
+                hardwareMap.get(DcMotorEx.class, "shootertop"),
+                hardwareMap.get(DcMotorEx.class, "shooterbottom"),
                 hardwareMap.get(Servo.class, "pivotleft"),
                 hardwareMap.get(Servo.class, "pivotright")
         );
@@ -313,24 +314,40 @@ public class BlueTeleop2021 extends LinearOpMode {
 //
 //            } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
 
+//            if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
+//                if (shooterSpeed < 0.99) {
+//                    shooterSpeed += 0.01;
+//                } else if (shooterSpeed >= 0.99) {
+//                    shooterSpeed = 1.0;
+//                }
+//            } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
+//
+//            if (gamepad2.a && !decrementSpeedButtonIsDown) { decrementSpeedButtonIsDown = true;
+//                if (shooterSpeed > 0.01) {
+//                    shooterSpeed -= 0.01;
+//                } else if (shooterSpeed <= 0.01) {
+//                    shooterSpeed = 0.0;
+//                }
+//            } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
+
             if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
-                if (shooterSpeed < 0.99) {
-                    shooterSpeed += 0.01;
-                } else if (shooterSpeed >= 0.99) {
-                    shooterSpeed = 1.0;
+                if (shooterSpeed < 3950) {
+                    shooterSpeed += 50;
+                } else if (shooterSpeed >= 3950) {
+                    shooterSpeed = 4000;
                 }
             } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
 
             if (gamepad2.a && !decrementSpeedButtonIsDown) { decrementSpeedButtonIsDown = true;
-                if (shooterSpeed > 0.01) {
-                    shooterSpeed -= 0.01;
-                } else if (shooterSpeed <= 0.01) {
-                    shooterSpeed = 0.0;
+                if (shooterSpeed > 50) {
+                    shooterSpeed -= 50;
+                } else if (shooterSpeed <= 50) {
+                    shooterSpeed = 0;
                 }
             } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
 
             if (gamepad2.b) {
-                shooter.setPower(shooterSpeed);
+                shooter.setSpeed(shooterSpeed);
                 hopper.out();
             } else if (!gamepad2.b) {
 //                shooter.pivotToAngle(19);
@@ -356,8 +373,6 @@ public class BlueTeleop2021 extends LinearOpMode {
                     shooterAngle = 19;
                 }
             } else if (!gamepad2.left_bumper) { decrementAngleButtonIsDown = false; }
-
-
 
             shooter.pivotToAngle(shooterAngle);
 

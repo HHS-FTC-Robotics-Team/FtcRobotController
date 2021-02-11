@@ -99,7 +99,7 @@ public class ShootRings extends OurState {
     @Override
     public void loop() {
         s.pivotToAngle(shooterAngle);
-        s.setPower(shooterSpeed);
+        s.setSpeed(shooterSpeed);
         h.out();
         if (timer > 1400) {
             h.incrementToPos("zero");

@@ -7,6 +7,7 @@ import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.Drive;
@@ -55,8 +56,8 @@ public class RobotHardware {
                 hardwareMap.get(Servo.class, "hopperservo")
         );
         shooter = new Shooter(
-                hardwareMap.get(DcMotor.class, "shootertop"),
-                hardwareMap.get(DcMotor.class, "shooterbottom"),
+                hardwareMap.get(DcMotorEx.class, "shootertop"),
+                hardwareMap.get(DcMotorEx.class, "shooterbottom"),
                 hardwareMap.get(Servo.class, "pivotleft"),
                 hardwareMap.get(Servo.class, "pivotright")
         );

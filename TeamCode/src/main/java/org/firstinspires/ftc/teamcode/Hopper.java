@@ -24,7 +24,7 @@ public class Hopper extends LinearOpMode {
         wheelmotor = m;
         //servos move opposite
         platformservo = s;
-        wheelmotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        wheelmotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
 //    public void in() { // TODO: find speeds
