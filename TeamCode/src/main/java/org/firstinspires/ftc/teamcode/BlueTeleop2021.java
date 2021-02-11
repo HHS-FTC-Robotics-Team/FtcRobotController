@@ -244,10 +244,15 @@ public class BlueTeleop2021 extends LinearOpMode {
                         y = 36 - cam2.getPositionY();
                         theta = (float) (Math.atan2(y, x) * (180/Math.PI));
                         float rotationAngle = (heading - theta);
-                        if (rotationAngle >= -180) {
-                            d.rotateToAngle(rotationAngle, -0.5); // TODO conditional does not work
-                        } else if (rotationAngle < -180) {
-                            d.rotateToAngle(rotationAngle, 0.5);
+//                        if (rotationAngle >= -180) {
+//                            d.rotateToAngle(rotationAngle, -0.5); // TODO conditional does not work
+//                        } else if (rotationAngle < -180) {
+//                            d.rotateToAngle(rotationAngle, 0.5);
+//                        }
+                        if (theta >= 0) {
+                            d.rotateToAngle(rotationAngle, -0.5); // counter cw
+                        } else if (theta < 0) {
+                            d.rotateToAngle(rotationAngle, 0.5); // clockwise
                         }
                     }
                 }
