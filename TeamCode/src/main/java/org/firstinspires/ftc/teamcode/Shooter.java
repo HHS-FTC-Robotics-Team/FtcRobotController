@@ -5,6 +5,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
@@ -26,12 +27,12 @@ public class Shooter extends LinearOpMode {
         //servos move opposite
         leftservo = sl;
         rightservo = sr;
-//        Topmtr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        Bottommtr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Topmtr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Bottommtr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        //Control Todo: remove
-        Topmtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        Bottommtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        //Control
+//        Topmtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        Bottommtr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     public void out() {
