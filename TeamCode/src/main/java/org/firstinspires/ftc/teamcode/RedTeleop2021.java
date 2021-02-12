@@ -37,7 +37,7 @@ public class RedTeleop2021 extends LinearOpMode {
     private boolean incrementAngleButtonIsDown = false;
     private boolean decrementAngleButtonIsDown = false;
 
-    private double shooterSpeed = 1;
+    private double shooterSpeed = 2100;
     private double shooterAngle = 19;
 
     private String state = "drive";
@@ -268,10 +268,10 @@ public class RedTeleop2021 extends LinearOpMode {
                     double x = 72 - cam2.getPositionX() + 1.125;
                     double y = -36 - cam2.getPositionY();
                     distToGoal = Math.sqrt((x * x) + (y * y));
-                    shooterAngle = (0.00121002)*(distToGoal-106.252)*(distToGoal-106.252) + 28.2387; //quadratic line of best fit equation
-//                    shooterAngle = Math.pow( (0.00311978),(distToGoal-78.0766) ) + 28.4444; //exponential line of best fit equation
+                    shooterAngle = (0.00209513)*(distToGoal-104.975)*(distToGoal-104.975) + 27.3575; //quadratic line of best fit equation, updated 2/12/2021
                     shooter.pivotToAngle(shooterAngle);
-                    shooterSpeed = (-0.0000126263)*(distToGoal-105)*(distToGoal-105) + 0.90175; //quadratic line of best fit equation
+
+                    shooterSpeed = (-0.0343407)*(distToGoal-104.532)*(distToGoal-104.532) + 2137.34; //quadratic line of best fit equation, updated 2/12/2021
                 }
 //                }
             } else if (!gamepad1.a) {
@@ -310,7 +310,7 @@ public class RedTeleop2021 extends LinearOpMode {
             if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
 
                 shooterAngle = 26;
-                shooterSpeed = 0.9;
+                shooterSpeed = 2100;
 
             } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
 
@@ -331,7 +331,7 @@ public class RedTeleop2021 extends LinearOpMode {
 //            } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
 
             if (gamepad2.b) {
-                shooter.setPower(shooterSpeed);
+                shooter.setSpeed(shooterSpeed);
                 hopper.out();
             } else if (!gamepad2.b) {
 //                shooter.pivotToAngle(19);
