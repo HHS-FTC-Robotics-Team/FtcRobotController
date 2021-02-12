@@ -150,10 +150,10 @@ public class SynchronousStack extends OurState {
 
     //add state(s) to the stack
     public void addState(OurState[] stack) {
-        for (int i = 0; i < stack.size(); i++) {
-            stack.get(i).init(robotHardware);
+        for (int i = 0; i < stack.length; i++) {
+            stack[i].init(robotHardware);
         }
-        states.addAll(stack);
+        states.addAll(Arrays.asList(stack));
     }
 
 }
