@@ -48,6 +48,7 @@ import org.firstinspires.ftc.teamcode.states.RightDetectRings;
 import org.firstinspires.ftc.teamcode.RobotHardware;
 //
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 ///**
@@ -65,6 +66,16 @@ public class BlueLeftAuto2021 extends OpMode {
     /* Declare OpMode members. */
     public int stage = 0;
     public RobotHardware robotHardware = new RobotHardware();
+
+
+    OurState[] syncStatesList =  {
+        new TurnUntilAngle(90),
+        new MoveClaw("close")
+    };
+    public SynchronousStack syncstack = new SynchronousStack(syncStatesList);
+
+
+
     public LinearStack states = new LinearStack(new OurState[] {
 
 //            new LiftUntilPos("horizontal")
@@ -131,7 +142,7 @@ public class BlueLeftAuto2021 extends OpMode {
 ////========================== OFFICIAL
 
     //Blue left
-    new ReleaseCollector(),
+        new ReleaseCollector(),
 
 //            new ForwardUntil(-6),
 //            new LiftUntilPos("over wall"),
@@ -148,7 +159,8 @@ public class BlueLeftAuto2021 extends OpMode {
 //            new MoveClaw("close"),
 //            new TurnUntilAngle(-180),
 
-    new LeftDetectRings(),
+
+        new LeftDetectRings(),
 
     });
     public LinearStack zerostates = new LinearStack(new OurState[] {
