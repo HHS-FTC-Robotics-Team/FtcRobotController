@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName; //for "eyes" init
+import org.firstinspires.ftc.teamcode.states.ForwardUntil;
 import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.NoThoughtsHeadEmpty;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
@@ -145,6 +146,12 @@ public class testSyncTeleop2021 extends LinearOpMode {
 
             states.loop();
 
+            if (gamepad1.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
+                OurState[] x = {
+                        new ForwardUntil(6)
+                };
+                states.addState(x);
+            } else if (!gamepad1.y) { incrementSpeedButtonIsDown = false; }
 
             telemetry.addData("Running?", states.running);
             telemetry.addData("Motor Power", gamepad1.left_stick_y);
