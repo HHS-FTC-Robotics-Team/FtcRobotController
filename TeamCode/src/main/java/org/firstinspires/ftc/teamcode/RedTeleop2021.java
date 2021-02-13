@@ -79,11 +79,11 @@ public class RedTeleop2021 extends LinearOpMode {
                 0.7, 0.81);
 
         touchin = new Sensors(
-                hardwareMap.get(DigitalChannel.class, "touchin")
+                hardwareMap.get(TouchSensor.class, "touchin")
         );
 
         touchout = new Sensors(
-                hardwareMap.get(DigitalChannel.class, "touchout")
+                hardwareMap.get(TouchSensor.class, "touchout")
         );
 
         colorLeft = new Sensors(

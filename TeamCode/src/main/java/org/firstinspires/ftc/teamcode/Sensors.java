@@ -26,13 +26,13 @@ public class Sensors extends LinearOpMode {
     float hsvValuesLeft[] = {0F,0F,0F};
     float hsvValuesRight[] = {0F,0F,0F};
 
-   public DigitalChannel digitaltouch = null;
+   public TouchSensor digitaltouch = null;
 
     public Sensors(Rev2mDistanceSensor f,
                    Rev2mDistanceSensor b,
                    Rev2mDistanceSensor l,
                    Rev2mDistanceSensor r,
-                   DigitalChannel t,
+                   TouchSensor t,
                    ColorSensor cl,
                    ColorSensor cr) {
         distancefront = f;
@@ -54,10 +54,10 @@ public class Sensors extends LinearOpMode {
         distanceright = r;
     }
 
-    public Sensors(DigitalChannel t) {
+    public Sensors(TouchSensor t) {
 
         digitaltouch = t;
-        digitaltouch.setMode(DigitalChannel.Mode.INPUT);
+  //      digitaltouch.setMode(DigitalChannel.Mode.INPUT);
     }
 
 
@@ -95,7 +95,7 @@ public class Sensors extends LinearOpMode {
     }
 
     public boolean getTouch() {
-        return !digitaltouch.getState();
+        return digitaltouch.isPressed();
     }
 
     public void runOpMode() {
