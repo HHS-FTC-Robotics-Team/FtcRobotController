@@ -71,8 +71,13 @@ public class BlueRightAuto2021 extends OpMode {
 
     OurState[] syncStatesList =  {
             new PowerShooter(23, 2100),
-            new MoveHopper("three"),
-            new PowerShooter(23, 0),
+            new LinearStack(new OurState[] {
+                    new MoveHopper("two"),
+                    new StrafeUntil(8),
+                    new MoveHopper("one"),
+                    new StrafeUntil(8),
+                    new MoveHopper("zero"),
+            }),
     };
     public SynchronousStack syncstack = new SynchronousStack(syncStatesList);
 
@@ -143,7 +148,7 @@ public class BlueRightAuto2021 extends OpMode {
 
             //Blue left
             new ReleaseCollector(),
-
+            syncstack,
 
             new RightDetectRings(),
 
