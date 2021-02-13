@@ -97,9 +97,16 @@ public class MoveHopper extends OurState {
     @Override
     public void loop() {
         h.incrementToPos(goal);
-        if (touch.getTouch() || timer > 350) {
-            running = false;
+        if (goal == "zero") { //we want the timer delay if it's the last ring to be shot, so that the motors don't start slowing until it's done shooting
+            if (timer > 250) {
+                running = false;
+            }
+        } else {
+            if (touch.getTouch() || timer > 250) {
+                running = false;
+            }
         }
+
         timer += 1;
     }
 
