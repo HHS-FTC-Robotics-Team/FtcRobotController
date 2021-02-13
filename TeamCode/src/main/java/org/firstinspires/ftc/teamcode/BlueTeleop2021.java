@@ -79,11 +79,11 @@ public class BlueTeleop2021 extends LinearOpMode {
                 0.7, 0.81);
 
         touchin = new Sensors(
-                hardwareMap.get(TouchSensor.class, "touchin")
+                hardwareMap.get(DigitalChannel.class, "touchin")
         );
 
         touchout = new Sensors(
-                hardwareMap.get(TouchSensor.class, "touchout")
+                hardwareMap.get(DigitalChannel.class, "touchout")
         );
 
         colorLeft = new Sensors(

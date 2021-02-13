@@ -32,6 +32,7 @@ import org.firstinspires.ftc.teamcode.states.LiftUntilPos;
 import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.MoveArm;
 import org.firstinspires.ftc.teamcode.states.MoveGearbox;
+import org.firstinspires.ftc.teamcode.states.StrafeUntil;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 import org.firstinspires.ftc.teamcode.states.LeftDetectRings;
@@ -60,7 +61,7 @@ import java.util.Date;
 // * or add a @Disabled annotation to prevent this OpMode from being added to the Driver Station
 // */
 @Autonomous
-@Disabled
+
 public class BlueRightAuto2021 extends OpMode {
     /* Declare OpMode members. */
     public int stage = 0;
@@ -132,6 +133,7 @@ public class BlueRightAuto2021 extends OpMode {
 
             //Blue left
             new ReleaseCollector(),
+            new StrafeUntil(12),
 
 //            new ForwardUntil(-6),
 //            new LiftUntilPos("horizontal"),

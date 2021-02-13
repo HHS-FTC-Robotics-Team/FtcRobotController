@@ -188,13 +188,13 @@ public class Drive extends LinearOpMode {
 
     double position = inches * 43.75; // convert inches to clicks based on circumference in inches
           // same as inches * 11.088
-    motorlf.setTargetPosition((int)position);
+    motorlf.setTargetPosition(-(int)position);
     motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
     motorlb.setTargetPosition(-(int)position);
     motorlb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    motorrf.setTargetPosition((int)position);
+    motorrf.setTargetPosition(-(int)position);
     motorrf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
     motorrb.setTargetPosition(-(int)position);
@@ -210,15 +210,15 @@ public class Drive extends LinearOpMode {
 
   public void strafeToPosition(float inches, double power) {
 
-    double position = inches * 43.75; // convert inches to clicks based on circumference in inches
+    double position = inches * 50; // convert inches to clicks based on circumference in inches
     // same as inches * 11.088
-    motorlf.setTargetPosition(-(int)position);
+    motorlf.setTargetPosition((int)position);
     motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
     motorlb.setTargetPosition(-(int)position);
     motorlb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    motorrf.setTargetPosition(-(int)position);
+    motorrf.setTargetPosition((int)position);
     motorrf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
     motorrb.setTargetPosition(-(int)position);
