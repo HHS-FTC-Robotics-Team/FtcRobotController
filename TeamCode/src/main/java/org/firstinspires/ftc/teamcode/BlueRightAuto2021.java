@@ -149,7 +149,7 @@ public class BlueRightAuto2021 extends OpMode {
             //Blue left
             new ReleaseCollector(),
             syncstack,
-
+            new PowerShooter(19, 0),
             new RightDetectRings(),
 
     });

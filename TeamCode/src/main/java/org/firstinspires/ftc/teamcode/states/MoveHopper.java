@@ -61,6 +61,7 @@ public class MoveHopper extends OurState {
     public Sensors touch = null;
     public RobotHardware robotHardware = null;
     public String goal = null;
+    public int timer = 0;
 
     public MoveHopper(String position) {
         super();
@@ -96,9 +97,10 @@ public class MoveHopper extends OurState {
     @Override
     public void loop() {
         h.incrementToPos(goal);
-        if (touch.getTouch()) {
+        if (touch.getTouch() || timer > 350) {
             running = false;
         }
+        timer += 1;
     }
 
     /*
