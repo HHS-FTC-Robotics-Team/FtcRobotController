@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 //import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -33,6 +34,7 @@ public class RobotHardware {
     public Orientation lastAngles = null; // new Orientation();
     public int camId;
     public WebcamName cam;
+    public Sensors touchout = null;
     
     private double globalangle = 0;
 
@@ -78,6 +80,10 @@ public class RobotHardware {
         g = new TwoPosServo(
                 hardwareMap.get(Servo.class, "gearbox"),
                 0.7, 0.83);
+
+        touchout = new Sensors(
+                hardwareMap.get(DigitalChannel.class, "touchout")
+        );
 
         camId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         cam = hardwareMap.get(WebcamName.class, "Webcam 1");
