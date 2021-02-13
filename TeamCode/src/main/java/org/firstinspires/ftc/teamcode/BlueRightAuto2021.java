@@ -32,6 +32,8 @@ import org.firstinspires.ftc.teamcode.states.LiftUntilPos;
 import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.MoveArm;
 import org.firstinspires.ftc.teamcode.states.MoveGearbox;
+import org.firstinspires.ftc.teamcode.states.MoveHopper;
+import org.firstinspires.ftc.teamcode.states.PowerShooter;
 import org.firstinspires.ftc.teamcode.states.StrafeUntil;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
@@ -66,6 +68,14 @@ public class BlueRightAuto2021 extends OpMode {
     /* Declare OpMode members. */
     public int stage = 0;
     public RobotHardware robotHardware = new RobotHardware();
+
+    OurState[] syncStatesList =  {
+            new PowerShooter(23, 2100),
+            new MoveHopper("three"),
+            new PowerShooter(23, 0),
+    };
+    public SynchronousStack syncstack = new SynchronousStack(syncStatesList);
+
     public LinearStack states = new LinearStack(new OurState[] {
 
 //            new LiftUntilPos("horizontal")
@@ -133,18 +143,7 @@ public class BlueRightAuto2021 extends OpMode {
 
             //Blue left
             new ReleaseCollector(),
-            new StrafeUntil(12),
 
-//            new ForwardUntil(-6),
-//            new LiftUntilPos("horizontal"),
-//            new MoveClaw("close"),
-//            new LiftUntilPos("above ground"),
-//            new ForwardUntil(-66),
-//            new TurnUntilAngle(180),
-//            new MoveClaw("open"),
-//            new LiftUntilPos("vertical"),
-//            new MoveClaw("close"),
-//            new TurnUntilAngle(-180),
 
             new RightDetectRings(),
 

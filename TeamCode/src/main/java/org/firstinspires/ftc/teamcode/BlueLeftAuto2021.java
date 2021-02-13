@@ -68,11 +68,11 @@ public class BlueLeftAuto2021 extends OpMode {
     public RobotHardware robotHardware = new RobotHardware();
 
 
-    OurState[] syncStatesList =  {
-        new TurnUntilAngle(90),
-        new MoveClaw("close")
-    };
-    public SynchronousStack syncstack = new SynchronousStack(syncStatesList);
+//    OurState[] syncStatesList =  {
+//        new TurnUntilAngle(90),
+//        new MoveClaw("close")
+//    };
+//    public SynchronousStack syncstack = new SynchronousStack(syncStatesList);
 
 
 

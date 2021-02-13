@@ -15,6 +15,8 @@ import org.firstinspires.ftc.teamcode.Drive;
 import org.firstinspires.ftc.teamcode.RobotStatus;
 //import org.firstinspires.ftc.teamcode.Collect;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.TouchSensor;
+
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
@@ -82,7 +84,7 @@ public class RobotHardware {
                 0.7, 0.83);
 
         touchout = new Sensors(
-                hardwareMap.get(DigitalChannel.class, "touchout")
+                hardwareMap.get(TouchSensor.class, "touchout")
         );
 
         camId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
