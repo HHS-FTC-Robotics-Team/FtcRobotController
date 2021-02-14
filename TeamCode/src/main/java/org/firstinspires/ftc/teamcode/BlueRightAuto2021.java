@@ -34,6 +34,7 @@ import org.firstinspires.ftc.teamcode.states.MoveArm;
 import org.firstinspires.ftc.teamcode.states.MoveGearbox;
 import org.firstinspires.ftc.teamcode.states.MoveHopper;
 import org.firstinspires.ftc.teamcode.states.PowerShooter;
+import org.firstinspires.ftc.teamcode.states.ShootRings;
 import org.firstinspires.ftc.teamcode.states.StrafeUntil;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
@@ -148,9 +149,7 @@ public class BlueRightAuto2021 extends OpMode {
 
             //Blue left
             new ReleaseCollector(),
-            new PowerShooter(23, 2100),
-            syncstack,
-            new PowerShooter(19, 0),
+
             new RightDetectRings(),
 
     });
@@ -159,10 +158,16 @@ public class BlueRightAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
-            new ForwardUntil(-66),
 
+            new ForwardUntil(24),
+            new StrafeUntil(-4),
+            new PowerShooter(23, 2100),
+            syncstack,
+            new PowerShooter(19, 0),
+
+            new ForwardUntil(-42),
             new TurnUntilAngle(-90),
-            new ForwardUntil(-24),
+            new ForwardUntil (-44),
 
             new TurnUntilAngle(-90),
             new MoveClaw("open"),
@@ -174,15 +179,19 @@ public class BlueRightAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
-            new ForwardUntil(-90),
 
+            new ForwardUntil(24),
+            new StrafeUntil(-4),
+            new PowerShooter(23, 2100),
+            syncstack,
+            new PowerShooter(19, 0),
+
+            new ForwardUntil(-42),
             new TurnUntilAngle(-90),
-            new ForwardUntil(-24),
-            new TurnUntilAngle(90),
+            new ForwardUntil (-32),
 
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
-            new ForwardUntil(24),
     });
 
     public LinearStack fourstates = new LinearStack(new OurState[] {
@@ -190,15 +199,22 @@ public class BlueRightAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
-            new ForwardUntil(-114),
 
-            new TurnUntilAngle(-90),
             new ForwardUntil(-24),
+            new StrafeUntil(-4),
+            new PowerShooter(23, 2100),
+            syncstack,
+            new PowerShooter(19, 0),
+
+            new ForwardUntil(-87),
+            new TurnUntilAngle(-90),
+            new ForwardUntil (-44),
 
             new TurnUntilAngle(-90),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
-            new ForwardUntil(-48),
+
+            new ForwardUntil(-45),
     });
 
     @Override
