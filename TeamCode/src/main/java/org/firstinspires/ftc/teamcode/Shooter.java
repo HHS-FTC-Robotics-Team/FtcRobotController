@@ -56,13 +56,17 @@ public class Shooter extends LinearOpMode {
 
     }
 
+    public double getTopVelocity() {
+        return Topmtr.getVelocity();
+    }
+
     public void setSpeed(double p) {
         Topmtr.setVelocity(-p);
         Bottommtr.setVelocity(p);
     }
     public boolean isSpeedCorrect(double p) {
-        return Topmtr.getVelocity() < p+20 && Topmtr.getVelocity() > p-20
-                && Bottommtr.getVelocity() < p+20 && Bottommtr.getVelocity() > p-20;
+        return Topmtr.getVelocity() < -p+100 && Topmtr.getVelocity() > -p-100
+                && Bottommtr.getVelocity() < p+100 && Bottommtr.getVelocity() > p-100;
     }
 
     public String getPower() {

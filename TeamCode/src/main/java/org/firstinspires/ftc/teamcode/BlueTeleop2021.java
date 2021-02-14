@@ -404,6 +404,7 @@ public class BlueTeleop2021 extends LinearOpMode {
             telemetry.addData("rb", d.getPowerrb());
             telemetry.addData("touch in", touchin.getTouch());
             telemetry.addData("touch out", touchout.getTouch());
+            telemetry.addData("top shooter velocity", shooter.getTopVelocity());
 //            if (cam1.isTargetVisible()) {
 //                telemetry.addData("Vuf 1 translation", cam1.getTranslation());
 //                telemetry.addData("Vuf 1 rotation", cam1.getRotation());

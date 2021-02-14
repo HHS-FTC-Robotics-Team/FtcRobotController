@@ -70,7 +70,7 @@ public class BlueRightAuto2021 extends OpMode {
     public RobotHardware robotHardware = new RobotHardware();
 
     OurState[] syncStatesList =  {
-            new PowerShooter(23, 2100),
+            //new PowerShooter(23, 2100),
             new LinearStack(new OurState[] {
                     new MoveHopper("two"),
                     new StrafeUntil(8),
@@ -148,6 +148,7 @@ public class BlueRightAuto2021 extends OpMode {
 
             //Blue left
             new ReleaseCollector(),
+            new PowerShooter(23, 2100),
             syncstack,
             new PowerShooter(19, 0),
             new RightDetectRings(),

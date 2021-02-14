@@ -102,7 +102,7 @@ public class MoveHopper extends OurState {
                 running = false;
             }
         } else {
-            if (touch.getTouch() || timer > 250) {
+            if (touch.getTouch() || timer > 200) {
                 running = false;
             }
         }

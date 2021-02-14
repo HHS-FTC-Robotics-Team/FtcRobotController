@@ -102,7 +102,7 @@ public class PowerShooter extends OurState {
         if (shooterSpeed == 0) {
             s.rest();
             h.rest();
-            s.pivotToAngle(19); //lowest angle
+           // s.pivotToAngle(19); //lowest angle
             running = false;
         } else {
             s.pivotToAngle(shooterAngle);
