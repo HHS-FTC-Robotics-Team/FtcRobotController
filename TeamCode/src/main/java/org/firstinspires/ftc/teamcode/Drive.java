@@ -162,6 +162,7 @@ public class Drive extends LinearOpMode {
 
       motorrb.setTargetPosition(-(int)position);
       motorrb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
     } else if (power < 0) { // counter clockwise
       motorlf.setTargetPosition(-(int)position);
       motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);

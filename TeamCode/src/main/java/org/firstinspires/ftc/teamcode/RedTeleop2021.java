@@ -103,7 +103,8 @@ public class RedTeleop2021 extends LinearOpMode {
         cam2 = new Eyes(
 //                hardwareMap.get(WebcamName.class, "Webcam 2"), 0.375f, -8.5f, 5.625f
 //                hardwareMap.get(WebcamName.class, "Webcam 2"), 1f, 8.125f, 4f //from the PIVOT, positive y is blue side
-                hardwareMap.get(WebcamName.class, "Webcam 2"), -2.0625f, -8.125f, 4f //CLAW-SIDE, x from the PIVOT, positive y is blue side
+//                hardwareMap.get(WebcamName.class, "Webcam 2"), -2.0625f, -8.125f, 4f //CLAW-SIDE, x from the PIVOT, positive y is blue side
+                hardwareMap.get(WebcamName.class, "Webcam 2"), -6.25f, -0.25f, 2.4375f //COLLECTOR-SIDE, x and z from the PIVOT, positive y is blue side
         );
 
         col = new Collect(
@@ -237,8 +238,9 @@ public class RedTeleop2021 extends LinearOpMode {
 //                    }
 //                    else
                     if (cam2.isTargetVisible()) {
-//                        heading = cam2.getHeading() - 184;
-                        heading = cam2.getHeading() - 4; //CLAW-SIDE
+//                        heading = cam2.getHeading() - 184; //OPPOSITE-CLAW
+////                        heading = cam2.getHeading() - 4; //CLAW-SIDE
+                        heading = cam2.getHeading() + 94; //COLLECTOR-SIDE
                         x = 72 - cam2.getPositionX();
                         //OG: 36
                         y = -36 - cam2.getPositionY();
