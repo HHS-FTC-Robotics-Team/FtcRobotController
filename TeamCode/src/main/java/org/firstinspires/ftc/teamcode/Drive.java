@@ -133,11 +133,11 @@ public class Drive extends LinearOpMode {
 
     float a = angle;
 
-    if (power > 0) { //set angle the other way if going clockwise
-        a = 360 - a;
-    } else if (power < 0) {
-
-    }
+//    if (power > 0) { //set angle the other way if going clockwise, doesn't work for red teleop
+////        a = 360 - a;
+//    } else if (power < 0) {
+//
+//    }
 
     double position = ((a / 360) * Math.PI * 114.8 ) * (134.4/(Math.PI * 3.85827) * 1.05); // convert inches to clicks based on circumference in inches
                     // angle/360 part is what fraction of a full circle that we wanna turn

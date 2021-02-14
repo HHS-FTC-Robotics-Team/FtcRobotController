@@ -246,13 +246,13 @@ public class RedTeleop2021 extends LinearOpMode {
                         y = -36 - cam2.getPositionY();
                         theta = (float) (Math.atan2(y, x) * (180/Math.PI));
 
-                        if (theta >= 0) {
-                            float rotationAngle = (heading + (theta*1.2f)); //1.2 is a manual correction
+                        if (theta >= -15) { //-15 is constant estimated through red Teleop testing
+                            float rotationAngle = (heading /*+ (theta*1.2f)*/); //1.2 is a manual correction
                             d.rotateToAngle(rotationAngle, -0.5); // counter cw
 
-                        } else if (theta < 0) {
-                            float rotationAngle = (heading + theta);
-                            d.rotateToAngle(rotationAngle, 0.5); // clockwise
+                        } else if (theta < -15) {
+                            float rotationAngle = (heading /*+ theta*/);
+                            d.rotateToAngle(-rotationAngle, 0.5); // clockwise
                         }
                     }
                 }

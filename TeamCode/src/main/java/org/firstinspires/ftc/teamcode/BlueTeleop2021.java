@@ -256,7 +256,7 @@ public class BlueTeleop2021 extends LinearOpMode {
 
                         } else if (theta < 0) {
                             float rotationAngle = (heading + theta);
-                            d.rotateToAngle(rotationAngle, 0.5); // clockwise
+                            d.rotateToAngle(360-rotationAngle, 0.5); // clockwise
                         }
                     }
                 }
