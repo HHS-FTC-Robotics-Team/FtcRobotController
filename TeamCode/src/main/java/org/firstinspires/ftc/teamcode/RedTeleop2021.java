@@ -240,16 +240,19 @@ public class RedTeleop2021 extends LinearOpMode {
                     if (cam2.isTargetVisible()) {
 //                        heading = cam2.getHeading() - 184; //OPPOSITE-CLAW
 ////                        heading = cam2.getHeading() - 4; //CLAW-SIDE
-                        heading = cam2.getHeading() + 94; //COLLECTOR-SIDE
+                        heading = -90 - cam2.getHeading(); //COLLECTOR-SIDE
                         x = 72 - cam2.getPositionX();
                         //OG: 36
                         y = -36 - cam2.getPositionY();
                         theta = (float) (Math.atan2(y, x) * (180/Math.PI));
-                        float rotationAngle = (heading - theta);
-                        if (rotationAngle >= -180) {
-                            d.rotateToAngle(rotationAngle, -0.5); // TODO conditional does not work
-                        } else if (rotationAngle < -180) {
-                            d.rotateToAngle(rotationAngle, 0.5);
+
+                        if (theta >= 0) {
+                            float rotationAngle = (heading + (theta*1.2f)); //1.2 is a manual correction
+                            d.rotateToAngle(rotationAngle, -0.5); // counter cw
+
+                        } else if (theta < 0) {
+                            float rotationAngle = (heading + theta);
+                            d.rotateToAngle(rotationAngle, 0.5); // clockwise
                         }
                     }
                 }
