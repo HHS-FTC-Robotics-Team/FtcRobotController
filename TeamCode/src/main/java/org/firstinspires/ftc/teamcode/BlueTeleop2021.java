@@ -11,8 +11,10 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName; //for "eyes" init
+import org.firstinspires.ftc.teamcode.states.ForwardUntil;
 import org.firstinspires.ftc.teamcode.states.NoThoughtsHeadEmpty;
 import org.firstinspires.ftc.teamcode.states.StrafeUntil;
+import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 
 @TeleOp(name="BlueTeleop2021", group="Linear Opmode")
 
@@ -21,6 +23,7 @@ public class BlueTeleop2021 extends LinearOpMode {
     //robot hardware class used for linear and sync stacks
     public RobotHardware robotHardware = new RobotHardware();
     private boolean g1yIsDown = false;
+    private boolean g1bIsDown = false;
 
     //creating objects for all of the different parts
     private Drive d;
@@ -144,11 +147,35 @@ public class BlueTeleop2021 extends LinearOpMode {
             states.loop();
 
             if (gamepad1.y && !g1yIsDown) { g1yIsDown = true;
-                OurState[] x = {
+                OurState[] s = {
                         new StrafeUntil(8)
                 };
-                states.addState(x);
+                states.addState(s);
             } else if (!gamepad1.y) { g1yIsDown = false; }
+
+            if (gamepad1.b && !g1bIsDown) { g1bIsDown = true;
+                // auto rotation towards the goal ==================================================
+                float heading = 0f;
+                float x = 0f;
+                float y = 0f;
+                if (cam2.isTargetVisible()) {
+                    heading = -90 - cam2.getHeading(); //COLLECTOR-SIDE
+                    x = -42 - cam2.getPositionX();
+                    y = 20 - cam2.getPositionY();
+//                    if (heading < 0) {
+                        heading = -heading;
+//                    }
+
+                    OurState[] s = {
+                        new LinearStack(new OurState[]{
+                            new TurnUntilAngle(heading),
+                            new StrafeUntil(y),
+                            new ForwardUntil(x),
+                        }),
+                    };
+                    states.addState(s);
+                }
+            } else if (!gamepad1.b) { g1bIsDown = false; }
 
 //            if (-gamepad2.right_stick_y > 0) {
 //                lift.up(Math.abs(gamepad2.right_stick_y));
