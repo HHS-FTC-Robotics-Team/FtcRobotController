@@ -156,4 +156,8 @@ public class SynchronousStack extends OurState {
         states.addAll(Arrays.asList(stack));
     }
 
+    public int getSize() {
+        return states.size();
+    }
+
 }

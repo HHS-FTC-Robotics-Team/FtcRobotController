@@ -196,7 +196,7 @@ public class BlueTeleop2021 extends LinearOpMode {
                     d.resetAllEncoders();
                     state = "drive";
                 }
-            } else if (state == "drive" && d.isBusy() == false ) {
+            } else if (state == "drive" && states.getSize() <= 1 ) {
                 d.setPower(
                     gamepad1.left_stick_y,
                     gamepad1.left_stick_x,
