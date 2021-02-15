@@ -131,16 +131,13 @@ public class testSyncTeleop2021 extends LinearOpMode {
 
 
         OurState[] syncStatesList =  {
-              //  new TurnUntilAngle(90),
                 new NoThoughtsHeadEmpty(),
         };
         SynchronousStack states = new SynchronousStack(syncStatesList);
         robotHardware.build(hardwareMap);
         states.init(robotHardware);
 
-        states.init_loop();
         waitForStart();
-        states.start();
 
         col.releaseCollector();
 

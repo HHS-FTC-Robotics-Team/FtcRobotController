@@ -11,10 +11,16 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName; //for "eyes" init
+import org.firstinspires.ftc.teamcode.states.NoThoughtsHeadEmpty;
+import org.firstinspires.ftc.teamcode.states.StrafeUntil;
 
 @TeleOp(name="BlueTeleop2021", group="Linear Opmode")
 
 public class BlueTeleop2021 extends LinearOpMode {
+
+    //robot hardware class used for linear and sync stacks
+    public RobotHardware robotHardware = new RobotHardware();
+    private boolean g1yIsDown = false;
 
     //creating objects for all of the different parts
     private Drive d;
@@ -123,10 +129,26 @@ public class BlueTeleop2021 extends LinearOpMode {
         );
 
 
+        OurState[] syncStatesList =  {
+                new NoThoughtsHeadEmpty(), //a unique state for teleop that never ends
+        };
+        SynchronousStack states = new SynchronousStack(syncStatesList);
+        robotHardware.build(hardwareMap);
+        states.init(robotHardware);
+
         waitForStart();
         col.releaseCollector();
 
         while (opModeIsActive()) {
+
+            states.loop();
+
+            if (gamepad1.y && !g1yIsDown) { g1yIsDown = true;
+                OurState[] x = {
+                        new StrafeUntil(8)
+                };
+                states.addState(x);
+            } else if (!gamepad1.y) { g1yIsDown = false; }
 
 //            if (-gamepad2.right_stick_y > 0) {
 //                lift.up(Math.abs(gamepad2.right_stick_y));
