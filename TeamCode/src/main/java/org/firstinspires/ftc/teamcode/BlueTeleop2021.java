@@ -169,7 +169,7 @@ public class BlueTeleop2021 extends LinearOpMode {
                     d.resetAllEncoders();
                     state = "drive";
                 }
-            } else if (state == "drive") {
+            } else if (state == "drive" && d.isBusy() == false ) {
                 d.setPower(
                     gamepad1.left_stick_y,
                     gamepad1.left_stick_x,
@@ -246,19 +246,6 @@ public class BlueTeleop2021 extends LinearOpMode {
                     float heading = 0f;
                     float x = 0f;
                     float y = 0f;
-//                    if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
-//                        heading = cam1.getHeading() - 90;
-//                        x = 72 - cam1.getPositionX();
-//                        y = 36 - cam1.getPositionY();
-//                        theta = (float) (Math.atan2(y, x) * (180/Math.PI));
-//                        float rotationAngle = (heading - theta);
-//                        if (rotationAngle >= -180) {
-//                            d.rotateToAngle(rotationAngle, -0.5); // TODO conditional does not work
-//                        } else if (rotationAngle < -180) {
-//                            d.rotateToAngle(rotationAngle, 0.5);
-//                        }
-//                    }
-//                    else
                         if (cam2.isTargetVisible()) {
 //                        heading = cam2.getHeading() - 184; //OPPOSITE-CLAW
 //                        heading = cam2.getHeading() - 4; //CLAW-SIDE
@@ -284,32 +271,28 @@ public class BlueTeleop2021 extends LinearOpMode {
                 }
                 // auto pivoting towards the goal ==================================================
                 double distToGoal;
-
-//                if(cam1.isTargetVisible()) {
-//                    double x = 72 - cam1.getPositionX() + 1.125;
-//                    double y = 36 - cam1.getPositionY();
-//                    distToGoal = Math.sqrt((x * x) + (y * y));
-//                    shooterAngle = (0.00121002)*(distToGoal-106.252)*(distToGoal-106.252) + 28.2387; //quadratic line of best fit equation
-////                    shooterAngle = Math.pow( (0.00311978),(distToGoal-78.0766) ) + 28.4444; //exponential line of best fit equation
-//                    shooter.pivotToAngle(shooterAngle);
-//                    shooterSpeed = (-0.0000126263)*(distToGoal-105)*(distToGoal-105) + 0.90175; //quadratic line of best fit equation
-//                }
-//                else
+                /*old values for original camera
+                if(cam1.isTargetVisible()) {
+                    double x = 72 - cam1.getPositionX() + 1.125;
+                    double y = 36 - cam1.getPositionY();
+                    distToGoal = Math.sqrt((x * x) + (y * y));
+                    shooterAngle = (0.00121002)*(distToGoal-106.252)*(distToGoal-106.252) + 28.2387; //quadratic line of best fit equation
+                    //shooterAngle = Math.pow( (0.00311978),(distToGoal-78.0766) ) + 28.4444; //exponential line of best fit equation
+                    shooter.pivotToAngle(shooterAngle);
+                    shooterSpeed = (-0.0000126263)*(distToGoal-105)*(distToGoal-105) + 0.90175; //quadratic line of best fit equation
+                }
+                else */
                 if(cam2.isTargetVisible()) {
                     double x = 72 - cam2.getPositionX() + 1.125;
                     double y = 36 - cam2.getPositionY();
                     distToGoal = Math.sqrt((x * x) + (y * y));
                     shooterAngle = (0.00209513)*(distToGoal-104.975)*(distToGoal-104.975) + 27.3575; //quadratic line of best fit equation, updated 2/12/2021
                     shooter.pivotToAngle(shooterAngle);
-
                     shooterSpeed = (-0.0343407)*(distToGoal-104.532)*(distToGoal-104.532) + 2137.34; //quadratic line of best fit equation, updated 2/12/2021
                 }
-//                }
-            } else if (!gamepad1.a) {
-                turningButtonIsDown = false;
-            }
+            } else if (!gamepad1.a) { turningButtonIsDown = false; }
 
-//            cam1.trackPosition(); // vuforia
+            //cam1.trackPosition(); // vuforia
             cam2.trackPosition();
 
             //manually set the position of the hopper servo
