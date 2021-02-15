@@ -147,6 +147,7 @@ public class BlueTeleop2021 extends LinearOpMode {
             states.loop();
 
             if (gamepad1.y && !g1yIsDown) { g1yIsDown = true;
+            state = "rotate";
                 OurState[] s = {
                         new StrafeUntil(8)
                 };
@@ -160,8 +161,8 @@ public class BlueTeleop2021 extends LinearOpMode {
                 float y = 0f;
                 if (cam2.isTargetVisible()) {
                     heading = -90 - cam2.getHeading(); //COLLECTOR-SIDE
-                    x = -31.5f - cam2.getPositionX();
-                    y = 27 - cam2.getPositionY();
+                    x = -33 - cam2.getPositionX();
+                    y = 20 - cam2.getPositionY();
 //                    if (heading < 0) {
                         heading = -heading;
 //                    }
@@ -400,17 +401,17 @@ public class BlueTeleop2021 extends LinearOpMode {
             //Increment shoooter angle using gamepad 2 left and right bumpers
 
             if (gamepad2.right_bumper && !incrementAngleButtonIsDown) { incrementAngleButtonIsDown = true;
-                if (shooterAngle < 29.9) {
-                    shooterAngle += 0.1;
-                } else if (shooterAngle >= 29.9) {
+                if (shooterAngle < 29.5) {
+                    shooterAngle += 0.5;
+                } else if (shooterAngle >= 29.5) {
                     shooterAngle = 30;
                 }
             } else if (!gamepad2.right_bumper) { incrementAngleButtonIsDown = false; }
 
             if (gamepad2.left_bumper && !decrementAngleButtonIsDown) { decrementAngleButtonIsDown = true;
-                if (shooterAngle > 19.1) {
-                    shooterAngle -= 0.1;
-                } else if (shooterAngle <= 19.1) {
+                if (shooterAngle > 19.5) {
+                    shooterAngle -= 0.5;
+                } else if (shooterAngle <= 19.5) {
                     shooterAngle = 19;
                 }
             } else if (!gamepad2.left_bumper) { decrementAngleButtonIsDown = false; }
@@ -457,6 +458,7 @@ public class BlueTeleop2021 extends LinearOpMode {
             telemetry.addData("Shooter speed", shooterSpeed);
             telemetry.addData("Shooter angle", shooterAngle);
             telemetry.addData("On Midline?", onMidline);
+            telemetry.addData("State number", states.getSize());
             telemetry.update();
 
         }

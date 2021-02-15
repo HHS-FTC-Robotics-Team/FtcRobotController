@@ -18,25 +18,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 */
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.util.ElapsedTime;
+
 import org.firstinspires.ftc.teamcode.states.ForwardUntil;
 import org.firstinspires.ftc.teamcode.states.LeftDetectRings;
-import org.firstinspires.ftc.teamcode.states.LiftUntilPos;
-import org.firstinspires.ftc.teamcode.states.MoveClaw;
-import org.firstinspires.ftc.teamcode.states.MoveArm;
-import org.firstinspires.ftc.teamcode.states.MoveGearbox;
-import org.firstinspires.ftc.teamcode.states.ShootRings;
-import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
-import org.firstinspires.ftc.teamcode.states.LeftDetectRings;
-import org.firstinspires.ftc.teamcode.states.RightDetectRings;
 //import org.firstinspires.ftc.teamcode.states.StrafeUntilClicks;
 ////import org.firstinspires.ftc.teamcode.states.CollectUntilDist;
 ////import org.firstinspires.ftc.teamcode.states.DispenseUntilDist;
@@ -45,10 +32,8 @@ import org.firstinspires.ftc.teamcode.states.RightDetectRings;
 //import org.firstinspires.ftc.teamcode.states.DragFoundationR;
 //import org.firstinspires.ftc.teamcode.states.LiftUntilTime;
 
-import org.firstinspires.ftc.teamcode.RobotHardware;
 //
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 ///**
 // * This file contains an example of an iterative (Non-Linear) "OpMode".

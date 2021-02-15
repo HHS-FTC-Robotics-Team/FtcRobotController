@@ -113,7 +113,7 @@ public class EasyOpenCVLeft extends LinearOpMode
 //        final int ONE_RING_THRESHOLD = 135;
 
         //Personalized for Blue-left or Red-left starting positions
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(85,5);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(86,5);
 
         static final int REGION_WIDTH = 35;
         static final int REGION_HEIGHT = 25;
