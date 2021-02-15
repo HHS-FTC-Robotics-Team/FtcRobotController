@@ -160,8 +160,8 @@ public class BlueTeleop2021 extends LinearOpMode {
                 float y = 0f;
                 if (cam2.isTargetVisible()) {
                     heading = -90 - cam2.getHeading(); //COLLECTOR-SIDE
-                    x = -42 - cam2.getPositionX();
-                    y = 20 - cam2.getPositionY();
+                    x = -31.5f - cam2.getPositionX();
+                    y = 27 - cam2.getPositionY();
 //                    if (heading < 0) {
                         heading = -heading;
 //                    }
@@ -169,8 +169,8 @@ public class BlueTeleop2021 extends LinearOpMode {
                     OurState[] s = {
                         new LinearStack(new OurState[]{
                             new TurnUntilAngle(heading),
-                            new StrafeUntil(y),
-                            new ForwardUntil(x),
+                            new StrafeUntil(-y),
+                            new ForwardUntil(-x),
                         }),
                     };
                     states.addState(s);
