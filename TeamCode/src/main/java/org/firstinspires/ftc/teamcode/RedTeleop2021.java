@@ -11,10 +11,19 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName; //for "eyes" init
+import org.firstinspires.ftc.teamcode.states.ForwardUntil;
+import org.firstinspires.ftc.teamcode.states.NoThoughtsHeadEmpty;
+import org.firstinspires.ftc.teamcode.states.StrafeUntil;
+import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 
 @TeleOp(name="RedTeleop2021", group="Linear Opmode")
 
 public class RedTeleop2021 extends LinearOpMode {
+
+    //robot hardware class used for linear and sync stacks
+    public RobotHardware robotHardware = new RobotHardware();
+    private boolean g1yIsDown = false;
+    private boolean g1bIsDown = false;
 
     //creating objects for all of the different parts
     private Drive d;
@@ -123,10 +132,60 @@ public class RedTeleop2021 extends LinearOpMode {
         );
 
 
+        OurState[] syncStatesList =  {
+                new NoThoughtsHeadEmpty(), //a unique state for teleop that never ends
+        };
+        SynchronousStack states = new SynchronousStack(syncStatesList);
+        robotHardware.build(hardwareMap);
+        states.init(robotHardware);
+
         waitForStart();
         col.releaseCollector();
 
         while (opModeIsActive()) {
+
+            states.loop();
+
+            if (gamepad1.y && !g1yIsDown) { g1yIsDown = true;
+                state = "rotate";
+                OurState[] s = {
+                        new StrafeUntil(-8)
+                };
+                states.addState(s);
+            } else if (!gamepad1.y) { g1yIsDown = false; }
+
+            if (gamepad1.b && !g1bIsDown) { g1bIsDown = true;
+                // auto rotation towards the power shot  ==================================================
+
+                state = "rotate";
+                float heading = 0f;
+                float x = 0f;
+                float y = 0f;
+
+
+                if (cam2.isTargetVisible()) {
+
+                    heading = -90 - cam2.getHeading();
+                    x = -39 - cam2.getPositionX();
+                    y = -17 - cam2.getPositionY();
+//                    if (heading < 0) {
+                    heading = -heading;
+//                    }
+
+                    shooterAngle = 30;
+                    shooterSpeed = 1865;
+
+
+                    OurState[] s = {
+                            new LinearStack(new OurState[]{
+                                    new TurnUntilAngle(heading),
+                                    new StrafeUntil(-y),
+                                    new ForwardUntil(-x),
+                            }),
+                    };
+                    states.addState(s);
+                }
+            } else if (!gamepad1.b) { g1bIsDown = false; }
 
 //            if (-gamepad2.right_stick_y > 0) {
 //                lift.up(Math.abs(gamepad2.right_stick_y));
@@ -147,7 +206,7 @@ public class RedTeleop2021 extends LinearOpMode {
                     d.resetAllEncoders();
                     state = "drive";
                 }
-            } else if (state == "drive") {
+            } else if (state == "drive" && states.getSize() <= 1 ) {
                 d.setPower(
                         gamepad1.left_stick_y,
                         gamepad1.left_stick_x,
@@ -224,22 +283,9 @@ public class RedTeleop2021 extends LinearOpMode {
                     float heading = 0f;
                     float x = 0f;
                     float y = 0f;
-//                    if(cam1.isTargetVisible()) { // TODO make getTheta method in Eyes
-//                        heading = cam1.getHeading() - 90;
-//                        x = 72 - cam1.getPositionX();
-//                        y = 36 - cam1.getPositionY();
-//                        theta = (float) (Math.atan2(y, x) * (180/Math.PI));
-//                        float rotationAngle = (heading - theta);
-//                        if (rotationAngle >= -180) {
-//                            d.rotateToAngle(rotationAngle, -0.5); // TODO conditional does not work
-//                        } else if (rotationAngle < -180) {
-//                            d.rotateToAngle(rotationAngle, 0.5);
-//                        }
-//                    }
-//                    else
-                    if (cam2.isTargetVisible()) {
+                        if (cam2.isTargetVisible()) {
 //                        heading = cam2.getHeading() - 184; //OPPOSITE-CLAW
-////                        heading = cam2.getHeading() - 4; //CLAW-SIDE
+//                        heading = cam2.getHeading() - 4; //CLAW-SIDE
                         heading = -90 - cam2.getHeading(); //COLLECTOR-SIDE
                         x = 72 - cam2.getPositionX();
                         //OG: 36
@@ -312,12 +358,12 @@ public class RedTeleop2021 extends LinearOpMode {
             //New 2/5 - use y button to make shooter go to 26 degrees and adjust power
             //for manual power shot aiming TODO: Find power!
 
-            if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
-
-                shooterAngle = 26;
-                shooterSpeed = 2100;
-
-            } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
+//            if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
+//
+//                shooterAngle = 26;
+//                shooterSpeed = 2100;
+//
+//            } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
 
 //            if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
 //                if (shooterSpeed < 0.99) {
@@ -404,6 +450,7 @@ public class RedTeleop2021 extends LinearOpMode {
             telemetry.addData("Shooter speed", shooterSpeed);
             telemetry.addData("Shooter angle", shooterAngle);
             telemetry.addData("On Midline?", onMidline);
+            telemetry.addData("State number", states.getSize());
             telemetry.update();
 
         }

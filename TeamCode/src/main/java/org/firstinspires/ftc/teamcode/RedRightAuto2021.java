@@ -147,9 +147,9 @@ public class RedRightAuto2021 extends OpMode {
             new LiftUntilPos("above ground"),
             new ForwardUntil(-24),
 
-            new TurnUntilAngle(-5),
-            new ShootRings(27, 2100),
-            new TurnUntilAngle(5),
+            new TurnUntilAngle(-8),
+            new ShootRings(27.5, 2120),
+            new TurnUntilAngle(8),
 
             new ForwardUntil(-42),
             new MoveClaw("open"),
@@ -163,9 +163,9 @@ public class RedRightAuto2021 extends OpMode {
             new LiftUntilPos("over wall"),
             new ForwardUntil(-24),
 
-            new TurnUntilAngle(-5),
-            new ShootRings(27, 2100),
-            new TurnUntilAngle(5),
+            new TurnUntilAngle(-8),
+            new ShootRings(27.5, 2120),
+            new TurnUntilAngle(8),
 
             new ForwardUntil(-66),
             new TurnUntilAngle(-180),
@@ -181,9 +181,9 @@ public class RedRightAuto2021 extends OpMode {
             new LiftUntilPos("above ground"),
             new ForwardUntil(-24),
 
-            new TurnUntilAngle(-5),
-            new ShootRings(27, 2100),
-            new TurnUntilAngle(5),
+            new TurnUntilAngle(-8),
+            new ShootRings(27.5, 2120),
+            new TurnUntilAngle(8),
 
             new ForwardUntil(-90),
             new MoveClaw("open"),
