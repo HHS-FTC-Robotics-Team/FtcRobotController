@@ -147,9 +147,10 @@ public class BlueRightAuto2021 extends OpMode {
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
 
+            new PowerShooter(29.5, 1865),
             new ForwardUntil(-24),
             new StrafeUntil(4),
-            new PowerShooter(29.5, 1865),
+
             syncstack,
             new PowerShooter(19, 0),
 
@@ -188,9 +189,10 @@ public class BlueRightAuto2021 extends OpMode {
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
 
+            new PowerShooter(29.5, 1865),
             new ForwardUntil(-24),
             new StrafeUntil(4),
-            new PowerShooter(29.5, 1865),
+
             syncstack,
             new PowerShooter(19, 0),
 
