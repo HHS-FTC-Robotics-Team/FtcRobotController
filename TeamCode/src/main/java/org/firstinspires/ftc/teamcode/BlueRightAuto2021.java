@@ -62,9 +62,9 @@ public class BlueRightAuto2021 extends OpMode {
             //new PowerShooter(23, 2100),
             new LinearStack(new OurState[] {
                     new MoveHopper("two"),
-                    new StrafeUntil(8),
+                    new StrafeUntil(4),
                     new MoveHopper("one"),
-                    new StrafeUntil(8),
+                    new StrafeUntil(4),
                     new MoveHopper("zero"),
             }),
     };
