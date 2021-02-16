@@ -63,6 +63,8 @@ public class MoveHopper extends OurState {
     public String goal = null;
     public int timer = 0;
 
+    public Shooter s = null;
+
     public MoveHopper(String position) {
         super();
         goal = position;
@@ -73,6 +75,7 @@ public class MoveHopper extends OurState {
         robotHardware = r;
         h = robotHardware.hopper;
         touch = robotHardware.touchout;
+        s = robotHardware.shooter;
     }
 
     /*
@@ -96,7 +99,9 @@ public class MoveHopper extends OurState {
      */
     @Override
     public void loop() {
-        h.incrementToPos(goal);
+        if (s.isSpeedCorrect(1865)) { //TODO make it so that this value is a parameter
+            h.incrementToPos(goal);
+        }
         if (goal == "zero") { //we want the timer delay if it's the last ring to be shot, so that the motors don't start slowing until it's done shooting
             if (timer > 250) {
                 running = false;
