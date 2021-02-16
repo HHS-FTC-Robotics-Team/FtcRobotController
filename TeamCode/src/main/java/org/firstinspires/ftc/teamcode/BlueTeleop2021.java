@@ -175,7 +175,7 @@ public class BlueTeleop2021 extends LinearOpMode {
                     shooterAngle = 30;
                     shooterSpeed = 1865;
 
-
+                    state = "rotate";
                     OurState[] s = {
                         new LinearStack(new OurState[]{
                             new TurnUntilAngle(heading),
@@ -302,7 +302,7 @@ public class BlueTeleop2021 extends LinearOpMode {
 
                         } else if (theta < 0) {
                             float rotationAngle = (heading + theta);
-                            d.rotateToAngle(360-rotationAngle, 0.5); // clockwise
+                            d.rotateToAngle(360-rotationAngle - 2, 0.5); // clockwise //-2 is a manual correction
                         }
                     }
                 }
