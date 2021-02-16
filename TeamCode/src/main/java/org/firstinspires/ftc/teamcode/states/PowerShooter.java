@@ -63,6 +63,7 @@ public class PowerShooter extends OurState {
     public RobotHardware robotHardware = null;
     public double shooterSpeed = 1;
     public double shooterAngle = 19;
+    public int timer = 0;
 
     public PowerShooter(double angle, double speed) {
         super();
@@ -110,7 +111,10 @@ public class PowerShooter extends OurState {
             h.out();
         }
         if (s.isSpeedCorrect(shooterSpeed)) {
-            running = false;
+            timer += 1;
+            if (timer > 60) { //if velocity reads correct 60 times, then move on
+                running = false;
+            }
         }
     }
 
