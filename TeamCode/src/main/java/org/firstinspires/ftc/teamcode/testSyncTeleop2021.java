@@ -19,6 +19,7 @@ import org.firstinspires.ftc.teamcode.states.StrafeUntil;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 
 @TeleOp(name="testSyncTeleop2021", group="Linear Opmode")
+@Disabled
 
 public class testSyncTeleop2021 extends LinearOpMode {
     public RobotHardware robotHardware = new RobotHardware();

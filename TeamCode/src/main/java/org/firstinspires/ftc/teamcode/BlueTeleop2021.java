@@ -155,17 +155,26 @@ public class BlueTeleop2021 extends LinearOpMode {
             } else if (!gamepad1.y) { g1yIsDown = false; }
 
             if (gamepad1.b && !g1bIsDown) { g1bIsDown = true;
-                // auto rotation towards the goal ==================================================
+                // auto rotation towards the power shot  ==================================================
+
+                state = "rotate";
                 float heading = 0f;
                 float x = 0f;
                 float y = 0f;
+
+
                 if (cam2.isTargetVisible()) {
-                    heading = -90 - cam2.getHeading(); //COLLECTOR-SIDE
-                    x = -33 - cam2.getPositionX();
-                    y = 20 - cam2.getPositionY();
+
+                    heading = -90 - cam2.getHeading();
+                    x = -39 - cam2.getPositionX();
+                    y = 17 - cam2.getPositionY();
 //                    if (heading < 0) {
                         heading = -heading;
 //                    }
+
+                    shooterAngle = 30;
+                    shooterSpeed = 1865;
+
 
                     OurState[] s = {
                         new LinearStack(new OurState[]{
@@ -349,12 +358,12 @@ public class BlueTeleop2021 extends LinearOpMode {
             //New 2/5 - use y button to make shooter go to 26 degrees and adjust power
             //for manual power shot aiming TODO: Modify power
 
-            if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
-
-                    shooterAngle = 26;
-                    shooterSpeed = 2100;
-
-            } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
+//            if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
+//
+//                    shooterAngle = 26;
+//                    shooterSpeed = 2100;
+//
+//            } else if (!gamepad2.y) { incrementSpeedButtonIsDown = false; }
 
 //            if (gamepad2.y && !incrementSpeedButtonIsDown) { incrementSpeedButtonIsDown = true;
 //                if (shooterSpeed < 0.99) {
@@ -387,7 +396,7 @@ public class BlueTeleop2021 extends LinearOpMode {
 //                    shooterSpeed = 0;
 //                }
 //            } else if (!gamepad2.a) { decrementSpeedButtonIsDown = false; }
-
+//
             if (gamepad2.b) {
                 shooter.setSpeed(shooterSpeed);
                 hopper.out();
@@ -439,9 +448,10 @@ public class BlueTeleop2021 extends LinearOpMode {
             telemetry.addData("lb", d.getPowerlb());
             telemetry.addData("rf", d.getPowerrf());
             telemetry.addData("rb", d.getPowerrb());
-            telemetry.addData("touch in", touchin.getTouch());
+//            telemetry.addData("touch in", touchin.getTouch());
             telemetry.addData("touch out", touchout.getTouch());
-            telemetry.addData("top shooter velocity", shooter.getTopVelocity());
+            telemetry.addData("lift clicks", col.getMotorClicks());
+//            telemetry.addData("top shooter velocity", shooter.getTopVelocity());
 //            if (cam1.isTargetVisible()) {
 //                telemetry.addData("Vuf 1 translation", cam1.getTranslation());
 //                telemetry.addData("Vuf 1 rotation", cam1.getRotation());

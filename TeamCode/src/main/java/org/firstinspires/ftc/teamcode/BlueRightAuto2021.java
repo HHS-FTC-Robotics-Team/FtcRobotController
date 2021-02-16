@@ -149,7 +149,7 @@ public class BlueRightAuto2021 extends OpMode {
 
             new ForwardUntil(-24),
             new StrafeUntil(4),
-            new PowerShooter(23, 2100),
+            new PowerShooter(30, 1865),
             syncstack,
             new PowerShooter(19, 0),
 
@@ -170,7 +170,7 @@ public class BlueRightAuto2021 extends OpMode {
 
             new ForwardUntil(-24),
             new StrafeUntil(4),
-            new PowerShooter(23, 2100),
+            new PowerShooter(30, 1865),
             syncstack,
             new PowerShooter(19, 0),
 
@@ -190,7 +190,7 @@ public class BlueRightAuto2021 extends OpMode {
 
             new ForwardUntil(-24),
             new StrafeUntil(4),
-            new PowerShooter(23, 2100),
+            new PowerShooter(30, 1865),
             syncstack,
             new PowerShooter(19, 0),
 
