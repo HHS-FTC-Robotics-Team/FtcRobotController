@@ -109,13 +109,16 @@ public class PowerShooter extends OurState {
             s.pivotToAngle(shooterAngle);
             s.setSpeed(shooterSpeed);
             h.out();
-        }
-        if (s.isSpeedCorrect(shooterSpeed)) {
-            timer += 1;
-            if (timer > 60) { //if velocity reads correct 60 times, then move on
-                running = false;
+
+            if (s.isSpeedCorrect(shooterSpeed)) {
+                timer += 1;
+                if (timer > 60) { //if velocity reads correct 60 times, then move on
+                    running = false;
+                }
             }
+
         }
+
     }
 
     /*

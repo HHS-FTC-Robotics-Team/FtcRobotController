@@ -62,9 +62,9 @@ public class BlueRightAuto2021 extends OpMode {
             //new PowerShooter(23, 2100),
             new LinearStack(new OurState[] {
                     new MoveHopper("two"),
-                    new StrafeUntil(4),
+                    new StrafeUntil(6),
                     new MoveHopper("one"),
-                    new StrafeUntil(4),
+                    new StrafeUntil(6),
                     new MoveHopper("zero"),
             }),
     };
@@ -149,7 +149,7 @@ public class BlueRightAuto2021 extends OpMode {
 
             new ForwardUntil(-24),
             new StrafeUntil(4),
-            new PowerShooter(30, 1865),
+            new PowerShooter(29.5, 1865),
             syncstack,
             new PowerShooter(19, 0),
 
@@ -170,7 +170,7 @@ public class BlueRightAuto2021 extends OpMode {
 
             new ForwardUntil(-24),
             new StrafeUntil(4),
-            new PowerShooter(30, 1865),
+            new PowerShooter(29.5, 1865),
             syncstack,
             new PowerShooter(19, 0),
 
@@ -190,11 +190,11 @@ public class BlueRightAuto2021 extends OpMode {
 
             new ForwardUntil(-24),
             new StrafeUntil(4),
-            new PowerShooter(30, 1865),
+            new PowerShooter(29.5, 1865),
             syncstack,
             new PowerShooter(19, 0),
 
-            new ForwardUntil(-87),
+            new ForwardUntil(-81),
             new TurnUntilAngle(-90),
             new ForwardUntil (-44),
 
@@ -202,7 +202,7 @@ public class BlueRightAuto2021 extends OpMode {
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
 
-            new ForwardUntil(-45),
+            new ForwardUntil(-41),
     });
 
     @Override
