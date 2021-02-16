@@ -69,7 +69,7 @@ public class LiftUntilPos extends OurState {
         if (g == "vertical") {
             goal = 0;
         } else if (g == "horizontal") {
-            goal = -400;
+            goal = -380;
         } else if (g == "above ground") {
             goal = -620;
         } else if (g == "over wall") {
