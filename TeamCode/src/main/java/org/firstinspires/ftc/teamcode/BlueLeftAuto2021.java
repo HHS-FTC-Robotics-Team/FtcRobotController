@@ -25,6 +25,8 @@ import org.firstinspires.ftc.teamcode.states.ForwardUntil;
 import org.firstinspires.ftc.teamcode.states.LeftDetectRings;
 import org.firstinspires.ftc.teamcode.states.LiftUntilPos;
 import org.firstinspires.ftc.teamcode.states.MoveClaw;
+import org.firstinspires.ftc.teamcode.states.MoveHopper;
+import org.firstinspires.ftc.teamcode.states.PowerShooter;
 import org.firstinspires.ftc.teamcode.states.ShootRings;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
@@ -159,7 +161,12 @@ public class BlueLeftAuto2021 extends OpMode {
             new ForwardUntil(-24),
 
             new TurnUntilAngle(8),
-            new ShootRings(27.5, 2120),
+            new PowerShooter(30, 2230),
+            new MoveHopper("two"),
+            new PowerShooter(28, 2120),
+            new MoveHopper("one"),
+            new MoveHopper("zero"),
+            new PowerShooter(19, 0),
             new TurnUntilAngle(-8),
 
             new ForwardUntil(-42),
@@ -175,14 +182,19 @@ public class BlueLeftAuto2021 extends OpMode {
             new LiftUntilPos("above ground"),
             new ForwardUntil(-24),
 
-            new TurnUntilAngle(5),
-            new ShootRings(27, 2100),
-            new TurnUntilAngle(-5),
+            new TurnUntilAngle(8),
+            new PowerShooter(30, 2230),
+            new MoveHopper("two"),
+            new PowerShooter(28, 2120),
+            new MoveHopper("one"),
+            new MoveHopper("zero"),
+            new PowerShooter(19, 0),
+            new TurnUntilAngle(-8),
 
             new ForwardUntil(-66),
             new MoveClaw("open"),
-            new LiftUntilPos("vertical"),
             new ForwardUntil(24),
+            new LiftUntilPos("vertical"),
     });
 
     public LinearStack fourstates = new LinearStack(new OurState[] {
@@ -192,15 +204,20 @@ public class BlueLeftAuto2021 extends OpMode {
             new LiftUntilPos("over wall"),
             new ForwardUntil(-24),
 
-            new TurnUntilAngle(5),
-            new ShootRings(27, 2100),
-            new TurnUntilAngle(-5),
+            new TurnUntilAngle(8),
+            new PowerShooter(30, 2230),
+            new MoveHopper("two"),
+            new PowerShooter(28, 2120),
+            new MoveHopper("one"),
+            new MoveHopper("zero"),
+            new PowerShooter(19, 0),
+            new TurnUntilAngle(-8),
 
             new ForwardUntil(-87),
             new TurnUntilAngle(180),
             new MoveClaw("open"),
-            new LiftUntilPos("vertical"),
             new ForwardUntil(-45),
+            new LiftUntilPos("vertical"),
     });
 
     @Override

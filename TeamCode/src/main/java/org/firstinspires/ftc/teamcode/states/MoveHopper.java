@@ -100,20 +100,20 @@ public class MoveHopper extends OurState {
     @Override
     public void loop() {
 
-        if (goal == "two") {
-            if (timer > 100) {
-                h.incrementToPos(goal);
-            }
-        } else {
+//        if (goal == "two") {
+//            if (timer > 100) {
+//                h.incrementToPos(goal);
+//            }
+//        } else {
             h.incrementToPos(goal);
-        }
+//        }
 
         if (goal == "zero") { //we want the timer delay if it's the last ring to be shot, so that the motors don't start slowing until it's done shooting
-            if (timer > 300) {
+            if (timer > 250) {
                 running = false;
             }
         } else {
-            if (touch.getTouch() || timer > 300) {
+            if (touch.getTouch() || timer > 200) {
                 running = false;
             }
         }

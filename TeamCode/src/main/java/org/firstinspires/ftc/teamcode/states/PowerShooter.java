@@ -110,12 +110,12 @@ public class PowerShooter extends OurState {
             s.setSpeed(shooterSpeed);
             h.out();
 
-            if (s.isSpeedCorrect(shooterSpeed)) {
+            //if (s.isSpeedCorrect(shooterSpeed)) {
                 timer += 1;
-                if (timer > 30) { //if velocity reads correct 60 times, then move on
+                if (timer > 150) { //if velocity reads correct 60 times, then move on
                     running = false;
                 }
-            }
+          //  }
 
         }
 

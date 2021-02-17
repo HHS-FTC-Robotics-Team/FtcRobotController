@@ -61,7 +61,7 @@ public class BlueRightAuto2021 extends OpMode {
     OurState[] syncStatesList =  {
             //new PowerShooter(23, 2100),
             new LinearStack(new OurState[] {
-                    new MoveHopper("two"),
+
                     new StrafeUntil(6),
                     new MoveHopper("one"),
                     new StrafeUntil(6),
@@ -147,10 +147,12 @@ public class BlueRightAuto2021 extends OpMode {
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
 
-            new PowerShooter(29.5, 1865),
             new ForwardUntil(-24),
             new StrafeUntil(4),
 
+            new PowerShooter(28, 2100),
+            new MoveHopper("two"),
+            new PowerShooter(28, 1900),
             syncstack,
             new PowerShooter(19, 0),
 
@@ -169,14 +171,16 @@ public class BlueRightAuto2021 extends OpMode {
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
 
-            new PowerShooter(29.5, 1865),
             new ForwardUntil(-24),
             new StrafeUntil(4),
 
+            new PowerShooter(28, 2100),
+            new MoveHopper("two"),
+            new PowerShooter(28, 1900),
             syncstack,
             new PowerShooter(19, 0),
 
-            new ForwardUntil(-42),
+            new ForwardUntil(-48),
             new TurnUntilAngle(-90),
             new ForwardUntil (-32),
 
@@ -190,19 +194,21 @@ public class BlueRightAuto2021 extends OpMode {
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
 
-            new PowerShooter(29.5, 1865),
             new ForwardUntil(-24),
             new StrafeUntil(4),
 
+            new PowerShooter(28, 2100),
+            new MoveHopper("two"),
+            new PowerShooter(28, 1900),
             syncstack,
             new PowerShooter(19, 0),
 
             new ForwardUntil(-81),
             new TurnUntilAngle(-90),
             new ForwardUntil (-44),
+            new MoveClaw("open"),
 
             new TurnUntilAngle(-90),
-            new MoveClaw("open"),
             new ForwardUntil(-41),
 
             new LiftUntilPos("vertical"),
