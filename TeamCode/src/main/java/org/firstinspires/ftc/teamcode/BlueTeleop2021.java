@@ -144,7 +144,7 @@ public class BlueTeleop2021 extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            states.loop();
+
 
             if (gamepad1.y && !g1yIsDown) { g1yIsDown = true;
             state = "rotate";
@@ -194,6 +194,8 @@ public class BlueTeleop2021 extends LinearOpMode {
 //            } else {
 //                lift.rest();
 //            }
+
+            states.loop();
 
             if (cam2.isTargetVisible()) {
                 col.releaseServoPosition(1);

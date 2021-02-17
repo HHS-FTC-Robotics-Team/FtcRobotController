@@ -120,6 +120,7 @@ public class SynchronousStack extends OurState {
                 states.get(i).loop();
             } else {
                 //remove from stack
+                states.get(i).stop();
                 states.remove(i);
             }
         }

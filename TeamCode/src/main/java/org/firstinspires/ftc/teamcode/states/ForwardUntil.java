@@ -104,6 +104,7 @@ public class ForwardUntil extends OurState {
     @Override
     public void stop() {
       d.setPower(0, 0, 0, 0);
+      d.resetAllEncoders();
     }
     
     @Override
