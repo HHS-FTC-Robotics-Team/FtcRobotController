@@ -247,7 +247,7 @@ public class RedTeleop2021 extends LinearOpMode {
             } else if (gamepad2.left_stick_y != 0) {
                 if (gear.incrementToPos("max")) { //incrementToPos will both move the gearbox servo AND return if it has reached the goal yet
                     if (!col.isBusy()) {
-                        col.setPower(0.5 * gamepad2.left_stick_y);
+                        col.setPower(0.75 * gamepad2.left_stick_y);
                     }
                 }
             } else /*if (gear.isPos("min"))*/  { //isPos will check if servo is at the specified goal, does not move servo like incrementToPos does
