@@ -440,6 +440,21 @@ public class BlueTeleop2021 extends LinearOpMode {
             }
 
             telemetry.addData("Status", "Run Time: ");
+            telemetry.addData("Hopper position", hopperPos);
+            telemetry.addData("Shooter speed", shooterSpeed);
+            telemetry.addData("Shooter angle", shooterAngle);
+
+            telemetry.addData("Visible Target 2", cam2.isTargetVisible());
+            if (cam2.isTargetVisible()) {
+                telemetry.addData("Vuf 2 translation", cam2.getTranslation());
+                telemetry.addData("Vuf 2 rotation", cam2.getRotation());
+            }
+
+            telemetry.addData("Drive state", state);
+            telemetry.addData("Drive theta", theta);
+
+            telemetry.addData("touch out", touchout.getTouch());
+
             telemetry.addData("Motor Power", gamepad1.left_stick_y);
             telemetry.addData("Right Stick Pos", gamepad1.right_stick_y);
             telemetry.addData("Ly", gamepad1.left_stick_y);
@@ -450,27 +465,17 @@ public class BlueTeleop2021 extends LinearOpMode {
             telemetry.addData("lb", d.getPowerlb());
             telemetry.addData("rf", d.getPowerrf());
             telemetry.addData("rb", d.getPowerrb());
+
 //            telemetry.addData("touch in", touchin.getTouch());
-            telemetry.addData("touch out", touchout.getTouch());
-            telemetry.addData("lift clicks", col.getMotorClicks());
-//            telemetry.addData("top shooter velocity", shooter.getTopVelocity());
 //            if (cam1.isTargetVisible()) {
 //                telemetry.addData("Vuf 1 translation", cam1.getTranslation());
 //                telemetry.addData("Vuf 1 rotation", cam1.getRotation());
 //            }
-            if (cam2.isTargetVisible()) {
-                telemetry.addData("Vuf 2 translation", cam2.getTranslation());
-                telemetry.addData("Vuf 2 rotation", cam2.getRotation());
-            }
+
 //            telemetry.addData("Visible Target 1", cam1.isTargetVisible());
-            telemetry.addData("Visible Target 2", cam2.isTargetVisible());
-            telemetry.addData("Drive state", state);
-            telemetry.addData("Drive theta", theta);
-            telemetry.addData("Hopper position", hopperPos);
-            telemetry.addData("Shooter speed", shooterSpeed);
-            telemetry.addData("Shooter angle", shooterAngle);
-            telemetry.addData("On Midline?", onMidline);
-            telemetry.addData("State number", states.getSize());
+
+//            telemetry.addData("On Midline?", onMidline);
+//            telemetry.addData("State number", states.getSize());
             telemetry.update();
 
         }
