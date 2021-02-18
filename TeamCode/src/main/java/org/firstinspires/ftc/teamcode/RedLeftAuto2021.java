@@ -160,7 +160,7 @@ public class RedLeftAuto2021 extends OpMode {
             new TurnUntilAngle(90),
             new ForwardUntil (-44),
 
-            new TurnUntilAngle(90),
+            new TurnUntilAngle(-90),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
     });
@@ -181,8 +181,8 @@ public class RedLeftAuto2021 extends OpMode {
             new PowerShooter(19, 0),
 
             new ForwardUntil(-48),
-            new TurnUntilAngle(90),
-            new ForwardUntil (-32),
+            new TurnUntilAngle(-90),
+            new ForwardUntil (29),
 
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
@@ -206,10 +206,11 @@ public class RedLeftAuto2021 extends OpMode {
             new ForwardUntil(-81),
             new TurnUntilAngle(90),
             new ForwardUntil (-44),
+            new TurnUntilAngle(-90),
             new MoveClaw("open"),
 
-            new TurnUntilAngle(90),
-            new ForwardUntil(-41),
+            new ForwardUntil(41),
+
 
             new LiftUntilPos("vertical"),
     });
