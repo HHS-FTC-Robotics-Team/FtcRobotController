@@ -143,22 +143,23 @@ public class RedRightAuto2021 extends OpMode {
 
     });
     public LinearStack zerostates = new LinearStack(new OurState[] {
+
             new ForwardUntil(-6),
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
-            new ForwardUntil(-24),
+            new ForwardUntil(-48),
 
-            new TurnUntilAngle(-10),
-            new PowerShooter(29.7, 2200),
+            new TurnUntilAngle(-15),
+            new PowerShooter(30, 2200),
             new MoveHopper("two"),
-            new PowerShooter(28, 2100),
+            new PowerShooter(30, 2000),
             new MoveHopper("one"),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
-            new TurnUntilAngle(10),
+            new TurnUntilAngle(15),
 
-            new ForwardUntil(-42),
+            new ForwardUntil(-16),
             new MoveClaw("open"),
             new LiftUntilPos("vertical"),
     });
@@ -168,18 +169,18 @@ public class RedRightAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("over wall"),
-            new ForwardUntil(-24),
+            new ForwardUntil(-48),
 
-            new TurnUntilAngle(-10),
-            new PowerShooter(29.7, 2200),
+            new TurnUntilAngle(-15),
+            new PowerShooter(30, 2200),
             new MoveHopper("two"),
-            new PowerShooter(28, 2100),
+            new PowerShooter(30, 2000),
             new MoveHopper("one"),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
-            new TurnUntilAngle(10),
+            new TurnUntilAngle(15),
 
-            new ForwardUntil(-66),
+            new ForwardUntil(-46),
             new TurnUntilAngle(-180),
             new MoveClaw("open"),
             new ForwardUntil(-24),
@@ -191,20 +192,20 @@ public class RedRightAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
-            new ForwardUntil(-24),
+            new ForwardUntil(-48),
 
-            new TurnUntilAngle(-10),
-            new PowerShooter(29.7, 2200),
+            new TurnUntilAngle(-15),
+            new PowerShooter(30, 2200),
             new MoveHopper("two"),
-            new PowerShooter(28, 2100),
+            new PowerShooter(30, 2000),
             new MoveHopper("one"),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
-            new TurnUntilAngle(10),
+            new TurnUntilAngle(15),
 
-            new ForwardUntil(-90),
+            new ForwardUntil(-66),
             new MoveClaw("open"),
-            new ForwardUntil(48),
+            new ForwardUntil(44),
             new LiftUntilPos("vertical"),
     });
 
