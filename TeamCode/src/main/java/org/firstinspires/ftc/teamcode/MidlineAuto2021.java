@@ -19,6 +19,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.states.ForwardUntil;
@@ -46,6 +47,7 @@ import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 // * or add a @Disabled annotation to prevent this OpMode from being added to the Driver Station
 // */
 @Autonomous
+@Disabled
 public class MidlineAuto2021 extends OpMode {
     /* Declare OpMode members. */
     public int stage = 0;
