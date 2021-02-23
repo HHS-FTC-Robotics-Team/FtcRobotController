@@ -1,22 +1,17 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName; //for "eyes" init
-import org.firstinspires.ftc.teamcode.states.ForwardUntil;
-import org.firstinspires.ftc.teamcode.states.MoveClaw;
-import org.firstinspires.ftc.teamcode.states.NoThoughtsHeadEmpty;
+import org.firstinspires.ftc.teamcode.states.AlwaysRunning;
 import org.firstinspires.ftc.teamcode.states.StrafeUntil;
-import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 
 @TeleOp(name="testSyncTeleop2021", group="Linear Opmode")
 @Disabled
@@ -132,7 +127,7 @@ public class testSyncTeleop2021 extends LinearOpMode {
 
 
         OurState[] syncStatesList =  {
-                new NoThoughtsHeadEmpty(),
+                new AlwaysRunning(),
         };
         SynchronousStack states = new SynchronousStack(syncStatesList);
         robotHardware.build(hardwareMap);
