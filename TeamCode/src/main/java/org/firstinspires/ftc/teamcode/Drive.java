@@ -133,23 +133,17 @@ public class Drive extends LinearOpMode {
 
     float a = angle;
 
-//    if (power > 0) { //set angle the other way if going clockwise, doesn't work for red teleop
-////        a = 360 - a;
-//    } else if (power < 0) {
-//
-//    }
-
     double position = ((a / 360) * Math.PI * 114.8 ) * (134.4/(Math.PI * 3.85827) * 1.05); // convert inches to clicks based on circumference in inches
-                    // angle/360 part is what fraction of a full circle that we wanna turn
-                    // diagonal from one wheel to the opposite diagonal wheel of the robot ....
-                    // not sure what the rest of this math means anymore
-                    // (134.4/(Math.PI * 3.85827)) is how many clicks are in an inch (11.088 clicks/inch)
-                    //134.4 is the wheel's pulses (clicks) per rotation
-                    //1.05 is a correction added during troubleshooting
+        // angle/360 part is what fraction of a full circle that we wanna turn
+        // diagonal from one wheel to the opposite diagonal wheel of the robot ....
+        // not sure what the rest of this math means anymore
+        // (134.4/(Math.PI * 3.85827)) is how many clicks are in an inch (11.088 clicks/inch)
+        // 134.4 is the wheel's pulses (clicks) per rotation
+        // 1.05 is a correction added during troubleshooting
+        // 114.8
 
-
-
-    // 114.8
+    // use power as an indicator of cw or ccw
+    // (pos or neg power doesn't actually matter for run to position)
     if (power > 0) { // clockwise
       motorlf.setTargetPosition((int)position);
       motorlf.setMode(DcMotor.RunMode.RUN_TO_POSITION);

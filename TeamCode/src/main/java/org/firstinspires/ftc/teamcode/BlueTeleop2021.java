@@ -280,29 +280,37 @@ public class BlueTeleop2021 extends LinearOpMode {
                 } else {
                     state = "rotate";
                     d.resetAllEncoders();
-                    float heading = 0f;
+                    float heading = 0f; //TODO remove? revamp all of the variable initialization here
                     float x = 0f;
                     float y = 0f;
-                        if (cam2.isTargetVisible()) {
+                    if (cam2.isTargetVisible()) {
 //                        heading = cam2.getHeading() - 184; //OPPOSITE-CLAW
 //                        heading = cam2.getHeading() - 4; //CLAW-SIDE
-                        heading = -90 - cam2.getHeading(); //COLLECTOR-SIDE
+                        heading = -90 - cam2.getHeading(); //COLLECTOR-SIDE //TODO remove?
                         x = 72 - cam2.getPositionX();
                         //OG: 36
                         y = 36 - cam2.getPositionY();
                         theta = (float) (Math.atan2(y, x) * (180/Math.PI));
-//                        if (rotationAngle >= -180) {
-//                            d.rotateToAngle(rotationAngle, -0.5); // TODO conditional does not work
-//                        } else if (rotationAngle < -180) {
-//                            d.rotateToAngle(rotationAngle, 0.5);
-//                        }
-                        if (theta >= 0) {
-                            float rotationAngle = (heading + (theta*1.2f)); //1.2 is a manual correction
-                            d.rotateToAngle(rotationAngle, -0.5); // counter cw
 
+                        float rotationAngle = 0f; //init rotationAngle
+                        float rawHeading = cam2.getHeading();
+
+                        if (rawHeading < 90) { //add heading calculation to rotationAngle
+                            rotationAngle = rawHeading + 90f;
+                        } else if (rawHeading >= 90) {
+                            rotationAngle = rawHeading - 270f;
+                        }
+                        if (theta >= 0) { //add theta calculation to rotationAngle
+                            rotationAngle += (theta*1.2f); //1.2 is a manual correction
                         } else if (theta < 0) {
-                            float rotationAngle = (heading + theta);
-                            d.rotateToAngle(360-rotationAngle - 2, 0.5); // clockwise //-2 is a manual correction
+                            rotationAngle += theta;
+                        }
+
+                        if (rotationAngle >= 0) { //TODO may need to change when angle is (-) and when power is (-)
+                            d.rotateToAngle(rotationAngle, -0.5); // counter cw
+                        } else if (rotationAngle < 0) {
+                            d.rotateToAngle(-rotationAngle, 0.5); // clockwise
+//                            d.rotateToAngle(360-rotationAngle - 2, 0.5); // clockwise //-2 is a manual correction
                         }
                     }
                 }
