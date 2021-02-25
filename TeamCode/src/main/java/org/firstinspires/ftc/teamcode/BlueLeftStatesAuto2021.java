@@ -19,7 +19,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.states.ForwardUntil;
@@ -53,106 +52,20 @@ import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 // * or add a @Disabled annotation to prevent this OpMode from being added to the Driver Station
 // */
 @Autonomous
-@Disabled
-public class BlueLeftAuto2021 extends OpMode {
+public class BlueLeftStatesAuto2021 extends OpMode {
     /* Declare OpMode members. */
     public int stage = 0;
     public RobotHardware robotHardware = new RobotHardware();
 
-
-//    OurState[] syncStatesList =  {
-//        new TurnUntilAngle(90),
-//        new MoveClaw("close")
-//    };
-//    public SynchronousStack syncstack = new SynchronousStack(syncStatesList);
-
-
-
     public LinearStack states = new LinearStack(new OurState[] {
-
-//            new LiftUntilPos("horizontal")
-//            new MoveClaw("close"),
-//            new DetectRings(),
-//            Blue Left 0
-            //Lift(Something)
-
-            //Lift(Something)
-//            new ForwardUntil(-72),
-//            new TurnUntilAngle(180),
-//            new MoveClaw("open"),
-            //MoveUntilWhite()
-
-//            //Blue Left 1
-//            new ForwardUntil(-96),
-//            new MoveClaw("close"),
-//
-//            //Blue Left 4
-//            new ForwardUntil(-120),
-//            new TurnUntilAngle(180),
-//            new MoveClaw("close"),
-//
-//            //Red Right 0
-//            new ForwardUntil(-72),
-//            new MoveClaw("close"),
-//
-//            //Red Right 1
-//            new ForwardUntil(-96),
-//            new TurnUntilAngle(180),
-//            new MoveClaw("close"),
-//
-//            //Red Right 4
-//            new ForwardUntil(-120),
-//            new MoveClaw("close"),
-
-
-
-            // Phase 1
-            //new MoveGearbox("mesh")
-            //new MoveArm(1000)
-            //new MoveClaw("open"),
-            //new MoveClaw("close")
-            // new LiftUntilTime(120, -1),
-            //new ForwardUntil(24),
-            //new TurnUntilAngle(90),
-            // new ForwardUntil(-900),
-            // new SeekUntilColor(),
-            // new LinearStack(new OurState[] {
-//                 new CollectUntilDist(),
-//                 new ForwardUntil(2200), // + y
-            //     new StrafeUntilClicks(-9000) // + x
-            //}
-            //),
-
-            // Phase 2
-            // new DispenseUntilDist(),
-            // new TurnUntilAngle(180),
-            // new StrafeUntilClicks(3000),
-            // new ForwardUntil(3000),
-            //new GrabFoundation(),
-            //new DragFoundationR(-180),
 
 ////========================== OFFICIAL
 
-    //Blue left
-        new ReleaseCollector(),
-
-//            new ForwardUntil(-6),
-//            new LiftUntilPos("over wall"),
+            //Blue left
+            new ReleaseCollector(),
 
 
-//            new ForwardUntil(-6),
-//            new LiftUntilPos("horizontal"),
-//            new MoveClaw("close"),
-//            new LiftUntilPos("above ground"),
-//            new ForwardUntil(-66),
-//            new TurnUntilAngle(180),
-//            new MoveClaw("open"),
-//            new LiftUntilPos("vertical"),
-//            new MoveClaw("close"),
-//            new TurnUntilAngle(-180),
-
-
-        new LeftDetectRings(),
+            new LeftDetectRings(),
 
     });
     public LinearStack zerostates = new LinearStack(new OurState[] {
@@ -234,7 +147,7 @@ public class BlueLeftAuto2021 extends OpMode {
      */
     @Override
     public void init_loop() {
-       // robotHardware.init(); // build this
+        // robotHardware.init(); // build this
         states.init_loop();
     }
 
