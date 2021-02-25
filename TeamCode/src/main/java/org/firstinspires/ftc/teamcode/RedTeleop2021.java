@@ -280,25 +280,43 @@ public class RedTeleop2021 extends LinearOpMode {
                 } else {
                     state = "rotate";
                     d.resetAllEncoders();
-                    float heading = 0f;
+//                    float heading = 0f;
                     float x = 0f;
                     float y = 0f;
-                        if (cam2.isTargetVisible()) {
-//                        heading = cam2.getHeading() - 184; //OPPOSITE-CLAW
-//                        heading = cam2.getHeading() - 4; //CLAW-SIDE
-                        heading = -90 - cam2.getHeading(); //COLLECTOR-SIDE
+                    if (cam2.isTargetVisible()) {
+//                          heading = cam2.getHeading() - 184; //OPPOSITE-CLAW
+//                          heading = cam2.getHeading() - 4; //CLAW-SIDE
+//                          heading = -90 - cam2.getHeading(); //COLLECTOR-SIDE
                         x = 72 - cam2.getPositionX();
                         //OG: 36
                         y = -36 - cam2.getPositionY();
                         theta = (float) (Math.atan2(y, x) * (180/Math.PI));
 
-                        if (theta >= -15) { //-15 is constant estimated through red Teleop testing
-                            float rotationAngle = (heading + (theta*0.6f)); //0.6 is a manual correction,
-                            d.rotateToAngle(rotationAngle, -0.5); // counter cw
+                        float rotationAngle = 0f; //init rotationAngle
+                        float rawHeading = cam2.getHeading();
 
-                        } else if (theta < -15) {
-                            float rotationAngle = (heading + theta);
-                            d.rotateToAngle(-rotationAngle, 0.5); // clockwise
+                        if (rawHeading < 90) { //add heading calculation to rotationAngle
+                            rotationAngle = rawHeading + 90f;
+                        } else if (rawHeading >= 90) {
+                            rotationAngle = rawHeading - 270f;
+                        }
+
+                        if (theta >= 0) { //add theta calculation to rotationAngle
+                            rotationAngle -= theta;
+                        } else if (theta < 0) {
+                            rotationAngle -= theta;
+                        }
+
+                        if (rotationAngle < 0) {
+                            d.rotateToAngle(rotationAngle + (0.75f*theta), 0.5); // counter cw
+
+                        } else if (rotationAngle >= 0) {
+                            if (theta >= 0) { //correction that differentiated between targets
+                                d.rotateToAngle(-rotationAngle - 4, -0.5); // clockwise
+                            } else if (theta < 0) {
+                                d.rotateToAngle(-rotationAngle, -0.5); // clockwise
+                            }
+
                         }
                     }
                 }
