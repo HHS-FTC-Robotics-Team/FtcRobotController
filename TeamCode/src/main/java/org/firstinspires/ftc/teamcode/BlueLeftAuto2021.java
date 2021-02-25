@@ -53,7 +53,6 @@ import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 // * or add a @Disabled annotation to prevent this OpMode from being added to the Driver Station
 // */
 @Autonomous
-@Disabled
 public class BlueLeftAuto2021 extends OpMode {
     /* Declare OpMode members. */
     public int stage = 0;
