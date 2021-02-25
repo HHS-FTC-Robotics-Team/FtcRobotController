@@ -309,8 +309,11 @@ public class BlueTeleop2021 extends LinearOpMode {
                         }
 
                         if (rotationAngle < 0) {
-                            d.rotateToAngle(rotationAngle, 0.5); // counter cw
-//                            d.rotateToAngle(rotationAngle - (0.2f*theta), 0.5); // counter cw w/ past correction
+                            if (theta >= 0) { //correction that differentiated between targets
+                                d.rotateToAngle(rotationAngle - (0.25f*theta), 0.5); // counter cw
+                            } else if (theta < 0) {
+                                d.rotateToAngle(rotationAngle + (0.5f*theta), 0.5); // counter cw
+                            }
 
                         } else if (rotationAngle >= 0) {
                             d.rotateToAngle(-rotationAngle, -0.5); // clockwise

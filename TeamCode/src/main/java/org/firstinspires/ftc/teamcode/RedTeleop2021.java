@@ -312,9 +312,9 @@ public class RedTeleop2021 extends LinearOpMode {
 
                         } else if (rotationAngle >= 0) {
                             if (theta >= 0) { //correction that differentiated between targets
-                                d.rotateToAngle(-rotationAngle - 4, -0.5); // clockwise
+                                d.rotateToAngle(-rotationAngle - 5, -0.5); // clockwise
                             } else if (theta < 0) {
-                                d.rotateToAngle(-rotationAngle, -0.5); // clockwise
+                                d.rotateToAngle(-rotationAngle + (0.3f*theta), -0.5); // clockwise
                             }
 
                         }
