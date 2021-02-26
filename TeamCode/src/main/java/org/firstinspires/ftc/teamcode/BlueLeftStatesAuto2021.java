@@ -29,6 +29,8 @@ import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.MoveHopper;
 import org.firstinspires.ftc.teamcode.states.PowerShooter;
 import org.firstinspires.ftc.teamcode.states.ShootRings;
+import org.firstinspires.ftc.teamcode.states.Sleep;
+import org.firstinspires.ftc.teamcode.states.StrafeUntil;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 //import org.firstinspires.ftc.teamcode.states.StrafeUntilClicks;
@@ -53,7 +55,7 @@ import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 // * or add a @Disabled annotation to prevent this OpMode from being added to the Driver Station
 // */
 @Autonomous
-@Disabled
+//@Disabled
 public class BlueLeftStatesAuto2021 extends OpMode {
     /* Declare OpMode members. */
     public int stage = 0;
@@ -78,17 +80,21 @@ public class BlueLeftStatesAuto2021 extends OpMode {
             new ForwardUntil(-48),
 
             new TurnUntilAngle(11),
-            new PowerShooter(30, 2200),
+            new PowerShooter(30, 2100),
             new MoveHopper("two"),
-            new PowerShooter(30, 2000),
+            new PowerShooter(30, 1900),
             new MoveHopper("one"),
+            new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
             new TurnUntilAngle(-11),
 
-            new ForwardUntil(-16),
-            new TurnUntilAngle(180),
+            new StrafeUntil(-11),
+            new TurnUntilAngle(-90),
             new MoveClaw("open"),
+
+            new ForwardUntil(20),
+            new StrafeUntil(18),
             new LiftUntilPos("vertical"),
     });
 
@@ -100,16 +106,19 @@ public class BlueLeftStatesAuto2021 extends OpMode {
             new ForwardUntil(-48),
 
             new TurnUntilAngle(11),
-            new PowerShooter(30, 2200),
+            new PowerShooter(30, 2100),
             new MoveHopper("two"),
-            new PowerShooter(30, 2000),
+            new PowerShooter(30, 1900),
             new MoveHopper("one"),
+            new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
             new TurnUntilAngle(-11),
 
-            new ForwardUntil(-46),
+            new StrafeUntil(-4),
+            new ForwardUntil(-42),
             new MoveClaw("open"),
+            new StrafeUntil(-7),
             new ForwardUntil(24),
             new LiftUntilPos("vertical"),
     });
@@ -122,18 +131,23 @@ public class BlueLeftStatesAuto2021 extends OpMode {
             new ForwardUntil(-48),
 
             new TurnUntilAngle(11),
-            new PowerShooter(30, 2200),
+            new PowerShooter(30, 2100),
             new MoveHopper("two"),
-            new PowerShooter(30, 2000),
+            new PowerShooter(30, 1900),
             new MoveHopper("one"),
+            new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
-            new TurnUntilAngle(-11),
+            new TurnUntilAngle(-10),
 
-            new ForwardUntil(-62),
-            new TurnUntilAngle(180),
+            new StrafeUntil(-10),
+            new ForwardUntil(-52),
+            new TurnUntilAngle(-90),
             new MoveClaw("open"),
-            new ForwardUntil(-40),
+
+            new StrafeUntil(-10),
+            new TurnUntilAngle(-90),
+            new ForwardUntil(-20),
             new LiftUntilPos("vertical"),
     });
 

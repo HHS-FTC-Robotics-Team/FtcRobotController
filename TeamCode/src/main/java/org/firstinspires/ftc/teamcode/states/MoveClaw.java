@@ -67,7 +67,7 @@ public class MoveClaw extends OurState {
         super ();
         if (p == "close") {
             goal = lmax;
-            middleGoal = 0.40;
+            middleGoal = 0.50;
         }
 
         if (p == "open") {

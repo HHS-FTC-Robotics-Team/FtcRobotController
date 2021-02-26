@@ -29,6 +29,7 @@ import org.firstinspires.ftc.teamcode.states.MoveHopper;
 import org.firstinspires.ftc.teamcode.states.PowerShooter;
 import org.firstinspires.ftc.teamcode.states.ShootRings;
 import org.firstinspires.ftc.teamcode.states.Sleep;
+import org.firstinspires.ftc.teamcode.states.StrafeUntil;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 import org.firstinspires.ftc.teamcode.states.RightDetectRings;
@@ -77,7 +78,6 @@ public class RedRightStatesAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
-            new Sleep(10),
             new ForwardUntil(-48),
 
             new TurnUntilAngle(-14),
@@ -85,12 +85,17 @@ public class RedRightStatesAuto2021 extends OpMode {
             new MoveHopper("two"),
             new PowerShooter(30, 2000),
             new MoveHopper("one"),
+            new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
             new TurnUntilAngle(14),
 
-            new ForwardUntil(-16),
+            new StrafeUntil(6),
+            new TurnUntilAngle(-90),
             new MoveClaw("open"),
+
+            new ForwardUntil(-20),
+            new StrafeUntil(18),
             new LiftUntilPos("vertical"),
     });
 
@@ -98,8 +103,7 @@ public class RedRightStatesAuto2021 extends OpMode {
             new ForwardUntil(-6),
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
-            new LiftUntilPos("over wall"),
-            new Sleep(10),
+            new LiftUntilPos("above ground"),
             new ForwardUntil(-48),
 
             new TurnUntilAngle(-14),
@@ -107,15 +111,20 @@ public class RedRightStatesAuto2021 extends OpMode {
             new MoveHopper("two"),
             new PowerShooter(30, 2000),
             new MoveHopper("one"),
+            new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
             new TurnUntilAngle(14),
 
+            new StrafeUntil(3.5),
             new ForwardUntil(-46),
-            new TurnUntilAngle(-180),
+            new TurnUntilAngle(-185),
             new MoveClaw("open"),
+
+            new StrafeUntil(-7),
             new ForwardUntil(-24),
             new LiftUntilPos("vertical"),
+
     });
 
     public LinearStack fourstates = new LinearStack(new OurState[] {
@@ -123,7 +132,6 @@ public class RedRightStatesAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
-            new Sleep(10),
             new ForwardUntil(-48),
 
             new TurnUntilAngle(-14),
@@ -131,13 +139,20 @@ public class RedRightStatesAuto2021 extends OpMode {
             new MoveHopper("two"),
             new PowerShooter(30, 2000),
             new MoveHopper("one"),
+            new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
             new TurnUntilAngle(14),
 
-            new ForwardUntil(-62),
+            new StrafeUntil(1.5),
+            new ForwardUntil(-52),
+            new TurnUntilAngle(-90),
             new MoveClaw("open"),
-            new ForwardUntil(44),
+
+            new StrafeUntil(-10),
+            new TurnUntilAngle(-90),
+            new StrafeUntil(-8),
+            new ForwardUntil(-20),
             new LiftUntilPos("vertical"),
     });
 
