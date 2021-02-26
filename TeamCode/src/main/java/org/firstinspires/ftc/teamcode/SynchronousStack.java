@@ -149,6 +149,13 @@ public class SynchronousStack extends OurState {
         return states.get(i).getVariable();
     }
 
+    public double getTime(int i) {
+        if (states.size() > i) {
+            return states.get(i).time;
+        }
+        return 123;
+    }
+
     //add state(s) to the stack
     public void addState(OurState[] stack) {
         for (int i = 0; i < stack.length; i++) {
