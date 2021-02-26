@@ -308,13 +308,13 @@ public class RedTeleop2021 extends LinearOpMode {
                         }
 
                         if (rotationAngle < 0) {
-                            d.rotateToAngle(rotationAngle + (0.75f*theta), 0.5); // counter cw
+                            d.rotateToAngle(rotationAngle - 6.5f, 0.5); // counter cw
 
                         } else if (rotationAngle >= 0) {
                             if (theta >= 0) { //correction that differentiated between targets
-                                d.rotateToAngle(-rotationAngle - 5, -0.5); // clockwise
+                                d.rotateToAngle(-rotationAngle, -0.5); // clockwise side target
                             } else if (theta < 0) {
-                                d.rotateToAngle(-rotationAngle + (0.3f*theta), -0.5); // clockwise
+                                d.rotateToAngle(-rotationAngle, -0.5); // clockwise back target
                             }
 
                         }
@@ -340,7 +340,8 @@ public class RedTeleop2021 extends LinearOpMode {
                     shooterAngle = (0.00209513)*(distToGoal-104.975)*(distToGoal-104.975) + 27.3575; //quadratic line of best fit equation, updated 2/12/2021
                     shooter.pivotToAngle(shooterAngle);
 
-                    shooterSpeed = (-0.0343407)*(distToGoal-104.532)*(distToGoal-104.532) + 2137.34; //quadratic line of best fit equation, updated 2/12/2021
+                    shooterSpeed = (-0.0343407)*(distToGoal-104.532)*(distToGoal-104.532) + 2137.34 - 90; //quadratic line of best fit equation, updated 2/12/2021
+                    // -100 is manual correction
                 }
 //                }
             } else if (!gamepad1.a) {
