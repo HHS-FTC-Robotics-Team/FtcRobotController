@@ -205,8 +205,8 @@ public class RightDetectRings extends OurState {
         static final int REGION_WIDTH = 35;
         static final int REGION_HEIGHT = 25;
 
-        final int FOUR_RING_THRESHOLD = 145;
-        final int ONE_RING_THRESHOLD = 119;
+        final int FOUR_RING_THRESHOLD = 160;
+        final int ONE_RING_THRESHOLD = 130;
 
         Point region1_pointA = new Point(
                 REGION1_TOPLEFT_ANCHOR_POINT.x,

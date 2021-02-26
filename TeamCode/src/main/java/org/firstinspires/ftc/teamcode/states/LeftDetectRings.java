@@ -196,8 +196,8 @@ public class LeftDetectRings extends OurState {
         static final int REGION_WIDTH = 35;
         static final int REGION_HEIGHT = 25;
 
-        final int FOUR_RING_THRESHOLD = 150;
-        final int ONE_RING_THRESHOLD = 139;
+        final int FOUR_RING_THRESHOLD = 160;
+        final int ONE_RING_THRESHOLD = 130;
 
 //        //Personalized for Blue-right or Red-right starting positions
 //        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(105,295);
