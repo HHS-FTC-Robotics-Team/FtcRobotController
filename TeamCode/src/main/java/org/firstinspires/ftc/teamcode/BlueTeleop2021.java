@@ -478,7 +478,8 @@ public class BlueTeleop2021 extends LinearOpMode {
             telemetry.addData("lb", d.getPowerlb());
             telemetry.addData("rf", d.getPowerrf());
             telemetry.addData("rb", d.getPowerrb());
-            telemetry.addData("time", time);
+
+            telemetry.addData("time", getRuntime());
             telemetry.addData("time", states.getTime(1));
 
 //            telemetry.addData("touch in", touchin.getTouch());

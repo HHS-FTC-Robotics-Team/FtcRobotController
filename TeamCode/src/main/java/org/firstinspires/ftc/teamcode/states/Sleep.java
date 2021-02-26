@@ -86,8 +86,10 @@ public class Sleep extends OurState {
      */
     @Override
     public void loop() {
-        if(time > goal) { //if done moving
+        if(getRuntime() > goal) { //if done moving
             running = false;
+        } else {
+            running = true;
         }
     }
 

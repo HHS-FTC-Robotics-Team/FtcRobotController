@@ -99,6 +99,7 @@ public class RedRightStatesAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("over wall"),
+            new Sleep(10),
             new ForwardUntil(-48),
 
             new TurnUntilAngle(-14),
@@ -122,6 +123,7 @@ public class RedRightStatesAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
+            new Sleep(10),
             new ForwardUntil(-48),
 
             new TurnUntilAngle(-14),

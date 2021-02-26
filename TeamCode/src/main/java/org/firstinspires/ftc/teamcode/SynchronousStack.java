@@ -151,7 +151,7 @@ public class SynchronousStack extends OurState {
 
     public double getTime(int i) {
         if (states.size() > i) {
-            return states.get(i).time;
+            return states.get(i).getRuntime();
         }
         return 123;
     }
