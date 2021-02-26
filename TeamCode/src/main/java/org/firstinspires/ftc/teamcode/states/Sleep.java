@@ -55,6 +55,7 @@ import java.util.Date;
 public class Sleep extends OurState {
     /* Declare OpMode members. */
     public double goal = 0;
+    public double startTime = 0;
 
     public Sleep(double g) {
         super();
@@ -63,6 +64,7 @@ public class Sleep extends OurState {
 
     public void init(RobotHardware r) {
         telemetry.addData("Status", "Initialized");
+        startTime = getRuntime();
     }
 
     /*
@@ -86,7 +88,7 @@ public class Sleep extends OurState {
      */
     @Override
     public void loop() {
-        if(time > goal) { //if done moving
+        if(getRuntime() - startTime > goal) { //if done moving
             running = false;
         }
     }
