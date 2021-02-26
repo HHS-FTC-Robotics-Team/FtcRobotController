@@ -171,7 +171,7 @@ public class RedTeleop2021 extends LinearOpMode {
 //                    }
 
                     shooterAngle = 30;
-                    shooterSpeed = 1865;
+                    shooterSpeed = 1790;
 
 
                     OurState[] s = {

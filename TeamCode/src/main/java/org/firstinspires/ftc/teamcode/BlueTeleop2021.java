@@ -171,7 +171,7 @@ public class BlueTeleop2021 extends LinearOpMode {
 //                    }
 
                     shooterAngle = 30;
-                    shooterSpeed = 1865;
+                    shooterSpeed = 1790;
 
                     state = "rotate";
                     OurState[] s = {
@@ -340,7 +340,7 @@ public class BlueTeleop2021 extends LinearOpMode {
                     distToGoal = Math.sqrt((x * x) + (y * y));
                     shooterAngle = (0.00209513)*(distToGoal-104.975)*(distToGoal-104.975) + 27.3575; //quadratic line of best fit equation, updated 2/12/2021
                     shooter.pivotToAngle(shooterAngle);
-                    shooterSpeed = (-0.0343407)*(distToGoal-104.532)*(distToGoal-104.532) + 2137.34; //quadratic line of best fit equation, updated 2/12/2021
+                    shooterSpeed = (-0.0343407)*(distToGoal-104.532)*(distToGoal-104.532) + 2137.34 - 50; //quadratic line of best fit equation, updated 2/12/2021
                 }
             } else if (!gamepad1.a) { turningButtonIsDown = false; }
 
