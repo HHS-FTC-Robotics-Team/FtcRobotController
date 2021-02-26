@@ -28,6 +28,7 @@ import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.MoveHopper;
 import org.firstinspires.ftc.teamcode.states.PowerShooter;
 import org.firstinspires.ftc.teamcode.states.ShootRings;
+import org.firstinspires.ftc.teamcode.states.Sleep;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 import org.firstinspires.ftc.teamcode.states.RightDetectRings;
@@ -53,7 +54,7 @@ import org.firstinspires.ftc.teamcode.states.RightDetectRings;
 // * or add a @Disabled annotation to prevent this OpMode from being added to the Driver Station
 // */
 @Autonomous
-@Disabled
+//@Disabled
 public class RedRightStatesAuto2021 extends OpMode {
     /* Declare OpMode members. */
     public int stage = 0;
@@ -76,6 +77,7 @@ public class RedRightStatesAuto2021 extends OpMode {
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
             new LiftUntilPos("above ground"),
+            new Sleep(10),
             new ForwardUntil(-48),
 
             new TurnUntilAngle(-14),
