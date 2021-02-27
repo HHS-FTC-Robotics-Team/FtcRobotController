@@ -122,7 +122,7 @@ public class EasyOpenCVRight extends LinearOpMode
 //        final int ONE_RING_THRESHOLD = 135;
 
         //Personalized for Blue-right or Red-right starting positions
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(85,295);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(90,295);
 
         static final int REGION_WIDTH = 35;
         static final int REGION_HEIGHT = 25;

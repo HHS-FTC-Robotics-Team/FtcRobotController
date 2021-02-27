@@ -200,13 +200,13 @@ public class RightDetectRings extends OurState {
 //        final int ONE_RING_THRESHOLD = 135;
 
         //Personalized for Blue-right or Red-right starting positions
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(85,295);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(90,295);
 
         static final int REGION_WIDTH = 35;
         static final int REGION_HEIGHT = 25;
 
-        final int FOUR_RING_THRESHOLD = 160;
-        final int ONE_RING_THRESHOLD = 130;
+        final int FOUR_RING_THRESHOLD = 145;
+        final int ONE_RING_THRESHOLD = 129;
 
         Point region1_pointA = new Point(
                 REGION1_TOPLEFT_ANCHOR_POINT.x,

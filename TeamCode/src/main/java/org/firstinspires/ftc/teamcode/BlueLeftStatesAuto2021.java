@@ -76,7 +76,7 @@ public class BlueLeftStatesAuto2021 extends OpMode {
             new ForwardUntil(-6),
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
-            new Sleep(5),
+            new Sleep(7),
             new LiftUntilPos("above ground"),
             new ForwardUntil(-48),
 
@@ -129,6 +129,7 @@ public class BlueLeftStatesAuto2021 extends OpMode {
             new ForwardUntil(-6),
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
+            new Sleep(8),
             new LiftUntilPos("over wall"),
             new ForwardUntil(-48),
 
