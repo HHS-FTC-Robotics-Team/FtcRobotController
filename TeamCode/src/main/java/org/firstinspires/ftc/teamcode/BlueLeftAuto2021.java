@@ -29,6 +29,7 @@ import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.MoveHopper;
 import org.firstinspires.ftc.teamcode.states.PowerShooter;
 import org.firstinspires.ftc.teamcode.states.ShootRings;
+import org.firstinspires.ftc.teamcode.states.Sleep;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 //import org.firstinspires.ftc.teamcode.states.StrafeUntilClicks;
@@ -162,10 +163,11 @@ public class BlueLeftAuto2021 extends OpMode {
             new ForwardUntil(-48),
 
             new TurnUntilAngle(11),
-            new PowerShooter(30, 2200),
+            new PowerShooter(30, 2050),
             new MoveHopper("two"),
-            new PowerShooter(30, 2000),
+            new PowerShooter(30, 1900),
             new MoveHopper("one"),
+            new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
             new TurnUntilAngle(-11),
@@ -184,10 +186,11 @@ public class BlueLeftAuto2021 extends OpMode {
             new ForwardUntil(-48),
 
             new TurnUntilAngle(11),
-            new PowerShooter(30, 2200),
+            new PowerShooter(30, 2050),
             new MoveHopper("two"),
-            new PowerShooter(30, 2000),
+            new PowerShooter(30, 1900),
             new MoveHopper("one"),
+            new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
             new TurnUntilAngle(-11),
@@ -206,10 +209,11 @@ public class BlueLeftAuto2021 extends OpMode {
             new ForwardUntil(-48),
 
             new TurnUntilAngle(11),
-            new PowerShooter(30, 2200),
+            new PowerShooter(30, 2050),
             new MoveHopper("two"),
-            new PowerShooter(30, 2000),
+            new PowerShooter(30, 1900),
             new MoveHopper("one"),
+            new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
             new TurnUntilAngle(-11),

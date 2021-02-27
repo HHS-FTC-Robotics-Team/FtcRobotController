@@ -28,6 +28,7 @@ import org.firstinspires.ftc.teamcode.states.MoveClaw;
 import org.firstinspires.ftc.teamcode.states.MoveHopper;
 import org.firstinspires.ftc.teamcode.states.PowerShooter;
 import org.firstinspires.ftc.teamcode.states.ShootRings;
+import org.firstinspires.ftc.teamcode.states.Sleep;
 import org.firstinspires.ftc.teamcode.states.TurnUntilAngle;
 import org.firstinspires.ftc.teamcode.states.ReleaseCollector;
 import org.firstinspires.ftc.teamcode.states.RightDetectRings;
@@ -156,6 +157,7 @@ public class RedRightAuto2021 extends OpMode {
             new MoveHopper("two"),
             new PowerShooter(30, 2000),
             new MoveHopper("one"),
+            new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
             new TurnUntilAngle(14),
@@ -177,6 +179,7 @@ public class RedRightAuto2021 extends OpMode {
             new MoveHopper("two"),
             new PowerShooter(30, 2000),
             new MoveHopper("one"),
+            new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
             new TurnUntilAngle(14),
@@ -200,6 +203,7 @@ public class RedRightAuto2021 extends OpMode {
             new MoveHopper("two"),
             new PowerShooter(30, 2000),
             new MoveHopper("one"),
+            new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
             new TurnUntilAngle(14),

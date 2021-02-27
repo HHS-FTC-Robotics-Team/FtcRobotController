@@ -81,7 +81,7 @@ public class BlueLeftStatesAuto2021 extends OpMode {
             new ForwardUntil(-48),
 
             new TurnUntilAngle(11),
-            new PowerShooter(30, 2100),
+            new PowerShooter(30, 2050),
             new MoveHopper("two"),
             new PowerShooter(30, 1900),
             new MoveHopper("one"),
@@ -103,11 +103,12 @@ public class BlueLeftStatesAuto2021 extends OpMode {
             new ForwardUntil(-6),
             new LiftUntilPos("horizontal"),
             new MoveClaw("close"),
+            new Sleep(7),
             new LiftUntilPos("above ground"),
             new ForwardUntil(-48),
 
             new TurnUntilAngle(11),
-            new PowerShooter(30, 2100),
+            new PowerShooter(30, 2050),
             new MoveHopper("two"),
             new PowerShooter(30, 1900),
             new MoveHopper("one"),
@@ -132,7 +133,7 @@ public class BlueLeftStatesAuto2021 extends OpMode {
             new ForwardUntil(-48),
 
             new TurnUntilAngle(11),
-            new PowerShooter(30, 2100),
+            new PowerShooter(30, 2050),
             new MoveHopper("two"),
             new PowerShooter(30, 1900),
             new MoveHopper("one"),
