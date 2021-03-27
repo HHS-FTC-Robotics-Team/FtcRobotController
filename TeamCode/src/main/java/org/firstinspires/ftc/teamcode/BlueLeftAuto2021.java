@@ -162,7 +162,7 @@ public class BlueLeftAuto2021 extends OpMode {
             new LiftUntilPos("above ground"),
             new ForwardUntil(-48),
 
-            new TurnUntilAngle(11),
+            new TurnUntilAngle(7.5),
             new PowerShooter(30, 2050),
             new MoveHopper("two"),
             new PowerShooter(30, 1900),
@@ -170,7 +170,7 @@ public class BlueLeftAuto2021 extends OpMode {
             new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
-            new TurnUntilAngle(-11),
+            new TurnUntilAngle(-7.5),
 
             new ForwardUntil(-16),
             new TurnUntilAngle(180),
@@ -185,7 +185,7 @@ public class BlueLeftAuto2021 extends OpMode {
             new LiftUntilPos("above ground"),
             new ForwardUntil(-48),
 
-            new TurnUntilAngle(11),
+            new TurnUntilAngle(7.5),
             new PowerShooter(30, 2050),
             new MoveHopper("two"),
             new PowerShooter(30, 1900),
@@ -193,7 +193,7 @@ public class BlueLeftAuto2021 extends OpMode {
             new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
-            new TurnUntilAngle(-11),
+            new TurnUntilAngle(-7.5),
 
             new ForwardUntil(-46),
             new MoveClaw("open"),
@@ -208,7 +208,7 @@ public class BlueLeftAuto2021 extends OpMode {
             new LiftUntilPos("over wall"),
             new ForwardUntil(-48),
 
-            new TurnUntilAngle(11),
+            new TurnUntilAngle(7.5),
             new PowerShooter(30, 2050),
             new MoveHopper("two"),
             new PowerShooter(30, 1900),
@@ -216,7 +216,7 @@ public class BlueLeftAuto2021 extends OpMode {
             new Sleep(0.5),
             new MoveHopper("zero"),
             new PowerShooter(19, 0),
-            new TurnUntilAngle(-11),
+            new TurnUntilAngle(-7.5),
 
             new ForwardUntil(-62),
             new TurnUntilAngle(180),

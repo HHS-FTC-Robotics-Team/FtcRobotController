@@ -16,7 +16,7 @@ public class Hopper extends LinearOpMode {
     private Servo platformservo = null;
 
     private double zeroring = 0;
-    private double onering = 0.18;
+    private double onering = 0.15;
     private double tworing = 0.35;
     private double threering = 0.52;
 
